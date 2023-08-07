@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "REZ (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "REZ (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}
