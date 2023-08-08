@@ -13,7 +13,8 @@ This is the final group project for discipline INF0999 (Final Project) of the tr
 ### Contributors
 
 <a href="https://github.com/lknknm/REZ-menu-app/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=lknknm/REZ-menu-app" />
+  <img src="https://avatars.githubusercontent.com/u/108239558?size=64" style="border-radius: 100%" />
+  <img src="https://avatars.githubusercontent.com/u/91164652?size=64" style="border-radius: 100%" />
   <img src="https://avatars.githubusercontent.com/u/110830067?size=64" style="border-radius: 100%" />
   <img src="https://avatars.githubusercontent.com/u/41762278?size=64" style="border-radius: 100%" />
 </a>
