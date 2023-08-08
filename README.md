@@ -1,13 +1,22 @@
 # REZ Menu App
 
+![Alt text](image.png)
+
+REZ is a simple Restaurant Menu Application for a fictional restaurant to provide an easy experience to order food from the table with autonomy.
+It makes it easier to costumers and waiters to keep track of bills and order items, as well as having a clear view of what the restaurant has to offer.
+
 This is the final group project for discipline INF0999 (Final Project) of the training course in Microsoft technologies at the Institute of Computing at the State University of Campinas (UNICAMP).
 
-Members GitHub:
+|This Project is still under construction|
+|----------------------------------------|
 
-* [Andres](link)
-* [Lucas](Link)
-* [Manoel](Link)
-* [Pedro](Link)
+### Contributors
+
+<a href="https://github.com/lknknm/REZ-menu-app/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=lknknm/REZ-menu-app" />
+  <img src="https://avatars.githubusercontent.com/u/110830067?size=64" style="border-radius: 100%" />
+  <img src="https://avatars.githubusercontent.com/u/41762278?size=64" style="border-radius: 100%" />
+</a>
 
 ## Getting Started
 

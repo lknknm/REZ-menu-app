@@ -30,5 +30,9 @@ namespace REZ
         private void myButton_Click(object sender, RoutedEventArgs e)
         {
         }
+        private void TestButtonClick1(object sender, RoutedEventArgs e)
+        {
+            ToggleThemeTeachingTip1.IsOpen = true;
+        }
     }
 }
