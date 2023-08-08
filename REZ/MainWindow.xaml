@@ -8,53 +8,5 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
-
-    <Grid x:Name="LayoutRoot">
-        <Grid.Background>
-            <ImageBrush ImageSource="/Assets/MainWindowBackground.png" Stretch="UniformToFill" AlignmentX="Right" AlignmentY="Top"/>
-        </Grid.Background>
-        <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,16,0,0">
-
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0">
-                <AutoSuggestBox PlaceholderText="Busque um item em nosso cardápio" QueryIcon="Find" Width="600" Margin="0,0,4,0"/>
-                <Button x:Name="ShoppingCartButton" Style="{StaticResource AccentButtonStyle}" Background="#84CC16" Click="TestButtonClick1">
-                    <FontIcon Glyph="&#xE7BF;" Foreground="#F2F2F2"/>
-                </Button>
-                <TeachingTip x:Name="ToggleThemeTeachingTip1"
-                    Target="{x:Bind ShoppingCartButton}"
-                    Title="Your shopping cart is empty."
-                    Subtitle="Add items to your order to display them here.">
-                </TeachingTip>
-            </StackPanel>
-            <StackPanel Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0,240,768,0">
-                <TextBlock Text="REZ" FontWeight="Bold" TextAlignment="Left" FontSize="128" Foreground="#84CC16"/>
-                <TextBlock Text="Easy Restaurant App" FontWeight="Bold" TextAlignment="Left" FontSize="24" Foreground="#84CC16"/>
-                <TextBlock FontWeight="Light" TextAlignment="Left" FontSize="16" Foreground="#84CC16" Width="484" TextWrapping="Wrap">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-                    Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                </TextBlock>
-            </StackPanel>
-
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="0,144,0,0">
-                <Button Margin="24" Click="myButton_Click" Width="164" Height="164">
-                    <StackPanel Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center">
-                        <PersonPicture MaxWidth="128" ProfilePicture="https://images.pexels.com/photos/109275/pexels-photo-109275.jpeg"/>
-                        <TextBlock Margin="10" Text="Bebidas" FontWeight="Bold" TextAlignment="Center"/>
-                    </StackPanel>
-                </Button>
-                <Button Margin="24" Click="myButton_Click" Width="164" Height="164">
-                    <StackPanel Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center">
-                        <PersonPicture MaxWidth="128" ProfilePicture="https://images.pexels.com/photos/2297961/pexels-photo-2297961.jpeg"/>
-                        <TextBlock Margin="10" Text="Pratos" FontWeight="Bold" TextAlignment="Center"/>
-                    </StackPanel>
-                </Button>
-                <Button Margin="24" Click="myButton_Click" Width="164" Height="164">
-                    <StackPanel Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center">
-                        <PersonPicture MaxWidth="128" ProfilePicture="https://images.pexels.com/photos/3491211/pexels-photo-3491211.jpeg"/>
-                        <TextBlock Margin="10" Text="Cafeteria" FontWeight="Bold" TextAlignment="Center"/>
-                    </StackPanel>
-                </Button>
-            </StackPanel>
-        </StackPanel>
-    </Grid>
+    
 </Window>

@@ -1,3 +1,5 @@
+using Microsoft.UI;
+using Microsoft.UI.Windowing;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Controls.Primitives;
@@ -10,8 +12,10 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Runtime.InteropServices;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using WinRT.Interop;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -23,16 +27,19 @@ namespace REZ
     /// </summary>
     public sealed partial class MainWindow : Window
     {
+        private AppWindow m_AppWindow;
+
         public MainWindow()
         {
             this.InitializeComponent();
+            m_AppWindow = GetAppWindowForCurrentWindow();
+            m_AppWindow.SetIcon("Assets/REZ.ico");
         }
-        private void myButton_Click(object sender, RoutedEventArgs e)
+        private AppWindow GetAppWindowForCurrentWindow()
         {
-        }
-        private void TestButtonClick1(object sender, RoutedEventArgs e)
-        {
-            ToggleThemeTeachingTip1.IsOpen = true;
+            IntPtr hWnd = WindowNative.GetWindowHandle(this);
+            WindowId wndId = Microsoft.UI.Win32Interop.GetWindowIdFromWindow(hWnd);
+            return AppWindow.GetFromWindowId(wndId);
         }
     }
 }
