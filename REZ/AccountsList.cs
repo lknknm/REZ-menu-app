@@ -9,6 +9,11 @@ namespace REZ
         public AccountsList()
         {
         }
+
+        public Collection<Account> CleanList(Collection<Account> accountsList)
+        {
+            return accountsList;
+        }
     }
 }
 
