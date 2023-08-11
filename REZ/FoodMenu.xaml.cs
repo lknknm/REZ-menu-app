@@ -13,6 +13,7 @@ using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Navigation;
 using Microsoft.UI.Xaml.Media.Animation;
+using System.Collections.ObjectModel;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -24,8 +25,10 @@ namespace REZ
     /// </summary>
     public sealed partial class FoodMenu : Page
     {
-        public FoodMenu()
+        Collection<Item> ItemsMenu;
+        public FoodMenu(Collection<Item> items)
         {
+            ItemsMenu = items;
             this.InitializeComponent();
         }
         
