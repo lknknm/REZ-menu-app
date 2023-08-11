@@ -21,14 +21,15 @@ namespace REZ
         }
     }
 
-    public class Food : Item
-    {
+    //Pensei em criar sub-classes ao invés de um atributo 'type', mas não sei se faz sentido, deixo aqui para discussão
+    // public class Food : Item
+    // {
         
-    }
+    // }
 
-    public class Drink : Item
-    {
+    // public class Drink : Item
+    // {
 
-    }
+    // }
 }
 
