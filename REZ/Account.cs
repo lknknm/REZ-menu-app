@@ -5,34 +5,37 @@ namespace REZ
 {
     public class Account
     {
-        string name;
-        Collection<Item> ItemsList;
-        double totalPrice;
+        public string Name;
+        private Collection<Item> itemsList;
+        private double totalPrice = 0.0;
         
-        public Account()
+        public Account(string name)
         {
-
+            Name = name;
+            // TotalPrice = totalPrice;
         }
 
-        public void MoveItemToAnotherAccount(Account originAccount, Account DestinyAccount)
+        public Collection<Item> ItemsList 
         {
-
+            get { return itemsList; }
+            set { itemsList = value; }
         }
 
-        public Account CreateAccount(string AccountName)
+        public double TotalPrice 
         {
-            Account newAccount = new Account();
-            return newAccount;
+            get { return totalPrice; }
+            set { totalPrice = value; }
         }
 
-        public void RemoveAccount()
-        {
+        // public void MoveItemToAnotherAccount(Account originAccount, Account DestinyAccount)
+        // {
+                         // Não sei se isso é necessário
+        // }
 
-        }
-
-        public void CleanUp()
+        public void AddItem(Item item)
         {
-            
+            ItemsList.Add(item);
+            totalPrice += item.Price;
         }
     }
 }

@@ -1,23 +1,46 @@
 ﻿using System;
+using System.Collections.ObjectModel;
 
 namespace REZ
 {
-    public class Item
+    public class Item : ICloneable
     {
-        string image;
-        double price;
-        string OrderId;
-        string name;
-        string description;
-        string itemType; //food, drink, dessert, combo, etc
-        public Item()
+        public string Image;
+        public double Price;
+        private string orderId;
+        public string Name;
+        public string Description;
+        public string Type; //food, drink, dessert, combo, etc
+
+        public string OrderId
         {
+            get { return orderId; }
+            set { orderId = value; }
+        }
+        public Item(string name, string description, double price, string image, string type)
+        {
+            Name = name;
+            Description = description;
+            Price = price;
+            Image = image;
+            Type = type;
+            //Criar items no DB
 
         }
 
-        public void DivideItemPrice(Account[] accountsToDivide, Item item)
+        public object Clone()
         {
+            throw new NotImplementedException();
+        }
 
+        public void DivideItemPrice(Account[] accountsToDivide, int accountsQuantity)
+        {
+            double valueForEachAccount = this.Price/accountsQuantity;
+
+            foreach (Account account in accountsToDivide)
+            {
+                account.TotalPrice += valueForEachAccount;
+            }
         }
     }
 

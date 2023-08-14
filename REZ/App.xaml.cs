@@ -32,6 +32,7 @@ namespace REZ
         /// </summary>
         public App()
         {
+            //Pegar a lista de Items criados do DB
             this.InitializeComponent();
         }
 
