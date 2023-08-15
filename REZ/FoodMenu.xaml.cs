@@ -26,17 +26,18 @@ namespace REZ
     /// </summary>
     public sealed partial class FoodMenu : Page
     {
+        string filter = "Tudo";
+        string jsonString;
+        List<Product> products;
 
-        
         public FoodMenu()
         {
             this.InitializeComponent();
 
             string jsonFilePath = "C:/Users/USER/Documents/Microsoft-Course/projeto/REZ-apresentacao/REZ-menu-app/REZ/Properties/Products.json";
             StreamReader reader = new(jsonFilePath);
-            string jsonString = reader.ReadToEnd();
-            List<Product> products = JsonConvert.DeserializeObject<List<Product>>(jsonString);
-            
+            jsonString = reader.ReadToEnd();
+            products = JsonConvert.DeserializeObject<List<Product>>(jsonString);
             var groupedProducts = products.GroupBy(p => p.Category);
             myListView.Source = groupedProducts;
 
@@ -70,6 +71,19 @@ namespace REZ
         private void myListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             // Handle selection change event here if needed
+        }
+
+        private void FilterByCategory(object sender, RoutedEventArgs e)
+        {
+            filter = (sender as Button)?.Content?.ToString();
+            products = JsonConvert.DeserializeObject<List<Product>>(jsonString);
+            if (filter != "Tudo")
+            {
+                products = products.FindAll(p => p.Category == filter);
+            }
+            var groupedProducts = products.GroupBy(p => p.Category);
+            myListView.Source = groupedProducts;
+
         }
 
     }
