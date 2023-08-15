@@ -37,7 +37,7 @@ namespace REZ
             string jsonString = reader.ReadToEnd();
             List<Product> products = JsonConvert.DeserializeObject<List<Product>>(jsonString);
             
-            var groupedProducts = products.GroupBy(p => p.Category);
+            var groupedProducts = products.GroupBy(p => p.SubCategory);
             myListView.Source = groupedProducts;
             DataContext = this;
 
@@ -51,18 +51,19 @@ namespace REZ
         {
             ToggleThemeTeachingTip1.IsOpen = true;
         }
-        private async void ToggleListTip(object sender, RoutedEventArgs e)
+        private async void ToggleListTip(object sender, ItemClickEventArgs e)
         {
             ContentDialog dialog = new ContentDialog();
+            var itemId = (e.ClickedItem as Product);
 
             // XamlRoot must be set in the case of a ContentDialog running in a Desktop app
             dialog.XamlRoot = this.XamlRoot;
             dialog.Style = Application.Current.Resources["DefaultContentDialogStyle"] as Style;
-            dialog.Title = "Test";
+            dialog.Title = itemId.Name;
             dialog.PrimaryButtonText = "Adicionar";
             dialog.CloseButtonText = "Cancelar";
             dialog.DefaultButton = ContentDialogButton.Primary;
-            dialog.Content = new ItemDialogModal();
+            dialog.Content = new ItemDialogModal(itemId);
 
             var result = await dialog.ShowAsync();
         }

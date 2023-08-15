@@ -23,9 +23,11 @@ namespace REZ
     /// </summary>
     public sealed partial class ItemDialogModal : Page
     {
-        public ItemDialogModal()
+        public ItemDialogModal(Product itemId)
         {
             this.InitializeComponent();
+            DataContext = this;
+            string Description = itemId.Description.ToString();
         }
     }
 }
