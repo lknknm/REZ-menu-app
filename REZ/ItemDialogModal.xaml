@@ -10,8 +10,11 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <StackPanel VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
-        <!-- Content body -->
         <TextBlock Text="Acompanha arroz, couve, farofa, laranja e molho de pimenta." TextWrapping="Wrap" />
+        <TextBox Header="Algum comentário?" 
+                AutomationProperties.Name="multi-line TextBox" Margin="12"
+                TextWrapping="Wrap" AcceptsReturn="True" IsSpellCheckEnabled="True"
+                SelectionHighlightColor="Green" MinWidth="400" />
     </StackPanel>
 
 </Page>

@@ -23,6 +23,7 @@ namespace REZ
     public class Product
     {
         public string Name { get; set; }
+        public string SubCategory { get; set; }
         public string Category { get; set; }
         public string Description { get; set; }
         public int Price { get; set; }
@@ -33,23 +34,22 @@ namespace REZ
     /// </summary>
     public sealed partial class FoodMenu : Page
     {
-
-
         public FoodMenu()
         {
             this.InitializeComponent();
 
             List<Product> products = new List<Product>()
             {
-                new Product { Name = "Product 1", Category = "Pratos", Description = "Description 1", Price = 48 },
-                new Product { Name = "Product 2", Category = "Pratos", Description = "Description 2", Price = 48 },
-                new Product { Name = "Product 3", Category = "Drinks", Description = "Description 3", Price = 48 },
-                new Product { Name = "Product 4", Category = "Drinks", Description = "Description 4", Price = 48 },
+                new Product { Name = "Product 1", Category = "Pratos",  SubCategory = "Pratos", Description = "Description 1", Price = 48 },
+                new Product { Name = "Product 2", Category = "Pratos",  SubCategory = "Pratos", Description = "Description 2", Price = 48 },
+                new Product { Name = "Product 3", Category = "Bebidas", SubCategory = "Drinks", Description = "Description 3", Price = 48 },
+                new Product { Name = "Product 4", Category = "Bebidas", SubCategory = "Softs",  Description = "Description 4", Price = 48 },
             };
 
-            var groupedProducts = products.GroupBy(p => p.Category);
+            var groupedProducts = products.GroupBy(p => p.SubCategory);
 
             myListView.Source = groupedProducts;
+            DataContext = this;
 
         }
         
@@ -68,15 +68,13 @@ namespace REZ
             // XamlRoot must be set in the case of a ContentDialog running in a Desktop app
             dialog.XamlRoot = this.XamlRoot;
             dialog.Style = Application.Current.Resources["DefaultContentDialogStyle"] as Style;
-            dialog.Title = "Product 1";
-            dialog.PrimaryButtonText = "Save";
-            dialog.SecondaryButtonText = "Don't Save";
-            dialog.CloseButtonText = "Cancel";
+            dialog.Title = "Test";
+            dialog.PrimaryButtonText = "Adicionar";
+            dialog.CloseButtonText = "Cancelar";
             dialog.DefaultButton = ContentDialogButton.Primary;
             dialog.Content = new ItemDialogModal();
 
             var result = await dialog.ShowAsync();
-
         }
         private void myListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
