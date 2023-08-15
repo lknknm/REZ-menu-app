@@ -15,10 +15,12 @@
             <Image Source="https://images.pexels.com/photos/1146760/pexels-photo-1146760.jpeg" Stretch="UniformToFill" />
         </Border>
 
-        <TextBlock Text="Nobis ea cumque quos nisi dolorem inventore molestias. Quo cupiditate libero consectetur consequuntur eveniet ut ipsam iure." 
+        <TextBlock x:Name="Description"
+                   Text="Nobis ea cumque quos nisi dolorem inventore molestias. Quo cupiditate libero consectetur consequuntur eveniet ut ipsam iure." 
                    TextWrapping="Wrap"
                    Margin="12"/>
-        <TextBlock  Text="R$54,00"
+        <TextBlock  x:Name="Price"
+                    Text="R$54,00"
                     TextWrapping="Wrap"
                     Margin="12"/>
         <TextBox Header="Algum comentário?" 
