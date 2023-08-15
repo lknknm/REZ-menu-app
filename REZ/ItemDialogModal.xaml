@@ -10,12 +10,28 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
     DataContext="{Binding RelativeSource={RelativeSource Self}}">
 
-    <StackPanel VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
-        <TextBlock Text="{Binding Description}" TextWrapping="Wrap" />
+    <StackPanel VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Background="White">
+        <Border Background="Transparent" CornerRadius="10" Margin="12">
+            <Image Source="https://images.pexels.com/photos/1146760/pexels-photo-1146760.jpeg" Stretch="UniformToFill" />
+        </Border>
+
+        <TextBlock Text="Nobis ea cumque quos nisi dolorem inventore molestias. Quo cupiditate libero consectetur consequuntur eveniet ut ipsam iure." 
+                   TextWrapping="Wrap"
+                   Margin="12"/>
+        <TextBlock  Text="R$54,00"
+                    TextWrapping="Wrap"
+                    Margin="12"/>
         <TextBox Header="Algum comentário?" 
                 AutomationProperties.Name="multi-line TextBox" Margin="12"
                 TextWrapping="Wrap" AcceptsReturn="True" IsSpellCheckEnabled="True"
-                SelectionHighlightColor="Green" MinWidth="400" />
+                SelectionHighlightColor="Green" MinWidth="400" 
+                PlaceholderText="Ex.: Tirar a cebola, maionese à parte, etc..."/>
+        <NumberBox x:Name="NumberBoxSpinButtonPlacementExample"
+                    Margin="12"
+                    Value="1"
+                    SpinButtonPlacementMode="Compact"
+                    SmallChange="1"
+                    LargeChange="5" />
     </StackPanel>
 
 </Page>

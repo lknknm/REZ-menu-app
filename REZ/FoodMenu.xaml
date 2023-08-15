@@ -10,6 +10,15 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
     DataContext="{Binding RelativeSource={RelativeSource Self}}">
 
+
+
+    <Page.Resources>
+        <Style x:Key="AccentButton" TargetType="Button">
+            <Setter Property="Background" Value="{Binding Source={StaticResource AccentButtonStyle}}" />
+            <!-- Other style properties -->
+        </Style>
+    </Page.Resources>
+
     <Grid>
         <AppBarButton Icon="Back" Click="AppBarButton_Click" IsCompact="True" Margin="0,8,0,0"/>
         <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,16,0,0">
@@ -24,11 +33,11 @@
                     Subtitle="Add items to your order to display them here.">
                 </TeachingTip>
             </StackPanel>
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,16,0,0">
-                <Button Content="Tudo"      CornerRadius="18" Click="FilterByCategory" />
-                <Button Content="Bebidas"   CornerRadius="18" Click="FilterByCategory" />
-                <Button Content="Comida"    CornerRadius="18" Click="FilterByCategory" />
-                <Button Content="Cafeteria" CornerRadius="18" Click="FilterByCategory" />
+            <StackPanel x:Name="CategoriesButtonRow" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,16,0,0">
+                <Button Content="Tudo"      CornerRadius="18" Click="FilterByCategory" Style="{StaticResource AccentButtonStyle}"/>
+                <Button Content="Bebidas"   CornerRadius="18" Click="FilterByCategory"/>
+                <Button Content="Comida"    CornerRadius="18" Click="FilterByCategory"/>
+                <Button Content="Cafeteria" CornerRadius="18" Click="FilterByCategory"/>
             </StackPanel>
             <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,24,0,0">
 

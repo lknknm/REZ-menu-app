@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Media.Animation;
 using Newtonsoft.Json;
 
@@ -75,15 +76,22 @@ namespace REZ
 
         private void FilterByCategory(object sender, RoutedEventArgs e)
         {
+            Button clickedButton = (Button)sender;
+            // Reset all buttons to normal background
+            foreach (Button button in CategoriesButtonRow.Children)
+            {
+                button.ClearValue(Button.StyleProperty); ;
+            };
+            clickedButton.Style = (Style)Resources["AccentButtonStyle"];
+
             filter = (sender as Button)?.Content?.ToString();
             products = JsonConvert.DeserializeObject<List<Product>>(jsonString);
             if (filter != "Tudo")
             {
                 products = products.FindAll(p => p.Category == filter);
             }
-            var groupedProducts = products.GroupBy(p => p.Category);
+            var groupedProducts = products.GroupBy(p => p.SubCategory);
             myListView.Source = groupedProducts;
-
         }
 
     }
