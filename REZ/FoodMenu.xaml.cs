@@ -20,6 +20,8 @@ namespace REZ
         public string Category { get; set; }
         public string Description { get; set; }
         public double Price { get; set; }
+
+
     }
 
     /// <summary>
@@ -56,22 +58,28 @@ namespace REZ
         private async void ToggleListTip(object sender, ItemClickEventArgs e)
         {
             ContentDialog dialog = new ContentDialog();
-            var itemId = (e.ClickedItem as Product);
+            var item = (e.ClickedItem as Product);
 
             // XamlRoot must be set in the case of a ContentDialog running in a Desktop app
             dialog.XamlRoot = this.XamlRoot;
             dialog.Style = Application.Current.Resources["DefaultContentDialogStyle"] as Style;
-            dialog.Title = itemId.Name;
+            dialog.Title = item.Name;
+            //dialog.PrimaryButtonClick += this.AddToCart;
             dialog.PrimaryButtonText = "Adicionar";
             dialog.CloseButtonText = "Cancelar";
             dialog.DefaultButton = ContentDialogButton.Primary;
-            dialog.Content = new ItemDialogModal(itemId);
+            dialog.Content = new ItemDialogModal(item);
 
             var result = await dialog.ShowAsync();
         }
         private void myListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             // Handle selection change event here if needed
+        }
+
+        private void AddToCart()
+        {
+
         }
 
         private void FilterByCategory(object sender, RoutedEventArgs e)
