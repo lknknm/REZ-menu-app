@@ -24,14 +24,14 @@
                 </TeachingTip>
             </StackPanel>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,16,0,0">
-                <Button Content="Tudo"      CornerRadius="18"/>
-                <Button Content="Bebidas"   CornerRadius="18"/>
-                <Button Content="Pratos"    CornerRadius="18"/>
-                <Button Content="Cafeteria" CornerRadius="18"/>
+                <Button Content="Tudo"      CornerRadius="18" />
+                <Button Content="Bebidas"   CornerRadius="18" />
+                <Button Content="Pratos"    CornerRadius="18" />
+                <Button Content="Cafeteria" CornerRadius="18" />
             </StackPanel>
             <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,24,0,0">
 
-                <ListView ItemsSource="{x:Bind myListView.View, Mode=OneWay}" Width="800" ItemClick="ToggleListTip" IsItemClickEnabled="True">
+                <ListView ItemsSource="{x:Bind myListView.View, Mode=OneWay}" Width="800" Height="900" ItemClick="ToggleListTip" IsItemClickEnabled="True">
                     <CollectionViewSource x:Name="myListView" IsSourceGrouped="True"/>
                     <ListView.ItemsPanel>
                         <ItemsPanelTemplate>

@@ -1,0 +1,219 @@
+[
+    {
+        "Name": "Hamburger",
+        "Category": "Comida",
+        "SubCategory": "Pratos",
+        "Description": "Um delicioso hambúrguer com queijo, alface e tomate.",
+        "Price": 10.99
+    },
+    {
+        "Name": "Batata Frita",
+        "Category": "Comida",
+        "SubCategory": "Entradas",
+        "Description": "Batatas fritas crocantes e douradas.",
+        "Price": 4.5
+    },
+    {
+        "Name": "Cerveja IPA",
+        "Category": "Bebidas",
+        "SubCategory": "Drinks",
+        "Description": "Uma cerveja India Pale Ale com um sabor amargo e frutado.",
+        "Price": 6.75
+    },
+    {
+        "Name": "Pizza Margherita",
+        "Category": "Comida",
+        "SubCategory": "Pratos",
+        "Description": "Uma pizza clássica com molho de tomate, mussarela e manjericão.",
+        "Price": 12.99
+    },
+    {
+        "Name": "Refrigerante",
+        "Category": "Bebidas",
+        "SubCategory": "Softs",
+        "Description": "Uma bebida refrescante e gaseificada.",
+        "Price": 2.25
+    },
+    {
+        "Name": "Salada Caesar",
+        "Category": "Comida",
+        "SubCategory": "Pratos",
+        "Description": "Uma salada fresca com alface, frango grelhado, croutons e molho Caesar.",
+        "Price": 9.75
+    },
+    {
+        "Name": "Mojito",
+        "Category": "Bebidas",
+        "SubCategory": "Drinks",
+        "Description": "Um coquetel refrescante com hortelã, rum, limão e água com gás.",
+        "Price": 8.5
+    },
+    {
+        "Name": "Sushi Variado",
+        "Category": "Comida",
+        "SubCategory": "Pratos",
+        "Description": "Uma seleção de sushis frescos e saborosos.",
+        "Price": 18.25
+    },
+    {
+        "Name": "Água Mineral",
+        "Category": "Bebidas",
+        "SubCategory": "Softs",
+        "Description": "Água mineral natural.",
+        "Price": 1.75
+    },
+    {
+        "Name": "Massa Carbonara",
+        "Category": "Comida",
+        "SubCategory": "Pratos",
+        "Description": "Uma massa italiana com ovos, queijo parmesão, pancetta e pimenta preta.",
+        "Price": 11.99
+    },
+    {
+        "Name": "Coquetel de Frutas",
+        "Category": "Bebidas",
+        "SubCategory": "Drinks",
+        "Description": "Uma mistura colorida de sucos de frutas com ou sem álcool.",
+        "Price": 7.25
+    },
+    {
+        "Name": "Taco de Carne",
+        "Category": "Comida",
+        "SubCategory": "Pratos",
+        "Description": "Um taco recheado com carne temperada, cebola, coentro e molho picante.",
+        "Price": 5.99
+    },
+    {
+        "Name": "Chá Gelado",
+        "Category": "Bebidas",
+        "SubCategory": "Softs",
+        "Description": "Chá preto gelado adoçado.",
+        "Price": 3.0
+    },
+    {
+        "Name": "Risoto de Cogumelos",
+        "Category": "Comida",
+        "SubCategory": "Pratos",
+        "Description": "Risoto cremoso com uma variedade de cogumelos.",
+        "Price": 13.5
+    },
+    {
+        "Name": "Caipirinha",
+        "Category": "Bebidas",
+        "SubCategory": "Drinks",
+        "Description": "Uma bebida brasileira com cachaça, limão e açúcar.",
+        "Price": 9.0
+    },
+    {
+        "Name": "Wrap de Frango",
+        "Category": "Comida",
+        "SubCategory": "Pratos",
+        "Description": "Um wrap recheado com frango grelhado, alface, tomate e molho ranch.",
+        "Price": 8.25
+    },
+    {
+        "Name": "Café Espresso",
+        "Category": "Cafeteria",
+        "SubCategory": "Cafés",
+        "Description": "Um pequeno e forte café.",
+        "Price": 2.5
+    },
+    {
+        "Name": "Salmão Grelhado",
+        "Category": "Comida",
+        "SubCategory": "Pratos",
+        "Description": "Filé de salmão suculento grelhado, acompanhado de legumes.",
+        "Price": 16.99
+    },
+    {
+        "Name": "Smoothie de Frutas",
+        "Category": "Bebidas",
+        "SubCategory": "Drinks",
+        "Description": "Um smoothie refrescante feito com uma mistura de frutas.",
+        "Price": 6.0
+    },
+    {
+        "Name": "Brownie de Chocolate",
+        "Category": "Comida",
+        "SubCategory": "Pratos",
+        "Description": "Um brownie de chocolate servido com sorvete de baunilha.",
+        "Price": 5.5
+    },
+    {
+        "Name": "Sorvete de Morango",
+        "Category": "Cafeteria",
+        "SubCategory": "Doces",
+        "Description": "Sorvete cremoso sabor morango.",
+        "Price": 3.75
+    },
+    {
+        "Name": "Sanduíche de Frango",
+        "Category": "Comida",
+        "SubCategory": "Pratos",
+        "Description": "Um sanduíche de frango grelhado com alface e maionese.",
+        "Price": 7.99
+    },
+    {
+        "Name": "Margarita",
+        "Category": "Bebidas",
+        "SubCategory": "Drinks",
+        "Description": "Um coquetel clássico feito com tequila, licor de laranja e suco de limão.",
+        "Price": 9.5
+    },
+    {
+        "Name": "Croissant",
+        "Category": "Cafeteria",
+        "SubCategory": "Doces",
+        "Description": "Um croissant fresco e amanteigado.",
+        "Price": 2.75
+    },
+    {
+        "Name": "Lasanha de Vegetais",
+        "Category": "Comida",
+        "SubCategory": "Pratos",
+        "Description": "Uma lasanha gratinada com camadas de vegetais.",
+        "Price": 14.25
+    },
+    {
+        "Name": "Cappuccino",
+        "Category": "Cafeteria",
+        "SubCategory": "Cafés",
+        "Description": "Um cappuccino cremoso decorado com cacau em pó.",
+        "Price": 3.25
+    },
+    {
+        "Name": "Sorvete de Baunilha",
+        "Category": "Cafeteria",
+        "SubCategory": "Doces",
+        "Description": "Sorvete clássico de baunilha.",
+        "Price": 3.0
+    },
+    {
+        "Name": "Misto Quente",
+        "Category": "Comida",
+        "SubCategory": "Pratos",
+        "Description": "Um misto quente com presunto e queijo derretido.",
+        "Price": 4.25
+    },
+    {
+        "Name": "Suco de Laranja",
+        "Category": "Bebidas",
+        "SubCategory": "Softs",
+        "Description": "Suco fresco e natural de laranja.",
+        "Price": 3.5
+    },
+    {
+        "Name": "Tiramisù",
+        "Category": "Cafeteria",
+        "SubCategory": "Doces",
+        "Description": "Uma sobremesa italiana clássica com camadas de biscoito, café e mascarpone.",
+        "Price": 6.75
+    },
+    {
+        "Name": "Pão de Queijo",
+        "Category": "Comida",
+        "SubCategory": "Entradas",
+        "Description": "Deliciosos pãezinhos de queijo brasileiros.",
+        "Price": 3.0
+    }
+]
