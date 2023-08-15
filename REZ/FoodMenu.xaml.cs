@@ -15,8 +15,8 @@ namespace REZ
     public class Product
     {
         public string Name { get; set; }
+        public string SubCategory { get; set; }
         public string Category { get; set; }
-        public string SubCategory {get; set; }
         public string Description { get; set; }
         public double Price { get; set; }
     }
@@ -34,13 +34,14 @@ namespace REZ
         {
             this.InitializeComponent();
 
-            string jsonFilePath = "C:/Users/USER/Documents/Microsoft-Course/projeto/REZ-apresentacao/REZ-menu-app/REZ/Properties/Products.json";
+            var jsonFilePath = Path.Combine(AppContext.BaseDirectory, "Properties", "Products.json");
             StreamReader reader = new(jsonFilePath);
+
             jsonString = reader.ReadToEnd();
             products = JsonConvert.DeserializeObject<List<Product>>(jsonString);
-            var groupedProducts = products.GroupBy(p => p.Category);
+            var groupedProducts = products.GroupBy(p => p.SubCategory);
             myListView.Source = groupedProducts;
-
+            DataContext = this;
         }
         
         private void AppBarButton_Click(object sender, RoutedEventArgs e)
@@ -51,22 +52,21 @@ namespace REZ
         {
             ToggleThemeTeachingTip1.IsOpen = true;
         }
-        private async void ToggleListTip(object sender, RoutedEventArgs e)
+        private async void ToggleListTip(object sender, ItemClickEventArgs e)
         {
             ContentDialog dialog = new ContentDialog();
+            var itemId = (e.ClickedItem as Product);
 
             // XamlRoot must be set in the case of a ContentDialog running in a Desktop app
             dialog.XamlRoot = this.XamlRoot;
             dialog.Style = Application.Current.Resources["DefaultContentDialogStyle"] as Style;
-            dialog.Title = "Product 1";
-            dialog.PrimaryButtonText = "Save";
-            dialog.SecondaryButtonText = "Don't Save";
-            dialog.CloseButtonText = "Cancel";
+            dialog.Title = itemId.Name;
+            dialog.PrimaryButtonText = "Adicionar";
+            dialog.CloseButtonText = "Cancelar";
             dialog.DefaultButton = ContentDialogButton.Primary;
-            dialog.Content = new ItemDialogModal();
+            dialog.Content = new ItemDialogModal(itemId);
 
             var result = await dialog.ShowAsync();
-
         }
         private void myListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {

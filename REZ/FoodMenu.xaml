@@ -7,7 +7,8 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:local1="using:Windows.ApplicationModel.Contacts" xmlns:interactivity="using:Microsoft.VisualBasic"
     mc:Ignorable="d"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+    DataContext="{Binding RelativeSource={RelativeSource Self}}">
 
     <Grid>
         <AppBarButton Icon="Back" Click="AppBarButton_Click" IsCompact="True" Margin="0,8,0,0"/>
@@ -31,17 +32,17 @@
             </StackPanel>
             <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,24,0,0">
 
-                <ListView ItemsSource="{x:Bind myListView.View, Mode=OneWay}" Width="800" Height="900" ItemClick="ToggleListTip" IsItemClickEnabled="True">
+                <ListView ItemsSource="{x:Bind myListView.View, Mode=OneWay}" Width="960" Height="900" ItemClick="ToggleListTip" IsItemClickEnabled="True">
                     <CollectionViewSource x:Name="myListView" IsSourceGrouped="True"/>
                     <ListView.ItemsPanel>
                         <ItemsPanelTemplate>
-                            <ItemsStackPanel AreStickyGroupHeadersEnabled="False"/>
+                            <ItemsStackPanel AreStickyGroupHeadersEnabled="True"/>
                         </ItemsPanelTemplate>
                     </ListView.ItemsPanel>
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <StackPanel Padding="12">
-                                <TextBlock Text="{Binding Name}" FontWeight="SemiBold" FontSize="14"/>
+                                <TextBlock Text="{Binding Name, Mode=TwoWay}" FontWeight="SemiBold" FontSize="14"/>
                                 <TextBlock Text="{Binding Description}" FontSize="12" />
                                 <TextBlock Text="{Binding Price}" FontSize="12"/>
                             </StackPanel>

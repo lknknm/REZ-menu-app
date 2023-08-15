@@ -7,11 +7,15 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+    DataContext="{Binding RelativeSource={RelativeSource Self}}">
 
     <StackPanel VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
-        <!-- Content body -->
-        <TextBlock Text="Acompanha arroz, couve, farofa, laranja e molho de pimenta." TextWrapping="Wrap" />
+        <TextBlock Text="{Binding Description}" TextWrapping="Wrap" />
+        <TextBox Header="Algum comentário?" 
+                AutomationProperties.Name="multi-line TextBox" Margin="12"
+                TextWrapping="Wrap" AcceptsReturn="True" IsSpellCheckEnabled="True"
+                SelectionHighlightColor="Green" MinWidth="400" />
     </StackPanel>
 
 </Page>
