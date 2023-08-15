@@ -31,8 +31,8 @@
             </StackPanel>
             <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,24,0,0">
 
-                <ListView ItemsSource="{x:Bind myListView.View, Mode=OneWay}" Width="800">
-                <CollectionViewSource x:Name="myListView" IsSourceGrouped="True"/>
+                <ListView ItemsSource="{x:Bind myListView.View, Mode=OneWay}" Width="800" ItemClick="ToggleListTip" IsItemClickEnabled="True">
+                    <CollectionViewSource x:Name="myListView" IsSourceGrouped="True"/>
                     <ListView.ItemsPanel>
                         <ItemsPanelTemplate>
                             <ItemsStackPanel AreStickyGroupHeadersEnabled="False"/>
@@ -55,18 +55,13 @@
                                         <TextBlock Text="{Binding Key}" 
                                                     Style="{ThemeResource TitleTextBlockStyle}" 
                                                     AutomationProperties.AccessibilityView="Raw"
-                                                    Click="ToggleListTip"/>
+                                        />
                                     </Border>
                                 </DataTemplate>
                             </GroupStyle.HeaderTemplate>
                         </GroupStyle>
                     </ListView.GroupStyle>
                 </ListView>
-                <TeachingTip x:Name="ItemTeachingTip"
-                    Target="{Binding myListView}"
-                    Title="Add to Cart">
-                </TeachingTip>
-                
             </StackPanel>
         </StackPanel>
     </Grid>
