@@ -25,10 +25,9 @@ namespace REZ
     /// </summary>
     public sealed partial class FoodMenu : Page
     {
-        Collection<Item> ItemsMenu;
-        public FoodMenu(Collection<Item> items)
+        public Collection<Item> ItemsMenu = new();
+        public FoodMenu()
         {
-            ItemsMenu = items;
             this.InitializeComponent();
         }
         
