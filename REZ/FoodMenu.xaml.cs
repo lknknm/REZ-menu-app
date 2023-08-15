@@ -19,14 +19,37 @@ using Microsoft.UI.Xaml.Media.Animation;
 
 namespace REZ
 {
+    public class Product
+    {
+        public string Name { get; set; }
+        public string Category { get; set; }
+        public string Description { get; set; }
+        public int Price { get; set; }
+    }
+
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
     public sealed partial class FoodMenu : Page
     {
+
+
         public FoodMenu()
         {
             this.InitializeComponent();
+
+            List<Product> products = new List<Product>()
+            {
+                new Product { Name = "Product 1", Category = "Pratos", Description = "Description 1", Price = 48 },
+                new Product { Name = "Product 2", Category = "Pratos", Description = "Description 2", Price = 48 },
+                new Product { Name = "Product 3", Category = "Drinks", Description = "Description 3", Price = 48 },
+                new Product { Name = "Product 4", Category = "Drinks", Description = "Description 4", Price = 48 },
+            };
+
+            var groupedProducts = products.GroupBy(p => p.Category);
+
+            myListView.Source = groupedProducts;
+
         }
         
         private void AppBarButton_Click(object sender, RoutedEventArgs e)
@@ -37,6 +60,14 @@ namespace REZ
         {
             ToggleThemeTeachingTip1.IsOpen = true;
         }
-
+        }
+        private void ToggleListTip(object sender, RoutedEventArgs e)
+        {
+            ItemTeachingTip.IsOpen = true;
+        }
+        private void myListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            // Handle selection change event here if needed
+        }
     }
 }
