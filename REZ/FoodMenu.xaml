@@ -25,10 +25,10 @@
                 </TeachingTip>
             </StackPanel>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,16,0,0">
-                <Button Style="{StaticResource AccentButtonStyle}" Content="Tudo"      CornerRadius="18" />
-                <Button Content="Bebidas"   CornerRadius="18" />
-                <Button Content="Pratos"    CornerRadius="18" />
-                <Button Content="Cafeteria" CornerRadius="18" />
+                <Button Content="Tudo"      CornerRadius="18" Click="FilterByCategory" />
+                <Button Content="Bebidas"   CornerRadius="18" Click="FilterByCategory" />
+                <Button Content="Comida"    CornerRadius="18" Click="FilterByCategory" />
+                <Button Content="Cafeteria" CornerRadius="18" Click="FilterByCategory" />
             </StackPanel>
             <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,24,0,0">
 
