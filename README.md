@@ -28,55 +28,24 @@ This project uses [Figma](https://www.figma.com/) for UX/UI decisions and Front-
 You can see the Figma Project here: [REZ-Figma](https://www.figma.com/file/q4bRKQlg10WCewYgHmsdBE/REZ-menu-app?type=design&node-id=5-2&mode=design&t=4dnfC1gUSZ6n4NAY-0).
 Additionally, since this project uses [WinUI 3.0](https://github.com/microsoft/microsoft-ui-xaml) as user interface layer, you can also access their Figma component library [here](https://www.figma.com/file/yCWdGgBeP6mkBBlS2IDaHG/Windows-UI-3-(Community)?type=design&node-id=238-0&mode=design&t=wUs0QsJ21QrmX9sj-0).
 
-### Prerequisites
+### How to Build
+This project uses .NET Framework with WinUI as User Interface Layer (Windows only). To be able to build this project properly, it is necessary to have [Visual Studio 2022 17.1 and later](https://visualstudio.microsoft.com/pt-br/) installed and running. 
 
-The things you need before installing the software.
+1. After setting up Visual Studio, make sure to double check the workloads you have installed under `Visual Studio Installer`. For this project it is necessary to have the `.NET Desktop Development` workload installed, as well as the [`Tools for Windows App SDK`](https://learn.microsoft.com/en-us/windows/apps/windows-app-sdk/set-up-your-development-environment?tabs=cs-vs-community%2Ccpp-vs-community%2Cvs-2022-17-1-a%2Cvs-2022-17-1-b) and `Windows App SDK C# Templates`.
 
-* You need this
-* And you need this
-* Oh, and don't forget this!
+![Alt text](image-2.png)
 
-### Installation
+2. For this stage of the project, is also important to install the NuGet package [Newtonsoft.Json](https://www.nuget.org/packages/Newtonsoft.Json/13.0.3?_src=template)
 
-A step by step guide that will tell you how to get the development environment up and running.
-
-```
-$ First step
-$ Another step
-$ Final step
+3. Download the source code of this project by forking (if you want to work on your own features) or by cloning this repository.
+```bash
+git clone https://github.com/lknknm/REZ-menu-app.git
 ```
 
-## Usage
+4. On Visual Studio go to `File > Open > Open Project/Solution` and select `./REZ/REZ.sln` to open the project.
 
-A few examples of useful commands and/or tasks.
+5. Now you can Build Solution (Ctrl+B) and execute it normaly with Visual Studio debug features.
 
-```
-$ First example
-$ Second example
-$ And keep this in mind
-```
+# License
 
-## Deployment
-
-Additional notes on how to deploy this on a live or release system. Explaining the most important branches and how to update the database (if anything special).
-
-### Server
-
-* Live:
-* Release:
-* Development:
-
-### Branches
-
-* Master:
-* Feature:
-* Bugfix:
-* etc...
-
-### Usage
-
-* Description and images of how to use the application.
-
-## Additional Documentation and Acknowledgments
-
-* Project folder on server:
+REZ - Easy Restaurant App is licensed and distributed under the 3-Clause BSD License. See [License](./LICENSE.md). Keep in mind this is a non-profit, student project. 
