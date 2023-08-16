@@ -1,6 +1,6 @@
 # REZ Menu App
 
-![Alt text](image.png)
+![Alt text](./doc/dev/assets/reznav.gif)
 
 REZ is a simple Restaurant Menu Application for a fictional restaurant to provide an easy experience to order food from the table with autonomy.
 It makes it easier to costumers and waiters to keep track of bills and order items, as well as having a clear view of what the restaurant has to offer.
