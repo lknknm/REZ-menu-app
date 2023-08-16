@@ -33,7 +33,7 @@ This project uses .NET Framework with WinUI as User Interface Layer (Windows onl
 
 1. After setting up Visual Studio, make sure to double check the workloads you have installed under `Visual Studio Installer`. For this project it is necessary to have the `.NET Desktop Development` workload installed, as well as the [`Tools for Windows App SDK`](https://learn.microsoft.com/en-us/windows/apps/windows-app-sdk/set-up-your-development-environment?tabs=cs-vs-community%2Ccpp-vs-community%2Cvs-2022-17-1-a%2Cvs-2022-17-1-b) and `Windows App SDK C# Templates`.
 
-![Alt text](image-2.png)
+![Alt text](./doc/dev/assets/image.png)
 
 2. For this stage of the project, is also important to install the NuGet package [Newtonsoft.Json](https://www.nuget.org/packages/Newtonsoft.Json/13.0.3?_src=template)
 
