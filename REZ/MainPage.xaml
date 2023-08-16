@@ -29,8 +29,10 @@
                 <TextBlock Text="REZ" FontWeight="Bold" TextAlignment="Left" FontSize="128" Foreground="#84CC16"/>
                 <TextBlock Text="Easy Restaurant App" FontWeight="Bold" TextAlignment="Left" FontSize="24" Foreground="#84CC16"/>
                 <TextBlock FontWeight="Light" TextAlignment="Left" FontSize="16" Foreground="#84CC16" Width="484" TextWrapping="Wrap">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-                    Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                    REZ is a simple Restaurant Menu Application for a fictional restaurant to provide an easy experience to order 
+                    food from the table with autonomy. It makes it easier to costumers and waiters to keep track 
+                    of bills and order items, 
+                    as well as having a clear view of what the restaurant has to offer.
                 </TextBlock>
             </StackPanel>
 

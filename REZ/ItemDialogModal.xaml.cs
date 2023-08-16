@@ -31,7 +31,7 @@ namespace REZ
             Price.Text = "R$" + item.Price.ToString();
         }
 
-        public void AddToCar(Product item)
+        public void AddToCart(Product item)
         {
 
         }
