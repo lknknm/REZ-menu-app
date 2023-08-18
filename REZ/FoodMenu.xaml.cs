@@ -2,11 +2,15 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Numerics;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Media.Animation;
 using Newtonsoft.Json;
+using Microsoft.UI.Composition;
+using Microsoft.UI.Xaml.Hosting;
+using Microsoft.UI;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -20,8 +24,7 @@ namespace REZ
         public string Category { get; set; }
         public string Description { get; set; }
         public double Price { get; set; }
-
-
+        public string ImageSource { get; set; }
     }
 
     /// <summary>
@@ -32,6 +35,8 @@ namespace REZ
         string filter = "Tudo";
         string jsonString;
         List<Product> products;
+
+        public object ItemFeatureImage { get; private set; }
 
         public FoodMenu()
         {
@@ -95,7 +100,6 @@ namespace REZ
         {
 
         }
-
         private void FilterByCategory(object sender, RoutedEventArgs e)
         {
             Button clickedButton = (Button)sender;
@@ -115,6 +119,5 @@ namespace REZ
             var groupedProducts = products.GroupBy(p => p.SubCategory);
             myListView.Source = groupedProducts;
         }
-
     }
 }

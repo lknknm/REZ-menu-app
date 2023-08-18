@@ -7,33 +7,40 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+    Background="White"
     DataContext="{Binding RelativeSource={RelativeSource Self}}">
 
-    <StackPanel VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Background="White">
-        <Border Background="Transparent" CornerRadius="10" Margin="12">
-            <Image Source="https://images.pexels.com/photos/1146760/pexels-photo-1146760.jpeg" Stretch="UniformToFill" />
-        </Border>
-
-        <TextBlock x:Name="Description"
-                   Text="Nobis ea cumque quos nisi dolorem inventore molestias. Quo cupiditate libero consectetur consequuntur eveniet ut ipsam iure." 
-                   TextWrapping="Wrap"
-                   Margin="12"/>
-        <TextBlock  x:Name="Price"
-                    Text="R$54,00"
-                    TextWrapping="Wrap"
-                    Margin="12"/>
-        <TextBox Header="Algum comentário?" 
-                AutomationProperties.Name="multi-line TextBox" Margin="12"
-                TextWrapping="Wrap" AcceptsReturn="True" IsSpellCheckEnabled="True"
-                SelectionHighlightColor="Green" MinWidth="400" 
-                PlaceholderText="Ex.: Tirar a cebola, maionese à parte, etc..."/>
-        <NumberBox x:Name="NumberBoxSpinButtonPlacementExample"
+    <ScrollViewer   ZoomMode="Enabled"
+                    IsTabStop="True" IsVerticalScrollChainingEnabled="True"
+                    HorizontalScrollMode="Enabled" HorizontalScrollBarVisibility="Auto"
+                    VerticalScrollMode="Enabled" VerticalScrollBarVisibility="Hidden"
+                    CornerRadius="10"
                     Margin="12"
-                    Value="1"
-                    SpinButtonPlacementMode="Compact"
-                    SmallChange="1"
-                    LargeChange="5" />
-    </StackPanel>
+                    Background="White">
+        <StackPanel     VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Background="White" MaxWidth="464">
+            <Border     Background="Transparent" CornerRadius="10" MaxHeight="300" >
+                <Image  x:Name="Image" Source="{Binding ImageSource}" Stretch="UniformToFill" />
+            </Border>
+            <TextBlock  x:Name="Description"
+                        TextWrapping="Wrap"
+                        Margin="0,12,0,8"/>
+            
+            <TextBlock  x:Name="Price"
+                        TextWrapping="Wrap"
+                        FontWeight="SemiBold"/>
+            
+            <TextBox    Header="Algum comentário?"  Margin="0,12,0,12"  AutomationProperties.Name="simple TextBox"
+                        TextWrapping="Wrap" AcceptsReturn="True" IsSpellCheckEnabled="True"
+                        SelectionHighlightColor="Green" MinWidth="400" 
+                        PlaceholderText="Ex.: Tirar a cebola, maionese à parte, etc..."/>
+            
+            <NumberBox  x:Name="NumberBoxSpinButtonPlacementExample"
+                        Margin="0,12,0,12"
+                        Value="1"
+                        SpinButtonPlacementMode="Compact"
+                        SmallChange="1"
+                        LargeChange="5" />
+        </StackPanel>
+    </ScrollViewer>
 
 </Page>
