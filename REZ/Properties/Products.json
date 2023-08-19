@@ -1,219 +1,258 @@
 [
     {
-        "Name": "Hamburger",
-        "Category": "Comida",
-        "SubCategory": "Pratos",
-        "Description": "Um delicioso hambúrguer com queijo, alface e tomate.",
-        "Price": 10.99
-    },
-    {
-        "Name": "Batata Frita",
-        "Category": "Comida",
-        "SubCategory": "Entradas",
-        "Description": "Batatas fritas crocantes e douradas.",
-        "Price": 4.5
-    },
-    {
-        "Name": "Cerveja IPA",
-        "Category": "Bebidas",
-        "SubCategory": "Drinks",
-        "Description": "Uma cerveja India Pale Ale com um sabor amargo e frutado.",
-        "Price": 6.75
-    },
-    {
         "Name": "Pizza Margherita",
         "Category": "Comida",
         "SubCategory": "Pratos",
-        "Description": "Uma pizza clássica com molho de tomate, mussarela e manjericão.",
-        "Price": 12.99
+        "Description": "Massa de longa fermentação, molho italiano e mozzarella de búfala, finalizada com azeite e manjericão.",
+        "Price": 35,
+        "ImageSource": "https://images.pexels.com/photos/10790638/pexels-photo-10790638.jpeg"
     },
     {
-        "Name": "Refrigerante",
-        "Category": "Bebidas",
-        "SubCategory": "Softs",
-        "Description": "Uma bebida refrescante e gaseificada.",
-        "Price": 2.25
-    },
-    {
-        "Name": "Salada Caesar",
+        "Name": "Pizza de Pepperoni",
         "Category": "Comida",
         "SubCategory": "Pratos",
-        "Description": "Uma salada fresca com alface, frango grelhado, croutons e molho Caesar.",
-        "Price": 9.75
+        "Description": "Massa de longa fermentação, molho italiano, mozzarella e nosso pepperoni de produção própria",
+        "Price": 35,
+        "ImageSource": "https://images.pexels.com/photos/3682837/pexels-photo-3682837.jpeg"
     },
     {
-        "Name": "Mojito",
-        "Category": "Bebidas",
-        "SubCategory": "Drinks",
-        "Description": "Um coquetel refrescante com hortelã, rum, limão e água com gás.",
-        "Price": 8.5
-    },
-    {
-        "Name": "Sushi Variado",
+        "Name": "Carbonara",
         "Category": "Comida",
         "SubCategory": "Pratos",
-        "Description": "Uma seleção de sushis frescos e saborosos.",
-        "Price": 18.25
-    },
-    {
-        "Name": "Água Mineral",
-        "Category": "Bebidas",
-        "SubCategory": "Softs",
-        "Description": "Água mineral natural.",
-        "Price": 1.75
-    },
-    {
-        "Name": "Massa Carbonara",
-        "Category": "Comida",
-        "SubCategory": "Pratos",
-        "Description": "Uma massa italiana com ovos, queijo parmesão, pancetta e pimenta preta.",
-        "Price": 11.99
-    },
-    {
-        "Name": "Coquetel de Frutas",
-        "Category": "Bebidas",
-        "SubCategory": "Drinks",
-        "Description": "Uma mistura colorida de sucos de frutas com ou sem álcool.",
-        "Price": 7.25
-    },
-    {
-        "Name": "Taco de Carne",
-        "Category": "Comida",
-        "SubCategory": "Pratos",
-        "Description": "Um taco recheado com carne temperada, cebola, coentro e molho picante.",
-        "Price": 5.99
-    },
-    {
-        "Name": "Chá Gelado",
-        "Category": "Bebidas",
-        "SubCategory": "Softs",
-        "Description": "Chá preto gelado adoçado.",
-        "Price": 3.0
+        "Description": "Nossa pasta italiana fresca com ovos, queijo parmesão, guanciale e pimenta preta.",
+        "Price": 35,
+        "ImageSource": "https://images.pexels.com/photos/5640045/pexels-photo-5640045.jpeg"
     },
     {
         "Name": "Risoto de Cogumelos",
         "Category": "Comida",
         "SubCategory": "Pratos",
         "Description": "Risoto cremoso com uma variedade de cogumelos.",
-        "Price": 13.5
+        "Price": 40,
+        "ImageSource": "https://images.pexels.com/photos/7636374/pexels-photo-7636374.jpeg"
+    },
+    {
+        "Name": "Gnocchi Parisienne",
+        "Category": "Comida",
+        "SubCategory": "Pratos",
+        "Description": "Gnocchi de batata ao molho de queijo e alho-francês",
+        "Price": 40,
+        "ImageSource": "https://images.pexels.com/photos/6659628/pexels-photo-6659628.jpeg"
+    },
+    {
+        "Name": "Salmão Grelhado",
+        "Category": "Comida",
+        "SubCategory": "Pratos",
+        "Description": "Filé de salmão suculento grelhado, acompanhado de legumes ao molho shoyu.",
+        "Price": 40,
+        "ImageSource": "https://images.pexels.com/photos/3763847/pexels-photo-3763847.jpeg"
+    },
+    {
+        "Name": "Lasanha de Carne",
+        "Category": "Comida",
+        "SubCategory": "Pratos",
+        "Description": "Lasanha tradicional com massa de fermentação natural, queijo gratinado e recheio à bolonhesa",
+        "Price": 34,
+        "ImageSource": "https://images.pexels.com/photos/5949897/pexels-photo-5949897.jpeg?"
+    },
+    {
+        "Name": "Lasanha de Vegetais",
+        "Category": "Comida",
+        "SubCategory": "Pratos",
+        "Description": "Lasanha com massa de fermentação natural, queijo gratinado e camadas de vegetais.",
+        "Price": 34,
+        "ImageSource": "https://images.pexels.com/photos/4162496/pexels-photo-4162496.jpeg"
+    },
+    {
+        "Name": "Cheeseburger",
+        "Category": "Comida",
+        "SubCategory": "Lanches",
+        "Description": "Nosso smashburger tradicional com american cheese, cebola crua e picles",
+        "Price": 25,
+        "ImageSource": "https://images.pexels.com/photos/16646131/pexels-photo-16646131/free-photo-of-carne-bovina-coque-rosca-pao-de-forma.jpeg"
+    },
+    {
+        "Name": "Cheeseburger vegetariano",
+        "Category": "Comida",
+        "SubCategory": "Lanches",
+        "Description": "Nosso smashburger de arroz negro com american cheese, cebola crua e picles",
+        "Price": 23,
+        "ImageSource": "https://images.pexels.com/photos/16646131/pexels-photo-16646131/free-photo-of-carne-bovina-coque-rosca-pao-de-forma.jpeg"
+    },
+    {
+        "Name": "Cheeseburger de frango",
+        "Category": "Comida",
+        "SubCategory": "Lanches",
+        "Description": "Nosso hamburger de frango com american cheese, maionese da casa e salada",
+        "Price": 23,
+        "ImageSource": "https://images.pexels.com/photos/7963144/pexels-photo-7963144.jpeg"
+    },
+    {
+        "Name": "Batata Frita",
+        "Category": "Comida",
+        "SubCategory": "Porções",
+        "Description": "Batatas fritas crocantes e douradas temperadas com páprica e salsa. Acompanham molho barbecue",
+        "Price": 24,
+        "ImageSource": "https://images.pexels.com/photos/1893555/pexels-photo-1893555.jpeg"
+    },
+    {
+        "Name": "Mini coxinha vegetariana",
+        "Category": "Comida",
+        "SubCategory": "Porções",
+        "Description": "Porção com 12 mini coxinhas de carne de jaca",
+        "Price": 19,
+        "ImageSource": "https://images.pexels.com/photos/3856046/pexels-photo-3856046.jpeg"
+    },
+    {
+        "Name": "Salada Caesar",
+        "Category": "Comida",
+        "SubCategory": "Entradas",
+        "Description": "Uma salada fresca com alface, frango grelhado, croutons e molho Caesar.",
+        "Price": 20,
+        "ImageSource": "https://images.pexels.com/photos/718742/pexels-photo-718742.jpeg"
+    },
+    {
+        "Name": "Bruschetta",
+        "Category": "Comida",
+        "SubCategory": "Entradas",
+        "Description": "Bruschettas na torrada de sourdough com molho de tomates frescos, queijo e manjericão",
+        "Price": 20,
+        "ImageSource": "https://images.pexels.com/photos/16944393/pexels-photo-16944393/free-photo-of-manjericao-pao-cozinhando-cozimento.jpeg"
+    },
+    {
+        "Name": "Cerveja IPA",
+        "Category": "Bebidas",
+        "SubCategory": "Drinks",
+        "Description": "Uma cerveja India Pale Ale com um sabor amargo e frutado.",
+        "Price": 12,
+        "ImageSource": "https://images.pexels.com/photos/13645409/pexels-photo-13645409.jpeg"
+    },
+    {
+        "Name": "Refrigerante",
+        "Category": "Bebidas",
+        "SubCategory": "Softs",
+        "Description": "Bebida gaseificada com xarope caseiro de cola.",
+        "Price": 5,
+        "ImageSource": "https://images.pexels.com/photos/8880742/pexels-photo-8880742.jpeg"
+    },
+    {
+        "Name": "Mojito",
+        "Category": "Bebidas",
+        "SubCategory": "Drinks",
+        "Description": "Um coquetel refrescante com hortelã, rum, limão e água com gás.",
+        "Price": 16,
+        "ImageSource": "https://images.pexels.com/photos/4051220/pexels-photo-4051220.jpeg"
+    },
+    {
+        "Name": "Coquetel de Frutas",
+        "Category": "Bebidas",
+        "SubCategory": "Drinks",
+        "Description": "Uma mistura colorida de sucos de frutas com ou sem álcool.",
+        "Price": 15,
+        "ImageSource": "https://images.pexels.com/photos/109275/pexels-photo-109275.jpeg"
     },
     {
         "Name": "Caipirinha",
         "Category": "Bebidas",
         "SubCategory": "Drinks",
         "Description": "Uma bebida brasileira com cachaça, limão e açúcar.",
-        "Price": 9.0
-    },
-    {
-        "Name": "Wrap de Frango",
-        "Category": "Comida",
-        "SubCategory": "Pratos",
-        "Description": "Um wrap recheado com frango grelhado, alface, tomate e molho ranch.",
-        "Price": 8.25
-    },
-    {
-        "Name": "Café Espresso",
-        "Category": "Cafeteria",
-        "SubCategory": "Cafés",
-        "Description": "Um pequeno e forte café.",
-        "Price": 2.5
-    },
-    {
-        "Name": "Salmão Grelhado",
-        "Category": "Comida",
-        "SubCategory": "Pratos",
-        "Description": "Filé de salmão suculento grelhado, acompanhado de legumes.",
-        "Price": 16.99
-    },
-    {
-        "Name": "Smoothie de Frutas",
-        "Category": "Bebidas",
-        "SubCategory": "Drinks",
-        "Description": "Um smoothie refrescante feito com uma mistura de frutas.",
-        "Price": 6.0
-    },
-    {
-        "Name": "Brownie de Chocolate",
-        "Category": "Comida",
-        "SubCategory": "Pratos",
-        "Description": "Um brownie de chocolate servido com sorvete de baunilha.",
-        "Price": 5.5
-    },
-    {
-        "Name": "Sorvete de Morango",
-        "Category": "Cafeteria",
-        "SubCategory": "Doces",
-        "Description": "Sorvete cremoso sabor morango.",
-        "Price": 3.75
-    },
-    {
-        "Name": "Sanduíche de Frango",
-        "Category": "Comida",
-        "SubCategory": "Pratos",
-        "Description": "Um sanduíche de frango grelhado com alface e maionese.",
-        "Price": 7.99
+        "Price": 14,
+        "ImageSource": "https://images.pexels.com/photos/13059626/pexels-photo-13059626.jpeg"
     },
     {
         "Name": "Margarita",
         "Category": "Bebidas",
         "SubCategory": "Drinks",
         "Description": "Um coquetel clássico feito com tequila, licor de laranja e suco de limão.",
-        "Price": 9.5
+        "Price": 19,
+        "ImageSource": "https://images.pexels.com/photos/2109099/pexels-photo-2109099.jpeg"
     },
     {
-        "Name": "Croissant",
-        "Category": "Cafeteria",
-        "SubCategory": "Doces",
-        "Description": "Um croissant fresco e amanteigado.",
-        "Price": 2.75
+        "Name": "Água da casa",
+        "Category": "Bebidas",
+        "SubCategory": "Softs",
+        "Description": "Copo de água filtrada.",
+        "Price": 0,
+        "ImageSource": "https://images.pexels.com/photos/7904441/pexels-photo-7904441.jpeg"
     },
     {
-        "Name": "Lasanha de Vegetais",
-        "Category": "Comida",
-        "SubCategory": "Pratos",
-        "Description": "Uma lasanha gratinada com camadas de vegetais.",
-        "Price": 14.25
-    },
-    {
-        "Name": "Cappuccino",
-        "Category": "Cafeteria",
-        "SubCategory": "Cafés",
-        "Description": "Um cappuccino cremoso decorado com cacau em pó.",
-        "Price": 3.25
-    },
-    {
-        "Name": "Sorvete de Baunilha",
-        "Category": "Cafeteria",
-        "SubCategory": "Doces",
-        "Description": "Sorvete clássico de baunilha.",
-        "Price": 3.0
-    },
-    {
-        "Name": "Misto Quente",
-        "Category": "Comida",
-        "SubCategory": "Pratos",
-        "Description": "Um misto quente com presunto e queijo derretido.",
-        "Price": 4.25
+        "Name": "Smoothie de Frutas",
+        "Category": "Bebidas",
+        "SubCategory": "Softs",
+        "Description": "Um smoothie refrescante feito com uma mistura de frutas.",
+        "Price": 14,
+        "ImageSource": "https://images.pexels.com/photos/845552/pexels-photo-845552.jpeg"
     },
     {
         "Name": "Suco de Laranja",
         "Category": "Bebidas",
         "SubCategory": "Softs",
         "Description": "Suco fresco e natural de laranja.",
-        "Price": 3.5
+        "Price": 8,
+        "ImageSource": "https://images.pexels.com/photos/7494029/pexels-photo-7494029.jpeg"
+    },
+    {
+        "Name": "Chá Gelado",
+        "Category": "Bebidas",
+        "SubCategory": "Softs",
+        "Description": "Chá mate gelado com limão.",
+        "Price": 8,
+        "ImageSource": "https://images.pexels.com/photos/128242/pexels-photo-128242.jpeg"
+    },
+    {
+        "Name": "Croissant",
+        "Category": "Cafeteria",
+        "SubCategory": "Doces",
+        "Description": "Nossa receita de Croissant com açúcar de confeiteiro.",
+        "Price": 8,
+        "ImageSource": "https://images.pexels.com/photos/1775034/pexels-photo-1775034.jpeg"
+    },
+    {
+        "Name": "Cappuccino",
+        "Category": "Cafeteria",
+        "SubCategory": "Cafés",
+        "Description": "Um cappuccino cremoso decorado com cacau em pó.",
+        "Price": 9,
+        "ImageSource": "https://images.pexels.com/photos/428310/pexels-photo-428310.jpeg"
+    },
+    {
+        "Name": "Café Espresso",
+        "Category": "Cafeteria",
+        "SubCategory": "Cafés",
+        "Description": "Tradicional Espresso feito com café Orfeu.",
+        "Price": 5,
+        "ImageSource": "https://images.pexels.com/photos/1660916/pexels-photo-1660916.jpeg"
+    },
+    {
+        "Name": "Brownie de Chocolate",
+        "Category": "Cafeteria",
+        "SubCategory": "Doces",
+        "Description": "Brownie de chocolate belga.",
+        "Price": 8,
+        "ImageSource": "https://images.pexels.com/photos/15580728/pexels-photo-15580728/free-photo-of-brownie-bolo-torta-chocolate.jpeg"
+    },
+    {
+        "Name": "Gelato de Morango",
+        "Category": "Cafeteria",
+        "SubCategory": "Doces",
+        "Description": "Gelato cremoso sabor morango.",
+        "Price": 10,
+        "ImageSource": "https://images.pexels.com/photos/5535557/pexels-photo-5535557.jpeg"
+    },
+    {
+        "Name": "Sorvete de Chocolate",
+        "Category": "Cafeteria",
+        "SubCategory": "Doces",
+        "Description": "Sorvete clássico de chocolate meio amargo.",
+        "Price": 10,
+        "ImageSource": "https://images.pexels.com/photos/5061028/pexels-photo-5061028.jpeg"
     },
     {
         "Name": "Tiramisù",
         "Category": "Cafeteria",
         "SubCategory": "Doces",
         "Description": "Uma sobremesa italiana clássica com camadas de biscoito, café e mascarpone.",
-        "Price": 6.75
-    },
-    {
-        "Name": "Pão de Queijo",
-        "Category": "Comida",
-        "SubCategory": "Entradas",
-        "Description": "Deliciosos pãezinhos de queijo brasileiros.",
-        "Price": 3.0
+        "Price": 15,
+        "ImageSource": "https://images.pexels.com/photos/12035685/pexels-photo-12035685.jpeg"
     }
 ]

@@ -10,8 +10,6 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
     DataContext="{Binding RelativeSource={RelativeSource Self}}">
 
-
-
     <Page.Resources>
         <Style x:Key="AccentButton" TargetType="Button">
             <Setter Property="Background" Value="{Binding Source={StaticResource AccentButtonStyle}}" />
@@ -50,11 +48,28 @@
                     </ListView.ItemsPanel>
                     <ListView.ItemTemplate>
                         <DataTemplate>
-                            <StackPanel Padding="12">
-                                <TextBlock Text="{Binding Name, Mode=TwoWay}" FontWeight="SemiBold" FontSize="14"/>
-                                <TextBlock Text="{Binding Description}" FontSize="12" />
-                                <TextBlock Text="{Binding Price}" FontSize="12"/>
-                            </StackPanel>
+                            <Grid x:Name="ItemGrid" Padding="6">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                                <PersonPicture  x:Name="ItemFeatureImage"
+                                                    Grid.RowSpan="1"
+                                                    Width ="64"
+                                                    Height="64"
+                                                    Margin="6"
+                                                    VerticalAlignment="Center"
+                                                    HorizontalAlignment="Center"
+                                                    ProfilePicture="{Binding ImageSource}"/>
+                                <StackPanel     Grid.Column="1" Padding="12">
+                                    <TextBlock  Text="{Binding Name, Mode=TwoWay}" FontWeight="SemiBold" FontSize="14"/>
+                                    <TextBlock  Text="{Binding Description}" FontSize="12" />
+                                    <TextBlock  Text="{Binding Price}" FontSize="12"/>
+                                </StackPanel>
+                            </Grid>
                         </DataTemplate>
                     </ListView.ItemTemplate>
                     <ListView.GroupStyle>

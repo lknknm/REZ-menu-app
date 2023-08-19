@@ -29,7 +29,10 @@ namespace REZ
             DataContext = this;
             Description.Text = item.Description.ToString();
             Price.Text = "R$" + item.Price.ToString();
+            ImageSource = item.ImageSource;
         }
+
+        public string ImageSource { get; }
 
         public void AddToCart(Product item)
         {
