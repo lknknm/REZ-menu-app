@@ -10,31 +10,40 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reflection.PortableExecutable;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.System;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
 
 namespace REZ
 {
-    /// <summary>
-    /// An empty window that can be used on its own or navigated to within a Frame.
-    /// </summary>
+
     public sealed partial class MainPage : Page
     {
+        public AccountsList accountsList;
+        private static Account User;
+        public ShoppingCart shoppingCart;
+        public FoodMenu foodMenu;
+
         public MainPage()
         {
             this.InitializeComponent();
         }
-        private void FoodMenu(object sender, RoutedEventArgs e)
+        private async void OpenFoodMenu(object sender, RoutedEventArgs e)
         {
             Frame.Navigate(typeof(FoodMenu), null, new SlideNavigationTransitionInfo() { Effect = SlideNavigationTransitionEffect.FromRight });
         }
-        private void TestButtonClick1(object sender, RoutedEventArgs e)
+
+        private void ShoppingCartButtonClick(object sender, RoutedEventArgs e)
         {
-            ToggleThemeTeachingTip1.IsOpen = true;
+            shoppingCart.OpenShoppingModal(this, shoppingCart, ToggleThemeTeachingTip1);
+
         }
+
     }
 }
+

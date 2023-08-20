@@ -18,41 +18,62 @@ using static System.Net.WebRequestMethods;
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
 
-
-public class Product
-{
-    public string Name { get; set; }
-    public string SubCategory { get; set; }
-    public string Category { get; set; }
-    public string Description { get; set; }
-    public double Price { get; set; }
-}
-
 namespace REZ
 {
-
-
-    /// <summary>
-    /// An empty page that can be used on its own or navigated to within a Frame.
-    /// </summary>
     public sealed partial class ShoppingCartModal : Page
-    { 
-        string filter = "Cafeteria";
-        string jsonString;
-        List<Product> products;
-    public ShoppingCartModal()
+    {
+        public List<Product> OrderProducts;
+        public List<Account> accountsToDivide;
+
+        public ShoppingCartModal(ShoppingCart shoppingCart)
         {
+            OrderProducts = shoppingCart.OrderProducts;
+            accountsToDivide = shoppingCart.accountsToDivide;
+
             this.InitializeComponent();
+            var groupedProducts = OrderProducts.GroupBy(p => p.SubCategory);
 
-            var jsonFilePath = Path.Combine(AppContext.BaseDirectory, "Properties", "Products.json");
-            StreamReader reader = new(jsonFilePath);
+            double subtotal = subtotalValueCalculator(OrderProducts);
+            string subtotalValue = subtotal.ToString("0.00");
+            double taxa = subtotal * 0.1;
+            string taxaServico = taxa.ToString("0.00");
+            double total = subtotal + taxa;
+            string totalPrice = total.ToString("0.00");
 
-            jsonString = reader.ReadToEnd();
-            products = JsonConvert.DeserializeObject<List<Product>>(jsonString);
-            products = products.FindAll(p => p.Category == filter);
-            var groupedProducts = products.GroupBy(p => p.SubCategory);
+            Subtotal.Text = $"Subtotal: R$ {subtotalValue}";
+            Taxa.Text = $"Taxa de serviço (10%): R$ {taxaServico}";
+            TotalPrice.Text = $"R$ {totalPrice}";
             myListView.Source = groupedProducts;
             DataContext = this;
         }
+
+
+        public double subtotalValueCalculator(List<Product> productsList)
+        {
+            double finalValue = 0.0;
+
+            foreach(Product product in productsList)
+            {
+                finalValue += product.Price;
+            }
+
+            return finalValue;
+        }
+
+
+        private void ListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            ComboBox comboBox = sender as ComboBox;
+            List<Account> SelectedUsers = (List<Account>)comboBox.SelectedValue;
+            
+
+            foreach (var user in SelectedUsers)
+            {
+                accountsToDivide.Add(user);
+            }
+
+        }
+
+
     }
 }
