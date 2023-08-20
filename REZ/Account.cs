@@ -6,7 +6,7 @@ namespace REZ
     public class Account
     {
         public string Name;
-        private Collection<Item> itemsList;
+        private Collection<Product> itemsList;
         private double totalPrice = 0.0;
         
         public Account(string name)
@@ -15,7 +15,7 @@ namespace REZ
             // TotalPrice = totalPrice;
         }
 
-        public Collection<Item> ItemsList 
+        public Collection<Product> ItemsList 
         {
             get { return itemsList; }
             set { itemsList = value; }
@@ -32,7 +32,7 @@ namespace REZ
                          // Não sei se isso é necessário
         // }
 
-        public void AddItem(Item item)
+        public void AddItem(Product item)
         {
             ItemsList.Add(item);
             totalPrice += item.Price;

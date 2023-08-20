@@ -6,7 +6,7 @@ namespace REZ
 {
     public class Cart
     {
-        Collection<Item> ItemsList;
+        Collection<Product> ItemsList;
         Collection<Account> accountsToDivide;
         AccountsList Accounts;
         double TotalPrice;
@@ -17,12 +17,12 @@ namespace REZ
             OrderId = orderId;
         }
 
-        public void AddItem(Item item)
+        public void AddItem(Product item)
         {
             item.OrderId = OrderId;
             ItemsList.Add(item);
         }
-        public void RemoveItem(Item item)
+        public void RemoveItem(Product item)
         {
             ItemsList.Remove(item);
         }
@@ -37,17 +37,17 @@ namespace REZ
             accountsToDivide.Remove(account);
         }
 
-        public void CompleteOrder(Account[] accountsToDivide, Collection<Item> ItemsList, double TotalPrice, string OrderId)
+        public void CompleteOrder(Account[] accountsToDivide, Collection<Product> ItemsList, double TotalPrice, string OrderId)
         {
             int accountsQuantity = accountsToDivide.Length;
 
-            foreach (Item item in ItemsList) 
+            foreach (Product item in ItemsList) 
             {
                 item.DivideItemPrice(accountsToDivide, accountsQuantity);
             
                 foreach (Account account in accountsToDivide)
                 {
-                    Item newItem = item.Clone() as Item;
+                    Product newItem = item.Clone() as Product;
                     account.AddItem(newItem);
                 }
             }
