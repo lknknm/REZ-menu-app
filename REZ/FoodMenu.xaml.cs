@@ -11,30 +11,21 @@ using Newtonsoft.Json;
 using Microsoft.UI.Composition;
 using Microsoft.UI.Xaml.Hosting;
 using Microsoft.UI;
-
-// To learn more about WinUI, the WinUI project structure,
-// and more about our project templates, see: http://aka.ms/winui-project-info.
+using Windows.UI.Popups;
+using Windows.Foundation;
+using Microsoft.UI.Xaml.Input;
+using System.Security.Claims;
+using Microsoft.UI.Xaml.Navigation;
 
 namespace REZ
 {
-    public class Product
-    {
-        public string Name { get; set; }
-        public string SubCategory { get; set; }
-        public string Category { get; set; }
-        public string Description { get; set; }
-        public double Price { get; set; }
-        public string ImageSource { get; set; }
-    }
-
-    /// <summary>
-    /// An empty page that can be used on its own or navigated to within a Frame.
-    /// </summary>
     public sealed partial class FoodMenu : Page
     {
-        string filter = "Tudo";
-        string jsonString;
-        List<Product> products;
+        private string filter = "Tudo";
+        private string jsonString;
+        private static Account User = new("Andres");
+        public ShoppingCart Cart = new("1223", User);
+        public List<Product> products;
 
         public object ItemFeatureImage { get; private set; }
 
@@ -51,55 +42,66 @@ namespace REZ
             myListView.Source = groupedProducts;
             DataContext = this;
         }
-        
-        private void AppBarButton_Click(object sender, RoutedEventArgs e)
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            Frame.Navigate(typeof(MainPage), null, new SlideNavigationTransitionInfo() { Effect = SlideNavigationTransitionEffect.FromLeft });
+            base.OnNavigatedTo(e);
+
+            if (e.Parameter is ShoppingCart shoppingCart)
+            {
+                Cart = shoppingCart;
+            }
         }
-        private async void ShoppingCartButtonClick(object sender, RoutedEventArgs e)
+
+        private async void AppBarButton_Click(object sender, RoutedEventArgs e)
         {
-            //ToggleThemeTeachingTip1.IsOpen = true;
+            try
+            {
+                Frame.Navigate(typeof(MainPage), Cart, new SlideNavigationTransitionInfo() { Effect = SlideNavigationTransitionEffect.FromLeft });
+            }
+            catch (Exception ex)
+            {
+                ContentDialog dialog = new ContentDialog();
+                dialog.XamlRoot = this.XamlRoot;
+                dialog.Style = Application.Current.Resources["DefaultContentDialogStyle"] as Style;
+                dialog.DefaultButton = ContentDialogButton.Primary;
+                dialog.Content = ex;
+                var result = await dialog.ShowAsync();
+            }
+            
+        }
 
-            ContentDialog dialog = new ContentDialog();
+        private void ShoppingCartButtonClick(object sender, RoutedEventArgs e)
+        {
 
-            // XamlRoot must be set in the case of a ContentDialog running in a Desktop app
-            dialog.XamlRoot = this.XamlRoot;
-            dialog.Style = Application.Current.Resources["DefaultContentDialogStyle"] as Style;
-            //dialog.PrimaryButtonClick += this.AddToCart;
-            dialog.PrimaryButtonText = "Fazer pedido";
-            dialog.CloseButtonText = "Cancelar";
-            dialog.DefaultButton = ContentDialogButton.Primary;
-            dialog.Content = new ShoppingCartModal();
+            Cart.OpenShoppingModal(this, Cart, ToggleThemeTeachingTip1);
 
-            var result = await dialog.ShowAsync();
         }
 
         private async void ToggleListTip(object sender, ItemClickEventArgs e)
         {
             ContentDialog dialog = new ContentDialog();
-            var item = (e.ClickedItem as Product);
-
+            var item = e.ClickedItem as Product;
             // XamlRoot must be set in the case of a ContentDialog running in a Desktop app
             dialog.XamlRoot = this.XamlRoot;
             dialog.Style = Application.Current.Resources["DefaultContentDialogStyle"] as Style;
             dialog.Title = item.Name;
-            //dialog.PrimaryButtonClick += this.AddToCart;
             dialog.PrimaryButtonText = "Adicionar";
+            dialog.PrimaryButtonClick += delegate { Cart.AddItem(item); };
+            
             dialog.CloseButtonText = "Cancelar";
             dialog.DefaultButton = ContentDialogButton.Primary;
             dialog.Content = new ItemDialogModal(item);
 
             var result = await dialog.ShowAsync();
         }
+
+
         private void myListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             // Handle selection change event here if needed
         }
 
-        private void AddToCart()
-        {
-
-        }
         private void FilterByCategory(object sender, RoutedEventArgs e)
         {
             Button clickedButton = (Button)sender;
@@ -119,5 +121,6 @@ namespace REZ
             var groupedProducts = products.GroupBy(p => p.SubCategory);
             myListView.Source = groupedProducts;
         }
+
     }
 }

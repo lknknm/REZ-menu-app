@@ -27,7 +27,7 @@
               Margin="10"/>
 
         <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,24,0,0">
-            <ListView ItemsSource="{x:Bind myListView.View, Mode=OneWay}" Width="470" Height="300" IsItemClickEnabled="False">
+            <ListView ItemsSource="{x:Bind myListView.View, Mode=OneWay}" Width="470" Height="250" IsItemClickEnabled="False">
                 <CollectionViewSource x:Name="myListView" IsSourceGrouped="True"/>
                 <ListView.ItemsPanel>
                     <ItemsPanelTemplate>
@@ -52,36 +52,27 @@
               StrokeThickness="1"
               Margin="10"/>
 
-        <ComboBox PlaceholderText="Com quem você gostaria de dividir essa conta?" Width="470" Margin="12">
-            <x:String>Lucas</x:String>
-            <x:String>Manoel</x:String>
-            <x:String>Pedro</x:String>
-            <x:String>Adicionar...</x:String>
+		<ComboBox PlaceholderText="Com quem você gostaria de dividir essa conta?" Width="470" Margin="12">
+			<CheckBox Content="Lucas" />
+			<CheckBox Content="Manoel" />
+			<CheckBox Content="Felipe" />
+            <CheckBox Content="Pedro" />
         </ComboBox>
 
-        <TextBlock TextWrapping="Wrap"
-                    Margin="12"
-                    TextAlignment="Right">
-            <Run Foreground="Gray" FontFamily="Segoe UI Light" FontSize="14">
-                Subtotal
-            </Run>
-            <Run Foreground="Gray" FontFamily="Segoe UI Light" FontSize="14">
-                R$ 100,00
-            </Run>
-            <LineBreak></LineBreak>
-            <Run Foreground="Gray" FontFamily="Segoe UI Light" FontSize="14">
-                Serviço(10%)
-            </Run>
-            <Run Foreground="Gray" FontFamily="Segoe UI Light" FontSize="14">
-                R$ 10,00
-            </Run>
-            <LineBreak></LineBreak>
-            <Run Foreground="Gray" FontWeight="SemiBold" FontSize="14">
-                Total
-            </Run>
-            <Run Foreground="Gray" FontWeight="SemiBold"  FontSize="14">
-                R$ 110,00
-            </Run>
-        </TextBlock>
+        <TextBlock x:Name="Subtotal"
+                           TextWrapping="Wrap"
+                           TextAlignment="Right"
+                           Foreground="Gray"/>
+
+        <TextBlock x:Name="Taxa"
+                           TextWrapping="Wrap"
+                           TextAlignment="Right"
+                           Foreground="Gray"/>
+
+        <TextBlock x:Name="TotalPrice"
+                           TextWrapping="Wrap"
+                           TextAlignment="Right"
+                           Foreground="Gray"/>
+
     </StackPanel>
 </Page>
