@@ -10,6 +10,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reflection.Metadata;
 using System.Reflection.PortableExecutable;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
@@ -24,25 +25,42 @@ namespace REZ
 
     public sealed partial class MainPage : Page
     {
-        public AccountsList accountsList;
-        private static Account User;
-        public ShoppingCart shoppingCart;
+        public AccountsList accountsList = new AccountsList();
+        private Account User = AccountsList.SelectedAccount;
+        public ShoppingCart shoppingCart = AccountsList.Cart;
         public FoodMenu foodMenu;
 
         public MainPage()
         {
             this.InitializeComponent();
+
+            
+            //pegar o nome do usuário para criar a conta e inicializar o carrinho
+            User = new Account("Andres");
+            ShoppingCart.DefineUser(User);
+
         }
-        private async void OpenFoodMenu(object sender, RoutedEventArgs e)
+        private void OpenFoodMenu(object sender, RoutedEventArgs e)
         {
-            Frame.Navigate(typeof(FoodMenu), null, new SlideNavigationTransitionInfo() { Effect = SlideNavigationTransitionEffect.FromRight });
+            Button button = sender as Button;
+            Frame.Navigate(typeof(FoodMenu), button, new SlideNavigationTransitionInfo() { Effect = SlideNavigationTransitionEffect.FromRight });
         }
 
-        private void ShoppingCartButtonClick(object sender, RoutedEventArgs e)
+        private void ShoppingCart_ButtonClick(object sender, RoutedEventArgs e)
         {
             shoppingCart.OpenShoppingModal(this, shoppingCart, ToggleThemeTeachingTip1);
 
         }
+
+        
+
+        private void SwitchUser_ButtonClick(object sender, RoutedEventArgs e)
+        {
+            Button button = sender as Button;
+            AccountsList.SwitchAccounts(button.Content.ToString());
+        }
+
+        
 
     }
 }

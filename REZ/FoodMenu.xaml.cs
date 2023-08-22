@@ -23,8 +23,8 @@ namespace REZ
     {
         private string filter = "Tudo";
         private string jsonString;
-        private static Account User = new("Andres");
-        public ShoppingCart Cart = new("1223", User);
+        private Account User = AccountsList.SelectedAccount;
+        public ShoppingCart Cart = AccountsList.Cart;
         public List<Product> products;
 
         public object ItemFeatureImage { get; private set; }
@@ -32,6 +32,8 @@ namespace REZ
         public FoodMenu()
         {
             this.InitializeComponent();
+
+            User = AccountsList.SelectedAccount;
 
             var jsonFilePath = Path.Combine(AppContext.BaseDirectory, "Properties", "Products.json");
             StreamReader reader = new(jsonFilePath);
@@ -45,19 +47,29 @@ namespace REZ
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            base.OnNavigatedTo(e);
+            Button selectedButton = new Button() { Content = "Tudo" };
+            Button button = e.Parameter as Button;
+            filter = button.Name;
 
-            if (e.Parameter is ShoppingCart shoppingCart)
+            foreach (Button foodMenuButton in CategoriesButtonRow.Children)
             {
-                Cart = shoppingCart;
-            }
+                if ((string)foodMenuButton.Content == filter) 
+                {
+                    selectedButton = foodMenuButton;
+                    break;
+                }
+
+            };
+
+            FilterByCategory(selectedButton, filter);
+
         }
 
         private async void AppBarButton_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                Frame.Navigate(typeof(MainPage), Cart, new SlideNavigationTransitionInfo() { Effect = SlideNavigationTransitionEffect.FromLeft });
+                Frame.Navigate(typeof(MainPage), null, new SlideNavigationTransitionInfo() { Effect = SlideNavigationTransitionEffect.FromLeft });
             }
             catch (Exception ex)
             {
@@ -71,7 +83,7 @@ namespace REZ
             
         }
 
-        private void ShoppingCartButtonClick(object sender, RoutedEventArgs e)
+        private void ShoppingCart_ButtonClick(object sender, RoutedEventArgs e)
         {
 
             Cart.OpenShoppingModal(this, Cart, ToggleThemeTeachingTip1);
@@ -97,22 +109,29 @@ namespace REZ
         }
 
 
-        private void myListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void MyListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             // Handle selection change event here if needed
         }
 
-        private void FilterByCategory(object sender, RoutedEventArgs e)
+        private void FilterByCategory_ButtonClick(object sender, RoutedEventArgs e)
         {
             Button clickedButton = (Button)sender;
-            // Reset all buttons to normal background
+            filter = (sender as Button)?.Content?.ToString();
+            FilterByCategory(clickedButton, filter);
+
+        }
+
+
+        private void FilterByCategory(Button clickedButton, string filter)
+        {
             foreach (Button button in CategoriesButtonRow.Children)
             {
                 button.ClearValue(Button.StyleProperty); ;
             };
+
             clickedButton.Style = (Style)Resources["AccentButtonStyle"];
 
-            filter = (sender as Button)?.Content?.ToString();
             products = JsonConvert.DeserializeObject<List<Product>>(jsonString);
             if (filter != "Tudo")
             {
@@ -120,6 +139,12 @@ namespace REZ
             }
             var groupedProducts = products.GroupBy(p => p.SubCategory);
             myListView.Source = groupedProducts;
+        }
+
+        private void SwitchUser_ButtonClick(object sender, RoutedEventArgs e)
+        {
+            Button button = sender as Button;
+            AccountsList.SwitchAccounts(button.Content.ToString());
         }
 
     }
