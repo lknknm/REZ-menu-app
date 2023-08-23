@@ -27,7 +27,7 @@
               Margin="10"/>
 
         <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,24,0,0">
-            <ListView ItemsSource="{x:Bind myListView.View, Mode=OneWay}" Width="470" Height="250" IsItemClickEnabled="False">
+            <ListView ItemsSource="{x:Bind myListView.View, Mode=OneWay}" Width="500" Height="250" IsItemClickEnabled="False">
                 <CollectionViewSource x:Name="myListView" IsSourceGrouped="True"/>
                 <ListView.ItemsPanel>
                     <ItemsPanelTemplate>
@@ -36,17 +36,20 @@
                 </ListView.ItemsPanel>
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <StackPanel Padding="12">
-                            <TextBlock FontWeight="SemiBold" FontSize="14">
-                                <Run Text="{Binding Quantity}"></Run>
-                                <Run>x </Run>
-                                <Run Text="{Binding Name, Mode=TwoWay}"></Run>
-                            </TextBlock>
-                            <TextBlock Text="{Binding Description}" FontSize="12" />
-                            <TextBlock FontWeight="SemiBold" FontSize="12">
-                                <Run Text="R$"></Run>
-                                <Run Text="{Binding Price}"></Run>
-                            </TextBlock>
+                        <StackPanel Orientation="Horizontal" Padding="12" VerticalAlignment="Top" HorizontalAlignment="Center">
+                            <StackPanel VerticalAlignment="Center" HorizontalAlignment="Left" Width="380" >
+                                <TextBlock FontWeight="SemiBold" FontSize="14">
+                                    <Run Text="{Binding Quantity}"></Run>
+                                    <Run>x </Run>
+                                    <Run Text="{Binding Name, Mode=TwoWay}"></Run>
+                                </TextBlock>
+                                <TextBlock Text="{Binding Description}" FontSize="12" TextWrapping="Wrap"/>
+                                <TextBlock FontWeight="SemiBold" FontSize="12">
+                                    <Run Text="R$"></Run>
+                                    <Run Text="{Binding Price}"></Run>
+                                </TextBlock>
+                            </StackPanel>
+                            <AppBarButton Icon="Cancel" VerticalAlignment="Center" IsCompact="True" Width="32" Margin="32,12,0,0"/>
                         </StackPanel>
                     </DataTemplate>
                 </ListView.ItemTemplate>
@@ -66,20 +69,19 @@
             <CheckBox Content="Pedro" />
         </ComboBox>
 
-        <TextBlock x:Name="Subtotal"
-                           TextWrapping="Wrap"
-                           TextAlignment="Right"
-                           Foreground="Gray"/>
+        <RelativePanel Width="468" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <TextBlock Text="Subtotal:" TextAlignment="Left" Foreground="Gray" />
+            <TextBlock x:Name="Subtotal" TextWrapping="Wrap" TextAlignment="Right" RelativePanel.AlignRightWithPanel="True" Foreground="Gray"/>
+        </RelativePanel>
+        
+        <RelativePanel Width="468" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <TextBlock Text="Taxa de serviço (10%):" TextAlignment="Left" Foreground="Gray"/>
+            <TextBlock x:Name="Taxa" TextWrapping="Wrap" TextAlignment="Right" RelativePanel.AlignRightWithPanel="True" Foreground="Gray"/>
+        </RelativePanel>
 
-        <TextBlock x:Name="Taxa"
-                           TextWrapping="Wrap"
-                           TextAlignment="Right"
-                           Foreground="Gray"/>
-
-        <TextBlock x:Name="TotalPrice"
-                           TextWrapping="Wrap"
-                           TextAlignment="Right"
-                           Foreground="Gray"/>
-
+        <RelativePanel Width="468" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <TextBlock Text="Total:" TextAlignment="Left" Foreground="Gray" FontWeight="SemiBold"/>
+            <TextBlock x:Name="TotalPrice" TextWrapping="Wrap" TextAlignment="Right" RelativePanel.AlignRightWithPanel="True" Foreground="Gray" FontWeight="SemiBold"/>
+        </RelativePanel>
     </StackPanel>
 </Page>

@@ -67,8 +67,6 @@ namespace REZ
             //    AutoSuggestBoxTextChangedEventArgs args = parameters.Args as AutoSuggestBoxTextChangedEventArgs;
             //    AutoSuggestBox_TextChanged(autoSuggestBox, args);
             //}
-            
-
         }
 
         private async void AppBarButton_Click(object sender, RoutedEventArgs e)
@@ -86,14 +84,12 @@ namespace REZ
                 dialog.Content = ex;
                 var result = await dialog.ShowAsync();
             }
-            
         }
 
         private void ShoppingCart_ButtonClick(object sender, RoutedEventArgs e)
         {
 
-            Cart.OpenShoppingModal(this, Cart, ToggleThemeTeachingTip1);
-
+            Cart.OpenShoppingModal(this, Cart, ToggleShoppingCartTip);
         }
 
         private async void ToggleListTip(object sender, ItemClickEventArgs e)
@@ -127,7 +123,6 @@ namespace REZ
             FilterByCategory(clickedButton, filter);
 
         }
-
 
         private void FilterByCategory(Button clickedButton, string filter)
         {
@@ -185,6 +180,19 @@ namespace REZ
             var groupedProducts = products.GroupBy(p => p.SubCategory);
             myListView.Source = groupedProducts;
             
+        }
+
+        private async void AddAccount(object sender, RoutedEventArgs e)
+        {
+            ContentDialog dialog = new ContentDialog();
+            dialog.XamlRoot = this.XamlRoot;
+            dialog.Style = Microsoft.UI.Xaml.Application.Current.Resources["DefaultContentDialogStyle"] as Style;
+            dialog.Title = "Olá! Vamos começar?";
+            dialog.PrimaryButtonText = "Adicionar usuário";
+            dialog.CloseButtonText = "Cancelar";
+            dialog.DefaultButton = ContentDialogButton.Primary;
+            dialog.Content = new AddAccountModal();
+            var result = await dialog.ShowAsync();
         }
     }
 }

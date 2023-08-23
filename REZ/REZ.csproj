@@ -16,6 +16,7 @@
 	  
   </PropertyGroup>
   <ItemGroup>
+    <None Remove="AddAccountModal.xaml" />
     <None Remove="BlankPage1.xaml" />
     <None Remove="ItemDialogModal.xaml" />
     <None Remove="Properties\Products.json" />
@@ -53,6 +54,11 @@
     <Content Include="Properties\Products.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="AddAccountModal.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Page Update="ShoppingCartModal.xaml">

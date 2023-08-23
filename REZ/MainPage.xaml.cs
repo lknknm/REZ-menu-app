@@ -65,10 +65,7 @@ namespace REZ
         private void ShoppingCart_ButtonClick(object sender, RoutedEventArgs e)
         {
             shoppingCart.OpenShoppingModal(this, shoppingCart, ToggleThemeTeachingTip1);
-
         }
-
-
 
         private void SwitchUser_ButtonClick(object sender, RoutedEventArgs e)
         {
@@ -88,12 +85,10 @@ namespace REZ
             }
         }
 
-
         private object GetSuggestions(string text)
         {
             List<string> result = null;
             result = suggestions.Where(x => x.ToLower().Contains(text.ToLower())).ToList();
-
             return result;
         }
 
@@ -115,7 +110,20 @@ namespace REZ
         private void SearchInFoodMenu(object sender, TappedRoutedEventArgs e)
         {
             Frame.Navigate(typeof(FoodMenu), SearchBar.Text, new SlideNavigationTransitionInfo() { Effect = SlideNavigationTransitionEffect.FromRight });
-
         }
+
+        private async void AddAccount(object sender, RoutedEventArgs e)
+        {
+            ContentDialog dialog = new ContentDialog();
+            dialog.XamlRoot = this.XamlRoot;
+            dialog.Style = Microsoft.UI.Xaml.Application.Current.Resources["DefaultContentDialogStyle"] as Style;
+            dialog.Title = "Olá! Vamos começar?";
+            dialog.PrimaryButtonText = "Adicionar usuário";
+            dialog.CloseButtonText = "Cancelar";
+            dialog.DefaultButton = ContentDialogButton.Primary;
+            dialog.Content = new AddAccountModal();
+            var result = await dialog.ShowAsync();
+        }
+
     }
 }

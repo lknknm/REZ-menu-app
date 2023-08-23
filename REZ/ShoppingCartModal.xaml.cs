@@ -39,8 +39,8 @@ namespace REZ
             double total = subtotal + taxa;
             string totalPrice = total.ToString("0.00");
 
-            Subtotal.Text = $"Subtotal: R$ {subtotalValue}";
-            Taxa.Text = $"Taxa de serviço (10%): R$ {taxaServico}";
+            Subtotal.Text = $"R$ {subtotalValue}";
+            Taxa.Text = $"R$ {taxaServico}";
             TotalPrice.Text = $"R$ {totalPrice}";
             myListView.Source = groupedProducts;
             DataContext = this;
@@ -67,5 +67,9 @@ namespace REZ
             
         }
 
+        private void DeleteItem(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }
