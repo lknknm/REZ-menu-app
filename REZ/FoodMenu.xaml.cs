@@ -16,16 +16,17 @@ using Windows.Foundation;
 using Microsoft.UI.Xaml.Input;
 using System.Security.Claims;
 using Microsoft.UI.Xaml.Navigation;
+using System.Security;
+using static System.Net.Mime.MediaTypeNames;
+using Application = Microsoft.UI.Xaml.Application;
 
 namespace REZ
 {
     public sealed partial class FoodMenu : Page
     {
         private string filter = "Tudo";
-        private string jsonString;
         private Account User = AccountsList.SelectedAccount;
         public ShoppingCart Cart = AccountsList.Cart;
-        public List<Product> products;
 
         public object ItemFeatureImage { get; private set; }
 
@@ -34,13 +35,7 @@ namespace REZ
             this.InitializeComponent();
 
             User = AccountsList.SelectedAccount;
-
-            var jsonFilePath = Path.Combine(AppContext.BaseDirectory, "Properties", "Products.json");
-            StreamReader reader = new(jsonFilePath);
-
-            jsonString = reader.ReadToEnd();
-            products = JsonConvert.DeserializeObject<List<Product>>(jsonString);
-            var groupedProducts = products.GroupBy(p => p.SubCategory);
+            var groupedProducts = MainPage.Products.GroupBy(p => p.SubCategory);
             myListView.Source = groupedProducts;
             DataContext = this;
         }
@@ -48,20 +43,38 @@ namespace REZ
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             Button selectedButton = new Button() { Content = "Tudo" };
-            Button button = e.Parameter as Button;
-            filter = button.Name;
-
-            foreach (Button foodMenuButton in CategoriesButtonRow.Children)
+            
+            if (e.Parameter is Button)
             {
-                if ((string)foodMenuButton.Content == filter) 
+                Button button = e.Parameter as Button;
+                filter = button.Name;
+
+                foreach (Button foodMenuButton in CategoriesButtonRow.Children)
                 {
-                    selectedButton = foodMenuButton;
-                    break;
-                }
+                    if ((string)foodMenuButton.Content == filter)
+                    {
+                        selectedButton = foodMenuButton;
+                        break;
+                    }
 
-            };
+                };
 
-            FilterByCategory(selectedButton, filter);
+                FilterByCategory(selectedButton, filter);
+            }
+            if (e.Parameter is string)
+            {
+                string searchText = e.Parameter as string;
+                SearchBar.Text = searchText;
+                FilterBySearch(searchText);
+            }
+            else
+            {
+                dynamic parameters = e.Parameter as dynamic;
+                AutoSuggestBox autoSuggestBox = parameters.Sender as AutoSuggestBox;
+                AutoSuggestBoxTextChangedEventArgs args = parameters.Args as AutoSuggestBoxTextChangedEventArgs;
+                AutoSuggestBox_TextChanged(autoSuggestBox, args);
+            }
+            
 
         }
 
@@ -75,7 +88,7 @@ namespace REZ
             {
                 ContentDialog dialog = new ContentDialog();
                 dialog.XamlRoot = this.XamlRoot;
-                dialog.Style = Application.Current.Resources["DefaultContentDialogStyle"] as Style;
+                dialog.Style = Microsoft.UI.Xaml.Application.Current.Resources["DefaultContentDialogStyle"] as Style;
                 dialog.DefaultButton = ContentDialogButton.Primary;
                 dialog.Content = ex;
                 var result = await dialog.ShowAsync();
@@ -94,7 +107,7 @@ namespace REZ
         {
             ContentDialog dialog = new ContentDialog();
             var item = e.ClickedItem as Product;
-            // XamlRoot must be set in the case of a ContentDialog running in a Desktop app
+
             dialog.XamlRoot = this.XamlRoot;
             dialog.Style = Application.Current.Resources["DefaultContentDialogStyle"] as Style;
             dialog.Title = item.Name;
@@ -127,12 +140,12 @@ namespace REZ
         {
             foreach (Button button in CategoriesButtonRow.Children)
             {
-                button.ClearValue(Button.StyleProperty); ;
+                button.ClearValue(Button.StyleProperty);
             };
 
             clickedButton.Style = (Style)Resources["AccentButtonStyle"];
 
-            products = JsonConvert.DeserializeObject<List<Product>>(jsonString);
+            List<Product> products = MainPage.Products;
             if (filter != "Tudo")
             {
                 products = products.FindAll(p => p.Category == filter);
@@ -146,6 +159,30 @@ namespace REZ
             Button button = sender as Button;
             AccountsList.SwitchAccounts(button.Content.ToString());
         }
+
+        private void AutoSuggestBox_TextChanged(AutoSuggestBox sender, AutoSuggestBoxTextChangedEventArgs args)
+        {
+            if (args.Reason == AutoSuggestionBoxTextChangeReason.UserInput) 
+            {
+                FilterBySearch(sender.Text);
+            }
+        }
+
+        private void FilterBySearch(string searchText)
+        {
+            List<Product> products = MainPage.Products;
+
+            if (searchText.Length > 0)
+            {
+                products = products.Where(x => x.Name.ToLower().Contains(searchText.ToLower())).ToList();
+            }
+
+            var groupedProducts = products.GroupBy(p => p.SubCategory);
+            myListView.Source = groupedProducts;
+            
+        }
+
+        
 
     }
 }

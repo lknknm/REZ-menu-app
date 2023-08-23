@@ -31,7 +31,7 @@ namespace REZ
 
             this.InitializeComponent();
             var groupedProducts = OrderProducts.GroupBy(p => p.SubCategory);
-
+           
             double subtotal = SubtotalValueCalculator(OrderProducts);
             string subtotalValue = subtotal.ToString("0.00");
             double taxa = subtotal * 0.1;

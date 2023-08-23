@@ -65,6 +65,7 @@ namespace REZ
             Random random = new Random(); // mudar para um gerador de Id de respeito
             string newOrderId = random.Next(0, 100).ToString();
             return new ShoppingCart(newOrderId);
+
         }
     }
 }
