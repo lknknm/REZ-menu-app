@@ -16,6 +16,7 @@
 	  
   </PropertyGroup>
   <ItemGroup>
+    <None Remove="AccountInfo.xaml" />
     <None Remove="AddAccountModal.xaml" />
     <None Remove="BlankPage1.xaml" />
     <None Remove="ItemDialogModal.xaml" />
@@ -54,6 +55,11 @@
     <Content Include="Properties\Products.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="AccountInfo.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Page Update="AddAccountModal.xaml">

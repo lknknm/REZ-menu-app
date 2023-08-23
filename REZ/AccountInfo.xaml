@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Page
+    x:Class="REZ.AccountInfo"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:REZ"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <StackPanel VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Background="White">
+
+        <TextBlock Text="Olá, Andrés!" 
+                   TextWrapping="Wrap"
+                   FontSize="20"
+                   Margin="12, 12, 12, 0"/>
+        <TextBlock Text="Revise seu histórico de pedidos" 
+                   TextWrapping="Wrap"
+                   FontSize="20"
+                   FontWeight="Bold"
+                   Margin="12, 0, 12, 12"/>
+
+        <Line Stroke="#C9C9C9"
+              X1="0" Y1="0"
+              X2="1000" Y2="0"
+              StrokeThickness="1"
+              Margin="10"/>
+    </StackPanel>
+</Page>
