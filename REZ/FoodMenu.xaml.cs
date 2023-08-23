@@ -43,12 +43,10 @@ namespace REZ
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             Button selectedButton = new Button() { Content = "Tudo" };
-            
             if (e.Parameter is Button)
             {
                 Button button = e.Parameter as Button;
                 filter = button.Name;
-
                 foreach (Button foodMenuButton in CategoriesButtonRow.Children)
                 {
                     if ((string)foodMenuButton.Content == filter)
@@ -58,10 +56,9 @@ namespace REZ
                     }
 
                 };
-
                 FilterByCategory(selectedButton, filter);
             }
-            if (e.Parameter is string)
+            else if (e.Parameter is string)
             {
                 string searchText = e.Parameter as string;
                 SearchBar.Text = searchText;
@@ -74,8 +71,6 @@ namespace REZ
                 AutoSuggestBoxTextChangedEventArgs args = parameters.Args as AutoSuggestBoxTextChangedEventArgs;
                 AutoSuggestBox_TextChanged(autoSuggestBox, args);
             }
-            
-
         }
 
         private async void AppBarButton_Click(object sender, RoutedEventArgs e)
@@ -120,7 +115,6 @@ namespace REZ
 
             var result = await dialog.ShowAsync();
         }
-
 
         private void MyListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -181,8 +175,5 @@ namespace REZ
             myListView.Source = groupedProducts;
             
         }
-
-        
-
     }
 }
