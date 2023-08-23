@@ -27,11 +27,6 @@ namespace REZ
             set { totalPrice = value; }
         }
 
-        // public void MoveItemToAnotherAccount(Account originAccount, Account DestinyAccount)
-        // {
-                         // Não sei se isso é necessário
-        // }
-
         public void AddItem(Product item)
         {
             ItemsList.Add(item);

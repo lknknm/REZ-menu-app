@@ -13,6 +13,7 @@ namespace REZ
         private string description;
         private string category;
         private string subCategory;
+        private static int quantity;
 
         public string OrderId
         {
@@ -41,7 +42,7 @@ namespace REZ
         }
         public double Price
         {
-            get { return price; }
+            get { return price * quantity; }
             set { price = value; }
         }
         public string Description
@@ -49,13 +50,23 @@ namespace REZ
             get { return description; }
             set { description = value; }
         }
+
+        public static int Quantity
+        {
+            get { return quantity; }
+            set { quantity = value; }
+        }
+
         public Product(string name, string description, double price, string imageSource, string category)
         {
+            Quantity = 1;
             Name = name;
             Description = description;
             Price = price;
             ImageSource = imageSource;
             Category = category;
+            
+
             //Criar items no DB
 
         }
@@ -74,6 +85,7 @@ namespace REZ
                 account.TotalPrice += valueForEachAccount;
             }
         }
+
     }
 }
 

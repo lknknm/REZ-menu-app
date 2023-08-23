@@ -37,9 +37,16 @@
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Padding="12">
-                            <TextBlock Text="{Binding Name, Mode=TwoWay}" FontWeight="SemiBold" FontSize="14"/>
+                            <TextBlock FontWeight="SemiBold" FontSize="14">
+                                <Run Text="{Binding Quantity}"></Run>
+                                <Run>x </Run>
+                                <Run Text="{Binding Name, Mode=TwoWay}"></Run>
+                            </TextBlock>
                             <TextBlock Text="{Binding Description}" FontSize="12" />
-                            <TextBlock Text="{Binding Price}" FontSize="12"/>
+                            <TextBlock FontWeight="SemiBold" FontSize="12">
+                                <Run Text="R$"></Run>
+                                <Run Text="{Binding Price}"></Run>
+                            </TextBlock>
                         </StackPanel>
                     </DataTemplate>
                 </ListView.ItemTemplate>

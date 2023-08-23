@@ -22,18 +22,17 @@ namespace REZ
 {
     public sealed partial class ShoppingCartModal : Page
     {
-        public List<Product> OrderProducts;
-        public List<Account> accountsToDivide;
+        public Account User = AccountsList.SelectedAccount;
+        public List<Product> OrderProducts = ShoppingCart.OrderProducts;
+        public List<Account> AccountsToDivide = ShoppingCart.AccountsToDivide;
 
         public ShoppingCartModal(ShoppingCart shoppingCart)
         {
-            OrderProducts = shoppingCart.OrderProducts;
-            accountsToDivide = shoppingCart.accountsToDivide;
 
             this.InitializeComponent();
             var groupedProducts = OrderProducts.GroupBy(p => p.SubCategory);
-
-            double subtotal = subtotalValueCalculator(OrderProducts);
+           
+            double subtotal = SubtotalValueCalculator(OrderProducts);
             string subtotalValue = subtotal.ToString("0.00");
             double taxa = subtotal * 0.1;
             string taxaServico = taxa.ToString("0.00");
@@ -48,7 +47,7 @@ namespace REZ
         }
 
 
-        public double subtotalValueCalculator(List<Product> productsList)
+        public double SubtotalValueCalculator(List<Product> productsList)
         {
             double finalValue = 0.0;
 
@@ -64,16 +63,9 @@ namespace REZ
         private void ListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             ComboBox comboBox = sender as ComboBox;
-            List<Account> SelectedUsers = (List<Account>)comboBox.SelectedValue;
+            ShoppingCart.AccountsToDivide = (List<Account>)comboBox.SelectedValue;
             
-
-            foreach (var user in SelectedUsers)
-            {
-                accountsToDivide.Add(user);
-            }
-
         }
-
 
     }
 }

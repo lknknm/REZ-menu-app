@@ -15,8 +15,13 @@
         <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,16,0,0">
 
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0">
-                <AutoSuggestBox PlaceholderText="Busque um item em nosso cardápio" QueryIcon="Find" Width="600" Margin="0,0,4,0"/>
-                <Button x:Name="ShoppingCartButton" Style="{StaticResource AccentButtonStyle}" Background="#84CC16" Click="ShoppingCartButtonClick">
+                <AutoSuggestBox x:Name="SearchBar" PlaceholderText="Busque um item em nosso cardápio" Width="600" Margin="0,0,4,0" 
+                                TextChanged="AutoSuggestBox_TextChanged" SuggestionChosen="AutoSuggestBox_SuggestionChosen" KeyUp="SearchInFoodMenu">
+                    <AutoSuggestBox.QueryIcon>
+                        <SymbolIcon Symbol="Find" Tapped="SearchInFoodMenu" />
+                    </AutoSuggestBox.QueryIcon>
+                </AutoSuggestBox>
+                <Button x:Name="ShoppingCartButton" Style="{StaticResource AccentButtonStyle}" Background="#84CC16" Click="ShoppingCart_ButtonClick">
                     <FontIcon Glyph="&#xE7BF;" Foreground="#F2F2F2"/>
                 </Button>
                 <TeachingTip x:Name="ToggleThemeTeachingTip1"
@@ -37,19 +42,19 @@
             </StackPanel>
 
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="0,144,0,0">
-                <Button Margin="24" Click="OpenFoodMenu" Width="164" Height="164">
+                <Button x:Name="Bebidas" Margin="24" Click="OpenFoodMenu" Width="164" Height="164">
                     <StackPanel Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center">
                         <PersonPicture MaxWidth="128" ProfilePicture="Assets/Drinks_300px_w.jpg"/>
                         <TextBlock Margin="10" Text="Bebidas" FontWeight="Bold" TextAlignment="Center"/>
                     </StackPanel>
                 </Button>
-                <Button Margin="24" Click="OpenFoodMenu" Width="164" Height="164">
+                <Button x:Name="Comida" Margin="24" Click="OpenFoodMenu" Width="164" Height="164">
                     <StackPanel Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center">
                         <PersonPicture MaxWidth="128" ProfilePicture="https://images.pexels.com/photos/2297961/pexels-photo-2297961.jpeg"/>
-                        <TextBlock Margin="10" Text="Pratos" FontWeight="Bold" TextAlignment="Center"/>
+                        <TextBlock Margin="10" Text="Comida" FontWeight="Bold" TextAlignment="Center"/>
                     </StackPanel>
                 </Button>
-                <Button Margin="24" Click="OpenFoodMenu" Width="164" Height="164">
+                <Button x:Name="Cafeteria" Margin="24" Click="OpenFoodMenu" Width="164" Height="164">
                     <StackPanel Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center">
                         <PersonPicture MaxWidth="128" ProfilePicture="https://images.pexels.com/photos/3491211/pexels-photo-3491211.jpeg"/>
                         <TextBlock Margin="10" Text="Cafeteria" FontWeight="Bold" TextAlignment="Center"/>

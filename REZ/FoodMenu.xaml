@@ -21,8 +21,8 @@
         <AppBarButton Icon="Back" Click="AppBarButton_Click" IsCompact="True" Margin="0,8,0,0"/>
         <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,16,0,0">
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0">
-                <AutoSuggestBox PlaceholderText="Busque um item em nosso cardápio" QueryIcon="Find" Width="600" Margin="0,0,4,0"/>
-                <Button x:Name="ShoppingCartButton" Style="{StaticResource AccentButtonStyle}" Background="#84CC16" Click="ShoppingCartButtonClick">
+                <AutoSuggestBox x:Name="SearchBar" PlaceholderText="Busque um item em nosso cardápio" QueryIcon="Find" Width="600" Margin="0,0,4,0" TextChanged="AutoSuggestBox_TextChanged" />
+                <Button x:Name="ShoppingCartButton" Style="{StaticResource AccentButtonStyle}" Background="#84CC16" Click="ShoppingCart_ButtonClick">
                     <FontIcon Glyph="&#xE7BF;" Foreground="#F2F2F2"/>
                 </Button>
                 <TeachingTip x:Name="ToggleThemeTeachingTip1"
@@ -32,10 +32,10 @@
                 </TeachingTip>
             </StackPanel>
             <StackPanel x:Name="CategoriesButtonRow" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,16,0,0">
-                <Button Content="Tudo"      CornerRadius="18" Click="FilterByCategory" Style="{StaticResource AccentButtonStyle}"/>
-                <Button Content="Bebidas"   CornerRadius="18" Click="FilterByCategory"/>
-                <Button Content="Comida"    CornerRadius="18" Click="FilterByCategory"/>
-                <Button Content="Cafeteria" CornerRadius="18" Click="FilterByCategory"/>
+                <Button Content="Tudo"      CornerRadius="18" Click="FilterByCategory_ButtonClick" Style="{StaticResource AccentButtonStyle}"/>
+                <Button Content="Bebidas"   CornerRadius="18" Click="FilterByCategory_ButtonClick"/>
+                <Button Content="Comida"    CornerRadius="18" Click="FilterByCategory_ButtonClick"/>
+                <Button Content="Cafeteria" CornerRadius="18" Click="FilterByCategory_ButtonClick"/>
             </StackPanel>
             <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,24,0,0">
 
@@ -67,7 +67,10 @@
                                 <StackPanel     Grid.Column="1" Padding="12">
                                     <TextBlock  Text="{Binding Name, Mode=TwoWay}" FontWeight="SemiBold" FontSize="14"/>
                                     <TextBlock  Text="{Binding Description}" FontSize="12" />
-                                    <TextBlock  Text="{Binding Price}" FontSize="12"/>
+                                    <TextBlock FontWeight="SemiBold" FontSize="12">
+                                        <Run Text="R$"></Run>
+                                        <Run Text="{Binding Price}"></Run>
+                                    </TextBlock>
                                 </StackPanel>
                             </Grid>
                         </DataTemplate>
