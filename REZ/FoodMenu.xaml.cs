@@ -40,7 +40,7 @@ namespace REZ
             DataContext = this;
         }
 
-        protected override void OnNavigatedTo(NavigationEventArgs e)
+        protected async override void OnNavigatedTo(NavigationEventArgs e)
         {
             Button selectedButton = new Button() { Content = "Tudo" };
             
@@ -49,31 +49,25 @@ namespace REZ
                 Button button = e.Parameter as Button;
                 filter = button.Name;
 
-                foreach (Button foodMenuButton in CategoriesButtonRow.Children)
-                {
-                    if ((string)foodMenuButton.Content == filter)
-                    {
-                        selectedButton = foodMenuButton;
-                        break;
-                    }
-
-                };
+                
 
                 FilterByCategory(selectedButton, filter);
             }
-            if (e.Parameter is string)
+            else if (e.Parameter is string)
             {
                 string searchText = e.Parameter as string;
                 SearchBar.Text = searchText;
                 FilterBySearch(searchText);
+
             }
-            else
-            {
-                dynamic parameters = e.Parameter as dynamic;
-                AutoSuggestBox autoSuggestBox = parameters.Sender as AutoSuggestBox;
-                AutoSuggestBoxTextChangedEventArgs args = parameters.Args as AutoSuggestBoxTextChangedEventArgs;
-                AutoSuggestBox_TextChanged(autoSuggestBox, args);
-            }
+            //else
+            //{
+                  
+            //    dynamic parameters = e.Parameter as dynamic;
+            //    AutoSuggestBox autoSuggestBox = parameters.Sender as AutoSuggestBox;
+            //    AutoSuggestBoxTextChangedEventArgs args = parameters.Args as AutoSuggestBoxTextChangedEventArgs;
+            //    AutoSuggestBox_TextChanged(autoSuggestBox, args);
+            //}
             
 
         }
@@ -138,6 +132,16 @@ namespace REZ
 
         private void FilterByCategory(Button clickedButton, string filter)
         {
+            foreach (Button foodMenuButton in CategoriesButtonRow.Children)
+            {
+                if ((string)foodMenuButton.Content == filter)
+                {
+                    clickedButton = foodMenuButton;
+                    break;
+                }
+
+            };
+
             foreach (Button button in CategoriesButtonRow.Children)
             {
                 button.ClearValue(Button.StyleProperty);
@@ -170,8 +174,10 @@ namespace REZ
 
         private void FilterBySearch(string searchText)
         {
-            List<Product> products = MainPage.Products;
+            Button button = new Button();
+            FilterByCategory(button, "Tudo");
 
+            List<Product> products = MainPage.Products;
             if (searchText.Length > 0)
             {
                 products = products.Where(x => x.Name.ToLower().Contains(searchText.ToLower())).ToList();
