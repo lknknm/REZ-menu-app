@@ -13,7 +13,7 @@ namespace REZ
         private string description;
         private string category;
         private string subCategory;
-        private static int quantity;
+        private int quantity;
 
         public string OrderId
         {
@@ -42,7 +42,7 @@ namespace REZ
         }
         public double Price
         {
-            get { return price * quantity; }
+            get { return quantity > 0? price * quantity : price; }
             set { price = value; }
         }
         public string Description
@@ -51,7 +51,7 @@ namespace REZ
             set { description = value; }
         }
 
-        public static int Quantity
+        public int Quantity
         {
             get { return quantity; }
             set { quantity = value; }
@@ -59,7 +59,7 @@ namespace REZ
 
         public Product(string name, string description, double price, string imageSource, string category)
         {
-            Quantity = 1;
+            Quantity = 0;
             Name = name;
             Description = description;
             Price = price;

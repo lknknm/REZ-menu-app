@@ -22,6 +22,7 @@ namespace REZ
     public sealed partial class ItemDialogModal : Page
     {
         public string ImageSource { get; }
+        public static int ItemQuantity;
 
         public ItemDialogModal(Product item)
         {
@@ -30,8 +31,12 @@ namespace REZ
             Description.Text = item.Description.ToString();
             Price.Text = "R$ " + item.Price.ToString();
             ImageSource = item.ImageSource;
+            
+        }
 
-
+        public static void SetItemQuantity(Product item, int newValue)
+        {
+            item.Quantity += newValue;
         }
 
         private async void SetQuantityValue(object sender, NumberBoxValueChangedEventArgs e)
@@ -43,13 +48,13 @@ namespace REZ
 
                 try
                 {
-                    Product.Quantity = (int)Qty.Value;
+                    ItemQuantity = (int)Qty.Value;
                     Debug.WriteLine("Quantity assigned to Item successfully."); // Log de sucesso
+                    Debug.WriteLine($"ItemQuantity: {ItemQuantity}");
                 }
                 catch (Exception ex)
                 {
                     Debug.WriteLine($"Exception: {ex.Message}"); // Log da exceção
-
                     ContentDialog erro = new ContentDialog();
                     erro.Content = ex;
 
@@ -63,6 +68,8 @@ namespace REZ
 
             Debug.WriteLine("SetQuantityValue event handler completed."); // Log de conclusão
         }
+
+        
 
     }
 

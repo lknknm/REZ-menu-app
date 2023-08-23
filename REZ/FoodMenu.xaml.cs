@@ -105,6 +105,7 @@ namespace REZ
             dialog.Style = Application.Current.Resources["DefaultContentDialogStyle"] as Style;
             dialog.Title = item.Name;
             dialog.PrimaryButtonText = "Adicionar";
+            dialog.PrimaryButtonClick += delegate { ItemDialogModal.SetItemQuantity(item, ItemDialogModal.ItemQuantity); };
             dialog.PrimaryButtonClick += delegate { Cart.AddItem(item); };
             
             dialog.CloseButtonText = "Cancelar";

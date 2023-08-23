@@ -32,8 +32,31 @@ namespace REZ
 
         public void AddItem(Product item)
         {
+            bool itemFound = false;
             item.OrderId = OrderId;
-            OrderProducts.Add(item);
+            //int oldQuantity = item.Quantity;
+
+            if (OrderProducts.Count == 0)
+            {
+                OrderProducts.Add(item);
+            }
+            else
+            {
+                foreach (Product orderProduct in orderProducts)
+                {
+                    if (item.Name == orderProduct.Name)
+                    {
+                        orderProduct.Quantity = item.Quantity;
+                        itemFound = true;
+                    }
+                }
+
+                if (itemFound == false)
+                {
+                    OrderProducts.Add(item);
+                }
+            
+            }
             //Add to DB
         }
         public void RemoveItem(Product item)
