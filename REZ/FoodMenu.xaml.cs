@@ -43,7 +43,6 @@ namespace REZ
         protected async override void OnNavigatedTo(NavigationEventArgs e)
         {
             Button selectedButton = new Button() { Content = "Tudo" };
-            
             if (e.Parameter is Button)
             {
                 Button button = e.Parameter as Button;
@@ -114,7 +113,6 @@ namespace REZ
 
             var result = await dialog.ShowAsync();
         }
-
 
         private void MyListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -187,8 +185,5 @@ namespace REZ
             myListView.Source = groupedProducts;
             
         }
-
-        
-
     }
 }
