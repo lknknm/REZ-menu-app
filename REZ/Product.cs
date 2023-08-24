@@ -73,7 +73,11 @@ namespace REZ
 
         public object Clone()
         {
-            throw new NotImplementedException();
+            return new Product(this.Name, this.Description, this.Price, this.imageSource, this.Category)
+            {
+                SubCategory = this.SubCategory,
+                Quantity = this.Quantity
+            };
         }
 
         public void DivideItemPrice(List<Account> accountsToDivide, int accountsQuantity)

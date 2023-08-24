@@ -47,8 +47,11 @@ namespace REZ
 
 
             //pegar o nome do usuário para criar a conta e inicializar o carrinho
-            User = new Account("Andres");
+            
+            User = new Account((string)CurrentUser.Content);
             ShoppingCart.DefineUser(User);
+
+            AccountsList.SelectedAccount = User;
 
             var jsonFilePath = Path.Combine(AppContext.BaseDirectory, "Properties", "Products.json");
             StreamReader reader = new(jsonFilePath);

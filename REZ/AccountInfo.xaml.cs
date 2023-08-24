@@ -4,6 +4,7 @@ using Microsoft.UI.Xaml.Controls.Primitives;
 using Microsoft.UI.Xaml.Data;
 using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Media;
+using Microsoft.UI.Xaml.Media.Animation;
 using Microsoft.UI.Xaml.Navigation;
 using System;
 using System.Collections.Generic;
@@ -23,9 +24,59 @@ namespace REZ
     /// </summary>
     public sealed partial class AccountInfo : Page
     {
+        public static Account User = AccountsList.SelectedAccount;
+        public static List<Product> ProductsList;
+        public List<Account> OpenedAccounts = new List<Account> { };
+        public List<Account> ClosedAccounts = new List<Account> { };
+
+
         public AccountInfo()
         {
             this.InitializeComponent();
+
+
+            myListView.ItemsSource = ProductsList;
+            //DataContext = this;
+        }
+
+        public void ShowUserInformation(Account currentUser)
+        {
+
+        }
+
+        private async void AddAccount(object sender, RoutedEventArgs e)
+        {
+            ContentDialog dialog = new ContentDialog();
+            dialog.XamlRoot = this.XamlRoot;
+            dialog.Style = Microsoft.UI.Xaml.Application.Current.Resources["DefaultContentDialogStyle"] as Style;
+            dialog.Title = "Olá! Vamos começar?";
+            dialog.PrimaryButtonText = "Adicionar usuário";
+            dialog.CloseButtonText = "Cancelar";
+            dialog.DefaultButton = ContentDialogButton.Primary;
+            dialog.Content = new AddAccountModal();
+            var result = await dialog.ShowAsync();
+        }
+
+        private void AccountInfoRedirect(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(AccountInfo), null, new SlideNavigationTransitionInfo() { Effect = SlideNavigationTransitionEffect.FromRight });
+        }
+
+        private async void AppBarButton_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                Frame.Navigate(typeof(MainPage), null, new SlideNavigationTransitionInfo() { Effect = SlideNavigationTransitionEffect.FromLeft });
+            }
+            catch (Exception ex)
+            {
+                ContentDialog dialog = new ContentDialog();
+                dialog.XamlRoot = this.XamlRoot;
+                dialog.Style = Microsoft.UI.Xaml.Application.Current.Resources["DefaultContentDialogStyle"] as Style;
+                dialog.DefaultButton = ContentDialogButton.Primary;
+                dialog.Content = ex;
+                var result = await dialog.ShowAsync();
+            }
         }
     }
 }

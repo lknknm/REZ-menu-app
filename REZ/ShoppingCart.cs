@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Diagnostics;
 
 namespace REZ
 {
@@ -92,9 +93,12 @@ namespace REZ
                 {
                     Product newItem = item.Clone() as Product;
                     account.AddItem(newItem);
+                    
                 }
             }
-            
+            AccountInfo.ProductsList = AccountsList.SelectedAccount.ItemsList;
+            orderItemsList.Clear();
+            Debug.WriteLine($"User Items: {AccountsList.SelectedAccount.ItemsList[0].Name}");
         }
 
         public async void OpenShoppingModal(Page page, ShoppingCart cart, TeachingTip tt)

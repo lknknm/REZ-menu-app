@@ -12,7 +12,8 @@
         <Grid.Background>
             <ImageBrush ImageSource="/Assets/MainWindowBackground.png" Stretch="UniformToFill" AlignmentX="Right" AlignmentY="Top"/>
         </Grid.Background>
-        <Button Content="Lucas"
+        <Button x:Name="CurrentUser"
+                Content="Lucas"
                 CornerRadius="18" Style="{StaticResource AccentButtonStyle}" 
                 HorizontalAlignment="Right" 
                 VerticalAlignment="Top" Margin="16,16,32,0">
