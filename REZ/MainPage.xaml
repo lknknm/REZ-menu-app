@@ -6,14 +6,15 @@
     xmlns:local="using:REZ"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d">
+    mc:Ignorable="d"
+    Loaded="AddNewAccount">
 
     <Grid x:Name="LayoutRoot">
         <Grid.Background>
             <ImageBrush ImageSource="/Assets/MainWindowBackground.png" Stretch="UniformToFill" AlignmentX="Right" AlignmentY="Top"/>
         </Grid.Background>
-        <Button x:Name="CurrentUser"
-                Content="Lucas"
+        <Button x:Name="CurrentUsername"
+                Content=""
                 CornerRadius="18" Style="{StaticResource AccentButtonStyle}" 
                 HorizontalAlignment="Right" 
                 VerticalAlignment="Top" Margin="16,16,32,0">

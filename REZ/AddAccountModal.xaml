@@ -13,11 +13,14 @@
         <TextBlock      Text="Seja bem-vindo ao REZ! Com este aplicativo é possível gerenciar diferentes contas para realizar pedidos em sua mesa!"
                         TextWrapping="Wrap"
                         Margin="0,0,0,8"/>
-        <TextBox        Header="Qual o seu nome?"  Margin="0,0,0,12"  AutomationProperties.Name="simple TextBox"
+
+        <TextBox        x:Name="Name" Header="Qual o seu nome?"  Margin="0,0,0,12"  AutomationProperties.Name="simple TextBox"
                         TextWrapping="Wrap" AcceptsReturn="True" IsSpellCheckEnabled="True"
                         SelectionHighlightColor="Green" MinWidth="400" 
-                        PlaceholderText="Ex.: John Doe"/>
-        <TextBox        Header="E o seu CPF?"  Margin="0"  AutomationProperties.Name="simple TextBox"
+                        PlaceholderText="Ex.: John Doe"
+                        />
+        
+        <TextBox        x:Name="CPF" Header="E o seu CPF?"  Margin="0"  AutomationProperties.Name="simple TextBox"
                         TextWrapping="Wrap" AcceptsReturn="True" IsSpellCheckEnabled="True"
                         SelectionHighlightColor="Green" MinWidth="400" 
                         PlaceholderText="Ex.: 123.456.789-99"/>

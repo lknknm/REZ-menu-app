@@ -9,6 +9,7 @@ using Microsoft.UI.Xaml.Navigation;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Reflection.Metadata;
@@ -28,7 +29,8 @@ namespace REZ
     public sealed partial class MainPage : Page
     {
         public AccountsList accountsList = new AccountsList();
-        private Account User = AccountsList.SelectedAccount;
+        public AddAccountModal addAccountModal = new AddAccountModal();
+        public Account NewAccount;
         public ShoppingCart shoppingCart = AccountsList.Cart;
         private string jsonString;
         private static List<Product> products;
@@ -44,14 +46,15 @@ namespace REZ
         public MainPage()
         {
             this.InitializeComponent();
+            if (AccountsList.Accounts.Count > 0)
+            {
+                UpdateUser(AccountsList.SelectedAccount);
+            };
 
+            //User = new Account((string)CurrentUser.Content, "123");
+            //ShoppingCart.DefineUser(User);
 
-            //pegar o nome do usuário para criar a conta e inicializar o carrinho
             
-            User = new Account((string)CurrentUser.Content);
-            ShoppingCart.DefineUser(User);
-
-            AccountsList.SelectedAccount = User;
 
             var jsonFilePath = Path.Combine(AppContext.BaseDirectory, "Properties", "Products.json");
             StreamReader reader = new(jsonFilePath);
@@ -59,6 +62,13 @@ namespace REZ
             Products = JsonConvert.DeserializeObject<List<Product>>(jsonString);
             suggestions = Products.Select(p => p.Name).ToList();
         }
+
+        public void UpdateUser(Account user)
+        {
+            CurrentUsername.Content = user.Name;
+            ShoppingCart.DefineUser(user);
+        }
+
         private void OpenFoodMenu(object sender, RoutedEventArgs e)
         {
             Button button = sender as Button;
@@ -120,6 +130,17 @@ namespace REZ
             Frame.Navigate(typeof(AccountInfo), null, new SlideNavigationTransitionInfo() { Effect = SlideNavigationTransitionEffect.FromRight });
         }
 
+        private void AddNewAccount(object sender, RoutedEventArgs e)
+        {
+            if (AccountsList.Accounts.Count < 1)
+            {
+                AddAccount(sender, e);
+                
+                //Debug.WriteLine($"User: {User.Name}");
+            }
+
+        }
+
         private async void AddAccount(object sender, RoutedEventArgs e)
         {
             ContentDialog dialog = new ContentDialog();
@@ -127,10 +148,28 @@ namespace REZ
             dialog.Style = Microsoft.UI.Xaml.Application.Current.Resources["DefaultContentDialogStyle"] as Style;
             dialog.Title = "Olá! Vamos começar?";
             dialog.PrimaryButtonText = "Adicionar usuário";
+            
+            //dialog.PrimaryButtonClick += delegate { UpdateUser(); };
+            //dialog.PrimaryButtonClick += delegate { Frame.Navigate(typeof(MainPage)); };
             dialog.CloseButtonText = "Cancelar";
             dialog.DefaultButton = ContentDialogButton.Primary;
             dialog.Content = new AddAccountModal();
+            dialog.PrimaryButtonClick += delegate { CreateAccount(dialog.Content); };
             var result = await dialog.ShowAsync();
+        }
+
+        public void CreateAccount(object sender)
+        {
+            AddAccountModal aam = sender as AddAccountModal;
+            (string name, string cpf) newUserInfo;
+
+            newUserInfo = aam.CreateNewAccount();
+
+            Account NewUser = new Account(newUserInfo.name, newUserInfo.cpf);
+            CurrentUsername.Content = AccountsList.SelectedAccount.Name;
+            UpdateUser(AccountsList.SelectedAccount);
+            Debug.WriteLine($"Users list length: {AccountsList.Accounts.Count}");
+            Debug.WriteLine($"Current User: {AccountsList.SelectedAccount.Name}");
         }
 
     }

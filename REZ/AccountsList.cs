@@ -1,6 +1,8 @@
-﻿using System;
+﻿using Microsoft.UI.Xaml.Controls;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Xml.Linq;
 
 namespace REZ
 {
@@ -10,7 +12,7 @@ namespace REZ
         private static Account selectedAccount;
         private static ShoppingCart shoppingCart;
 
-        public List<Account> Accounts
+        public static List<Account> Accounts
         {
             get { return accountsList; }
             set { accountsList = value; }
@@ -35,21 +37,29 @@ namespace REZ
             //Criar a conta no DB
         }
 
+        public void CreateAccount(Account account)
+        {
+
+        }
+
         public void RemoveAccount(Account account)
         {
             //Remover conta do DB
             Accounts.Remove(account);
         }
 
-        public static void SwitchAccounts(string newUsername)
+        public static Account SwitchAccounts(string username)
         {
+            
             foreach (Account user in AccountsList.accountsList)
             {
-                if (user.Name == newUsername)
+                if (user.Name ==username)
                 {
                     SelectedAccount = user;
                 }
             }
+
+            return SelectedAccount;
         }
 
         public void CloseAccounts()
@@ -67,6 +77,8 @@ namespace REZ
             return new ShoppingCart(newOrderId);
 
         }
+
+        
     }
 }
 
