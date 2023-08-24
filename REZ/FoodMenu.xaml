@@ -35,7 +35,7 @@
                             <Run Text="#1." />
                         </TextBlock>
                         <StackPanel Orientation="Vertical">
-                            <Button Width="328" CornerRadius="16" Margin="0,4,0,4">
+                            <Button Click="AccountInfoRedirect" Width="328" CornerRadius="16" Margin="0,4,0,4">
                                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
                                     <TextBlock FontFamily="Segoe Fluent Icons" Text="&#xEA37;" VerticalAlignment="Center"/>
                                     <TextBlock Text="  Ver pedidos" VerticalAlignment="Center"/>

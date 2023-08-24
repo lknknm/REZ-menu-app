@@ -62,21 +62,9 @@ namespace REZ
             Frame.Navigate(typeof(AccountInfo), null, new SlideNavigationTransitionInfo() { Effect = SlideNavigationTransitionEffect.FromRight });
         }
 
-        private async void AppBarButton_Click(object sender, RoutedEventArgs e)
+        private async void BackToMainMenu(object sender, RoutedEventArgs e)
         {
-            try
-            {
-                Frame.Navigate(typeof(MainPage), null, new SlideNavigationTransitionInfo() { Effect = SlideNavigationTransitionEffect.FromLeft });
-            }
-            catch (Exception ex)
-            {
-                ContentDialog dialog = new ContentDialog();
-                dialog.XamlRoot = this.XamlRoot;
-                dialog.Style = Microsoft.UI.Xaml.Application.Current.Resources["DefaultContentDialogStyle"] as Style;
-                dialog.DefaultButton = ContentDialogButton.Primary;
-                dialog.Content = ex;
-                var result = await dialog.ShowAsync();
-            }
+           Frame.Navigate(typeof(MainPage), null, new SlideNavigationTransitionInfo() { Effect = SlideNavigationTransitionEffect.FromLeft });
         }
     }
 }

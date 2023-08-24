@@ -57,6 +57,11 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Content Update="Assets\AccountInfoBackground.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
     <Page Update="AccountInfo.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>

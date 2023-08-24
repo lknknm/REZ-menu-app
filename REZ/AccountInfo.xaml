@@ -8,18 +8,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-    
-
-    <Page.Resources>
-        <Style x:Key="AccentButton" TargetType="Button">
-            <Setter Property="Background" Value="{Binding Source={StaticResource AccentButtonStyle}}" />
-            <!-- Other style properties -->
-        </Style>
-    </Page.Resources>
-
     <Grid>
-		<AppBarButton Icon="Back" Click="AppBarButton_Click" IsCompact="True" Margin="0,8,0,0"/>
-
         <Button x:Name="CurrentUser"
                 Content="Lucas"
                 CornerRadius="18" Style="{StaticResource AccentButtonStyle}" 
@@ -63,37 +52,86 @@
             </Button.Flyout>
         </Button>
 
-        <StackPanel VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Background="White">
+        <Grid ColumnDefinitions="Auto, Auto">
+            <Image Grid.Column="0" Source="/Assets/AccountInfoBackground.png" Stretch="UniformToFill"/>
 
-            <TextBlock Text="Olá, Andrés!" 
-                       TextWrapping="Wrap"
-                       FontSize="20"
-                       Margin="12, 12, 12, 0"/>
-            <TextBlock Text="Revise seu histórico de pedidos" 
-                       TextWrapping="Wrap"
-                       FontSize="20"
-                       FontWeight="Bold"
-                       Margin="12, 0, 12, 12"/>
+            <StackPanel Grid.Column="1" VerticalAlignment="Top" HorizontalAlignment="Center" Width="704" Margin="112,144,0,0">
 
-            <Line Stroke="#C9C9C9"
-                  X1="0" Y1="0"
-                  X2="1000" Y2="0"
-                  StrokeThickness="1"
-                  Margin="10"/>
+                <AppBarButton Icon="Back" Click="BackToMainMenu" IsCompact="True" Margin="0,8,0,0" Width="32"/>
+                <TextBlock Text="Olá, Andrés!" 
+                           TextWrapping="Wrap"
+                           FontSize="20"
+                           Margin="12, 12, 12, 0"/>
+                <TextBlock Text="Revise seu histórico de pedidos" 
+                           TextWrapping="Wrap"
+                           FontSize="20"
+                           FontWeight="Bold"
+                           Margin="12, 0, 12, 12"/>
 
-            <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,24,0,0">
-                <ListView x:Name="myListView">
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <StackPanel>
-                                <TextBlock Text="{Binding OrderId}" />
-                                <TextBlock Text="{Binding Name}" />
-                                <TextBlock Text="{Binding Price}" />
-                            </StackPanel>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
+                <Line Stroke="#C9C9C9"
+                      X1="0" Y1="0"
+                      X2="1000" Y2="0"
+                      StrokeThickness="1"
+                      Margin="12"/>
+
+                <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,12,0,12">
+                    <ListView x:Name="myListView" Width="704" MaxHeight="380" IsItemClickEnabled="False">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Padding="12">
+                                    <TextBlock FontWeight="SemiBold" FontSize="14">
+                                        <Run Text="{Binding Quantity}"></Run>
+                                        <Run>x </Run>
+                                        <Run Text="{Binding Name, Mode=TwoWay}"></Run>
+                                    </TextBlock>
+                                    <TextBlock FontSize="12">
+                                        <Run Text="Número do pedido: "/>
+                                        <Run Text="{Binding OrderId}"/>
+                                    </TextBlock>
+                                    <TextBlock Text="{Binding Price}" FontSize="12"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </StackPanel>
+
+                <Line Stroke="#C9C9C9"
+                      X1="0" Y1="0"
+                      X2="1000" Y2="0"
+                      StrokeThickness="1"
+                      Margin="12"/>
+
+                <RelativePanel Width="468" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,12,0,0">
+                    <TextBlock Text="Subtotal:" TextAlignment="Left" Foreground="Gray" />
+                    <TextBlock x:Name="Subtotal" TextWrapping="Wrap" TextAlignment="Right" RelativePanel.AlignRightWithPanel="True" Foreground="Gray"/>
+                </RelativePanel>
+
+                <RelativePanel Width="468" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock Text="Taxa de serviço (10%):" TextAlignment="Left" Foreground="Gray"/>
+                    <TextBlock x:Name="Taxa" TextWrapping="Wrap" TextAlignment="Right" RelativePanel.AlignRightWithPanel="True" Foreground="Gray"/>
+                </RelativePanel>
+
+                <RelativePanel Width="468" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock Text="Total:" TextAlignment="Left" Foreground="Gray" FontWeight="SemiBold"/>
+                    <TextBlock x:Name="TotalPrice" TextWrapping="Wrap" TextAlignment="Right" RelativePanel.AlignRightWithPanel="True" Foreground="Gray" FontWeight="SemiBold"/>
+                </RelativePanel>
+
+
+                <StackPanel Orientation="Horizontal" Margin="0,24,0,0" Width="468">
+                    <Button Style="{StaticResource AccentButtonStyle}" Width="230" HorizontalContentAlignment="Center" VerticalAlignment="Center" Margin="0,0,4,0">
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                            <TextBlock FontFamily="Segoe Fluent Icons" Text="&#xF3B1;" VerticalAlignment="Center"/>
+                            <TextBlock Text="  Fechar conta" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </Button>
+                    <Button Margin="4,0,0,0" Width="230">
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                            <TextBlock Text="Voltar ao Menu Principal" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </Button>
+                </StackPanel>
+
             </StackPanel>
-        </StackPanel>
-	</Grid>
+        </Grid>
+    </Grid>
 </Page>
