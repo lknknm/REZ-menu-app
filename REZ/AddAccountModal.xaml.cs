@@ -7,6 +7,7 @@ using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Navigation;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -23,10 +24,22 @@ namespace REZ
     /// </summary>
     public sealed partial class AddAccountModal : Page
     {
+        public static Account NewUser;
+        public static string NewCPF;
+
         public AddAccountModal()
         {
             this.InitializeComponent();
             DataContext = this;
+        }
+
+        public (string, string) CreateNewAccount()
+        {
+            return (Name.Text, CPF.Text);
+            //MainPage.CreateAccount(Name.Text, NewCPF);
+            //Debug.WriteLine($"Users list length: {AccountsList.Accounts.Count}");
+            //Debug.WriteLine($"Current User: {AccountsList.SelectedAccount.Name}");
+            //MainPage.UpdateUser(AccountsList.SelectedAccount);
         }
     }
 }

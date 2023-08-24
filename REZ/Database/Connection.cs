@@ -14,11 +14,20 @@ namespace REZ
 
         public SqlConnection Connect()
         {
+            if (sqlConnection.State == System.Data.ConnectionState.Closed)
+            {
+                sqlConnection.Open();
+            }
+
             return sqlConnection;
         }
 
         public void disconnect()
         {
+            if (sqlConnection.State == System.Data.ConnectionState.Open) 
+            { 
+            sqlConnection.Close();
+            }  
 
         }
 

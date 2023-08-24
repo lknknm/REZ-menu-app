@@ -9,6 +9,7 @@ namespace REZ
     public class Account
     {
         public string Name;
+        public string CPF;
         private List<Product> itemsList;
         private double totalPrice = 0.0;
         
@@ -20,17 +21,20 @@ namespace REZ
             set { itemsList = value; }
         }
 
-        public Account(string name)
-        {
-            itemsList = new List<Product> { };
-            Name = name;
-            // TotalPrice = totalPrice;
-        }
-
-        public double TotalPrice 
+        public double TotalPrice
         {
             get { return totalPrice; }
             set { totalPrice = value; }
+        }
+
+        public Account(string name, string cpf)
+        {
+            itemsList = new List<Product> { };
+            Name = name;
+            CPF = cpf;
+            AccountsList.Accounts.Add(this);
+            AccountsList.SelectedAccount = this;
+
         }
 
         public void AddItem(Product item)
