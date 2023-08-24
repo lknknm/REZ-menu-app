@@ -118,13 +118,13 @@
 
 
                 <StackPanel Orientation="Horizontal" Margin="0,24,0,0" Width="468">
-                    <Button Style="{StaticResource AccentButtonStyle}" Width="230" HorizontalContentAlignment="Center" VerticalAlignment="Center" Margin="0,0,4,0">
+                    <Button Click="CloseAccount" Style="{StaticResource AccentButtonStyle}" Width="230" HorizontalContentAlignment="Center" VerticalAlignment="Center" Margin="0,0,4,0">
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
                             <TextBlock FontFamily="Segoe Fluent Icons" Text="&#xF3B1;" VerticalAlignment="Center"/>
                             <TextBlock Text="  Fechar conta" VerticalAlignment="Center"/>
                         </StackPanel>
                     </Button>
-                    <Button Margin="4,0,0,0" Width="230">
+                    <Button Click="BackToMainMenu" Margin="4,0,0,0" Width="230">
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
                             <TextBlock Text="Voltar ao Menu Principal" VerticalAlignment="Center"/>
                         </StackPanel>

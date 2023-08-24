@@ -16,9 +16,11 @@
 	  
   </PropertyGroup>
   <ItemGroup>
+    <None Remove="AccountClosed.xaml" />
     <None Remove="AccountInfo.xaml" />
     <None Remove="AddAccountModal.xaml" />
     <None Remove="BlankPage1.xaml" />
+    <None Remove="CloseAccountConfirmation.xaml" />
     <None Remove="ItemDialogModal.xaml" />
     <None Remove="Properties\Products.json" />
     <None Remove="ShoppingCartModal.xaml" />
@@ -60,6 +62,16 @@
     <Content Update="Assets\AccountInfoBackground.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="AccountClosed.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="CloseAccountConfirmation.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Page Update="AccountInfo.xaml">
