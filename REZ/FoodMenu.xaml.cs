@@ -182,6 +182,11 @@ namespace REZ
             
         }
 
+        private void AccountInfoRedirect(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(AccountInfo), null, new SlideNavigationTransitionInfo() { Effect = SlideNavigationTransitionEffect.FromRight });
+        }
+
         private async void AddAccount(object sender, RoutedEventArgs e)
         {
             ContentDialog dialog = new ContentDialog();

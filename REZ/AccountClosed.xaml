@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Page
+    x:Class="REZ.AccountClosed"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:REZ"
+    xmlns:qrc="using:QRCoder.Xaml.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid>
+        <StackPanel VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,174,0,0" >
+            <Image Source="./Assets/AccountClosed.png" Width="686"/>
+            <TextBlock Text="Tudo pronto! É uma pena ver você ir." FontWeight="SemiBold" FontSize="20" Margin="0,48,0,0" Width="486"/>
+            <TextBlock Text="Agora o garçom trará a maquininha para realizar o pagamento e fechar o seu pedido!" TextWrapping="Wrap" FontSize="16" Margin="0,8,0,0" Width="486" />
+            <TextBlock Text="Caso desejar, você também poderá realizar o pagamento via Pix através do QR code abaixo:" TextWrapping="Wrap" FontSize="16" Margin="0" Width="486" />
+
+            <Image x:Name="qrImage" Source="./Assets/DummyQRCode.png" Width="198" Height="198" Margin="16"/>
+
+            <Button Click="BackToMainMenu" Margin="4,0,0,0" Width="230" HorizontalAlignment="Center">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <TextBlock Text="Voltar ao Menu Principal" VerticalAlignment="Center"/>
+                </StackPanel>
+            </Button>
+        </StackPanel>
+    </Grid>
+</Page>

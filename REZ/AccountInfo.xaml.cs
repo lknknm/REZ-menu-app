@@ -49,12 +49,29 @@ namespace REZ
             ContentDialog dialog = new ContentDialog();
             dialog.XamlRoot = this.XamlRoot;
             dialog.Style = Microsoft.UI.Xaml.Application.Current.Resources["DefaultContentDialogStyle"] as Style;
-            dialog.Title = "Olá! Vamos começar?";
-            dialog.PrimaryButtonText = "Adicionar usuário";
+            dialog.Title = "Olï¿½! Vamos comeï¿½ar?";
+            dialog.PrimaryButtonText = "Adicionar usuï¿½rio";
             dialog.CloseButtonText = "Cancelar";
             dialog.DefaultButton = ContentDialogButton.Primary;
             dialog.Content = new AddAccountModal();
             var result = await dialog.ShowAsync();
+        }
+        private async void CloseAccount(object sender, RoutedEventArgs e)
+        {
+            ContentDialog CloseAccountDialog = new ContentDialog();
+            CloseAccountDialog.XamlRoot = this.XamlRoot;
+            CloseAccountDialog.Style = Microsoft.UI.Xaml.Application.Current.Resources["DefaultContentDialogStyle"] as Style;
+            CloseAccountDialog.Title = "Deseja mesmo fechar sua conta?";
+            CloseAccountDialog.PrimaryButtonText = "Sim, fechar conta";
+            CloseAccountDialog.CloseButtonText = "Cancelar";
+            CloseAccountDialog.DefaultButton = ContentDialogButton.Primary;
+            CloseAccountDialog.Content = new CloseAccountConfirmation();
+            var result = await CloseAccountDialog.ShowAsync();
+
+            if (result == ContentDialogResult.Primary)
+            {
+                Frame.Navigate(typeof(AccountClosed), null, new SlideNavigationTransitionInfo() { Effect = SlideNavigationTransitionEffect.FromRight });
+            }
         }
 
         private void AccountInfoRedirect(object sender, RoutedEventArgs e)
@@ -62,21 +79,9 @@ namespace REZ
             Frame.Navigate(typeof(AccountInfo), null, new SlideNavigationTransitionInfo() { Effect = SlideNavigationTransitionEffect.FromRight });
         }
 
-        private async void AppBarButton_Click(object sender, RoutedEventArgs e)
+        private async void BackToMainMenu(object sender, RoutedEventArgs e)
         {
-            try
-            {
-                Frame.Navigate(typeof(MainPage), null, new SlideNavigationTransitionInfo() { Effect = SlideNavigationTransitionEffect.FromLeft });
-            }
-            catch (Exception ex)
-            {
-                ContentDialog dialog = new ContentDialog();
-                dialog.XamlRoot = this.XamlRoot;
-                dialog.Style = Microsoft.UI.Xaml.Application.Current.Resources["DefaultContentDialogStyle"] as Style;
-                dialog.DefaultButton = ContentDialogButton.Primary;
-                dialog.Content = ex;
-                var result = await dialog.ShowAsync();
-            }
+           Frame.Navigate(typeof(MainPage), null, new SlideNavigationTransitionInfo() { Effect = SlideNavigationTransitionEffect.FromLeft });
         }
     }
 }

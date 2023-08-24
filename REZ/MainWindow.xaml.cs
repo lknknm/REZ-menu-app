@@ -34,6 +34,7 @@ namespace REZ
             this.InitializeComponent();
             m_AppWindow = GetAppWindowForCurrentWindow();
             m_AppWindow.SetIcon("Assets/REZ.ico");
+            m_AppWindow.SetPresenter(AppWindowPresenterKind.FullScreen);
         }
         private AppWindow GetAppWindowForCurrentWindow()
         {
