@@ -49,7 +49,7 @@
                                     <Run Text="{Binding Price}"></Run>
                                 </TextBlock>
                             </StackPanel>
-                            <AppBarButton Icon="Cancel" VerticalAlignment="Center" IsCompact="True" Width="32" Margin="32,12,0,0"/>
+                            <AppBarButton Click="DeleteItem" Icon="Cancel" VerticalAlignment="Center" IsCompact="True" Width="32" Margin="32,12,0,0"/>
                         </StackPanel>
                     </DataTemplate>
                 </ListView.ItemTemplate>
@@ -62,13 +62,16 @@
               StrokeThickness="1"
               Margin="10"/>
 
-        <ComboBox x:Name="accountComboBox">
-            <ComboBox.ItemTemplate>
-                <DataTemplate>
-                    <CheckBox Content="{Binding Name}" />
-                </DataTemplate>
-            </ComboBox.ItemTemplate>
-        </ComboBox>
+        <ListView x:Name="accountComboBox">
+            <ComboBox>
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <CheckBox Content="{Binding Name}" />
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+        </ListView>
+        
         
         <RelativePanel Width="468" VerticalAlignment="Center" HorizontalAlignment="Center">
             <TextBlock Text="Subtotal:" TextAlignment="Left" Foreground="Gray" />

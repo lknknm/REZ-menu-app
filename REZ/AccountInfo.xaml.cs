@@ -27,7 +27,7 @@ namespace REZ
     {
         public Account User = AccountsList.SelectedAccount;
         public static List<Product> ProductsList = AccountsList.SelectedAccount.ItemsList;
-        public List<Account> OpenedAccounts = new List<Account> { };
+        public List<Account> OpenedAccounts = AccountsList.Accounts;
         public List<Account> ClosedAccounts = new List<Account> { };
 
 
@@ -35,6 +35,8 @@ namespace REZ
         {
             this.InitializeComponent();
             ProductsList = UpdateUser(User);
+            Debug.WriteLine($"[AccountInfo] Current account: {User.Name}");
+            Debug.WriteLine($"[AccountInfo] Active Accounts: {OpenedAccounts}");
 
             double subtotal = SubtotalValueCalculator(ProductsList);
             string subtotalValue = subtotal.ToString("0.00");
@@ -76,6 +78,7 @@ namespace REZ
             CloseAccountDialog.Style = Microsoft.UI.Xaml.Application.Current.Resources["DefaultContentDialogStyle"] as Style;
             CloseAccountDialog.Title = "Deseja mesmo fechar sua conta?";
             CloseAccountDialog.PrimaryButtonText = "Sim, fechar conta";
+            CloseAccountDialog.PrimaryButtonClick += delegate { OpenedAccounts = AccountsList.RemoveAccount(User, OpenedAccounts); };
             CloseAccountDialog.CloseButtonText = "Cancelar";
             CloseAccountDialog.DefaultButton = ContentDialogButton.Primary;
             CloseAccountDialog.Content = new CloseAccountConfirmation();
@@ -83,7 +86,7 @@ namespace REZ
 
             if (result == ContentDialogResult.Primary)
             {
-                Frame.Navigate(typeof(AccountClosed), null, new SlideNavigationTransitionInfo() { Effect = SlideNavigationTransitionEffect.FromRight });
+                Frame.Navigate(typeof(AccountClosed), OpenedAccounts, new SlideNavigationTransitionInfo() { Effect = SlideNavigationTransitionEffect.FromRight });
             }
         }
 
@@ -92,7 +95,7 @@ namespace REZ
             Frame.Navigate(typeof(AccountInfo), null, new SlideNavigationTransitionInfo() { Effect = SlideNavigationTransitionEffect.FromRight });
         }
 
-        private async void BackToMainMenu(object sender, RoutedEventArgs e)
+        private void BackToMainMenu(object sender, RoutedEventArgs e)
         {
            Frame.Navigate(typeof(MainPage), null, new SlideNavigationTransitionInfo() { Effect = SlideNavigationTransitionEffect.FromLeft });
         }
@@ -133,15 +136,13 @@ namespace REZ
             Account NewUser = aam.CreateNewAccount();
             List<Account> accountsList = AccountsList.AddNewAccount(NewUser);
             UpdateUser(AccountsList.SelectedAccount);
-            Debug.WriteLine($"Users list length: {AccountsList.Accounts.Count}");
-            Debug.WriteLine($"Current User: {AccountsList.SelectedAccount.Name}");
         }
 
         public List<Product> UpdateUser(Account user)
         {
 
             User = AccountsList.SwitchAccounts(user.Name);
-            Debug.WriteLine($"Account changed to {User.Name}");
+            Debug.WriteLine($"[AccountInfo] Account changed to {User.Name}");
             CurrentUsername.Content = User.Name;
             myListView.ItemsSource = User.ItemsList;
             Greetings.Text = $"Ola, {AccountsList.SelectedAccount.Name}!";

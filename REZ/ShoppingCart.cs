@@ -28,7 +28,23 @@ namespace REZ
         public ShoppingCart(string orderId)
         {
             OrderId = orderId;
+            if (User != null) 
+            {
+                
+                Debug.WriteLine($"[ShoppingCart] User: {User.Name}");
+            }
+            else
+            {
+                Debug.WriteLine($"[ShoppingCart] User is null");
+            }
             
+            
+        }
+
+        public static void SwitchAccount(Account user)
+        {
+            AccountsToDivide.Clear();
+            AccountsToDivide.Add(user);
         }
 
         public void AddItem(Product item)
@@ -60,46 +76,67 @@ namespace REZ
             }
             //Add to DB
         }
-        public void RemoveItem(Product item)
+        public static List<Product> RemoveItem(Product item)
         {
             OrderProducts.Remove(item);
+            item.RemoveItemFromCart();
+            return OrderProducts;
             //Remove from DB
         }
 
         public static void DefineUser(Account user)
         {
-            AccountsToDivide.Add(user);
+            User = user;
         }
 
-        public void SelectAccount(Account account)
+        public List<Account> SelectAccount(Account account)
         {
             AccountsToDivide.Add(account);
+            return AccountsToDivide;
         }
 
-        public void UnselectAccount(Account account)
+        public List<Account> UnselectAccount(Account account)
         {
             AccountsToDivide.Remove(account);
+            return AccountsToDivide;
         }
 
         public void CompleteOrder(List<Account> accountsToDivide, List<Product> orderItemsList)
         {
             int accountsQuantity = accountsToDivide.Count;
-
+            
             foreach (Product item in orderItemsList) 
             {
-                item.DivideItemPrice(accountsToDivide, accountsQuantity);
-            
+                double valueForEach = item.DivideItemPrice(accountsToDivide, accountsQuantity);
                 foreach (Account account in accountsToDivide)
                 {
-                    Product newItem = item.Clone() as Product;
-                    account.AddItem(newItem);
-                    
+
+                    bool addNewItem = true;
+                    foreach (Product itemInAccount in account.ItemsList)
+                    {
+                        if (item.Name == itemInAccount.Name)
+                        {
+                            itemInAccount.Quantity += item.Quantity;
+                            addNewItem = false;
+                        }
+
+                    }
+
+                    if (addNewItem)
+                    {
+                        Product newItem = item.Clone() as Product;
+                        newItem.Price = valueForEach;
+                        account.AddItem(newItem);
+                    }
+
                 }
+                item.RemoveItemFromCart();
+
             }
             AccountInfo.ProductsList = AccountsList.SelectedAccount.ItemsList;
             orderItemsList.Clear();
-            Debug.WriteLine($"User Items: {AccountsList.SelectedAccount.ItemsList[0].Name}");
         }
+
 
         public async void OpenShoppingModal(Page page, ShoppingCart cart, TeachingTip tt)
         {
@@ -115,7 +152,7 @@ namespace REZ
 
             if (ShoppingCart.OrderProducts.Count > 0)
             {
-                dialog.Content = new ShoppingCartModal(cart);
+                dialog.Content = new ShoppingCartModal(cart, dialog);
                 var result = await dialog.ShowAsync();
             }
             else

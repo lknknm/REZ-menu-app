@@ -80,7 +80,12 @@ namespace REZ
             };
         }
 
-        public void DivideItemPrice(List<Account> accountsToDivide, int accountsQuantity)
+        public void RemoveItemFromCart()
+        {
+            Quantity = 0;
+        }
+
+        public double DivideItemPrice(List<Account> accountsToDivide, int accountsQuantity)
         {
             double valueForEachAccount = this.Price/accountsQuantity;
 
@@ -88,6 +93,7 @@ namespace REZ
             {
                 account.TotalPrice += valueForEachAccount;
             }
+            return valueForEachAccount;
         }
 
     }

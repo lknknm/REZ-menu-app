@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Xml.Linq;
 
 namespace REZ
@@ -40,23 +41,37 @@ namespace REZ
         public static List<Account> AddNewAccount(Account account)
         {
             Accounts.Add(account);
+            Debug.WriteLine($"Contas ativas: {Accounts.Count}");
             return Accounts;
         }
 
-        public void RemoveAccount(Account account)
+        public static List<Account> RemoveAccount(Account account, List<Account> openedAccounts)
         {
             //Remover conta do DB
-            Accounts.Remove(account);
+            openedAccounts.Remove(account);
+            Debug.WriteLine($"[AcccountsList] Contas ativas: {openedAccounts.Count}");
+            if (openedAccounts.Count > 0)
+            {
+                SelectedAccount = openedAccounts[0];
+            }
+            else
+            {
+                SelectedAccount = null;
+            }
+
+            return openedAccounts;
+            
         }
 
         public static Account SwitchAccounts(string username)
         {
             
-            foreach (Account user in AccountsList.Accounts)
+            foreach (Account user in Accounts)
             {
                 if (user.Name == username)
                 {
                     SelectedAccount = user;
+                    ShoppingCart.SwitchAccount(user);
                 }
             }
 

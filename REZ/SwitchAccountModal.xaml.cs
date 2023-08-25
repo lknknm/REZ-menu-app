@@ -28,7 +28,6 @@ namespace REZ
         public SwitchAccountModal()
         {
             this.InitializeComponent();
-            Debug.WriteLine($"Primeira conta: {OpenAccounts[0].Name}");
             AccountOptions.ItemsSource = OpenAccounts;
             DataContext = this;
 

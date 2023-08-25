@@ -34,6 +34,7 @@ namespace REZ
         public FoodMenu()
         {
             this.InitializeComponent();
+            Debug.WriteLine($"[FoodMenu] User: {User.Name}");
 
             var groupedProducts = MainPage.Products.GroupBy(p => p.SubCategory);
             myListView.Source = groupedProducts;
@@ -222,15 +223,12 @@ namespace REZ
             List<Account> accountsList = AccountsList.AddNewAccount(NewUser);
             //CurrentUsername.Content = AccountsList.SelectedAccount.Name;
             UpdateUser(AccountsList.SelectedAccount);
-            Debug.WriteLine($"Users list length: {AccountsList.Accounts.Count}");
-            Debug.WriteLine($"Current User: {AccountsList.SelectedAccount.Name}");
         }
 
         public void UpdateUser(Account user)
         {
 
             User = AccountsList.SwitchAccounts(user.Name);
-            Debug.WriteLine($"Account changed to {User.Name}");
             CurrentUsername.Content = User.Name;
             Greetings.Text = $"Ola, {User.Name}!";
             ShoppingCart.DefineUser(User);

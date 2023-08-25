@@ -52,11 +52,14 @@ namespace REZ
             if (User != null)
             {
                 Accounts = UpdateUser(User);
-                Debug.WriteLine($"Current account: {User.Name}");
-                Debug.WriteLine($"Accounts created: {Accounts.Count}");
+                Debug.WriteLine($"[MainPage] Current account: {User.Name}");
+                Debug.WriteLine($"[MainPage] Accounts created: {Accounts.Count}");
+            } else
+            {
+                Debug.WriteLine("[MainPage] Current account is null");
+                Debug.WriteLine($"[MainPage] Accounts created: {Accounts.Count}");
             }
-            Debug.WriteLine("Current account is null");
-            Debug.WriteLine($"Accounts created: {Accounts.Count}");
+            
             var jsonFilePath = Path.Combine(AppContext.BaseDirectory, "Properties", "Products.json");
             StreamReader reader = new(jsonFilePath);
             jsonString = reader.ReadToEnd();
@@ -64,11 +67,27 @@ namespace REZ
             ProductsSuggestions = Products.Select(p => p.Name).ToList();
         }
 
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+
+            if (e.Parameter is List<Account>)
+            {
+                Accounts = e.Parameter as List<Account>;
+
+            }
+
+
+        }
+    
+
         private void OpenFoodMenu(object sender, RoutedEventArgs e)
         {
             Button button = sender as Button;
             Frame.Navigate(typeof(FoodMenu), button, new SlideNavigationTransitionInfo() { Effect = SlideNavigationTransitionEffect.FromRight });
         }
+
+
 
         private void ShoppingCart_ButtonClick(object sender, RoutedEventArgs e)
         {
@@ -168,20 +187,19 @@ namespace REZ
 
         public void AddAccount(object sender)
         {
+            Account NewUser = null;
             AddAccountModal aam = sender as AddAccountModal;
-            Account NewUser = aam.CreateNewAccount();
+            NewUser = aam.CreateNewAccount();
+            
             List<Account> accountsList = AccountsList.AddNewAccount(NewUser);
-            //CurrentUsername.Content = AccountsList.SelectedAccount.Name;
             UpdateUser(AccountsList.SelectedAccount);
-            Debug.WriteLine($"Users list length: {AccountsList.Accounts.Count}");
-            Debug.WriteLine($"Current User: {AccountsList.SelectedAccount.Name}");
         }
 
         public List<Account> UpdateUser(Account user)
         {
             
             User = AccountsList.SwitchAccounts(user.Name);
-            Debug.WriteLine($"Account changed to {User.Name}");
+            Debug.WriteLine($"[MainPage] Account changed to {User.Name}");
             CurrentUsername.Content = User.Name;
             ShoppingCart.DefineUser(User);
             Greetings.Text = $"Ola, {User.Name}!";
