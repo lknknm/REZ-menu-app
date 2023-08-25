@@ -8,6 +8,7 @@ using Microsoft.UI.Xaml.Media.Animation;
 using Microsoft.UI.Xaml.Navigation;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -24,8 +25,8 @@ namespace REZ
     /// </summary>
     public sealed partial class AccountInfo : Page
     {
-        public static Account User = AccountsList.SelectedAccount;
-        public static List<Product> ProductsList;
+        public Account User = AccountsList.SelectedAccount;
+        public static List<Product> ProductsList = AccountsList.SelectedAccount.ItemsList;
         public List<Account> OpenedAccounts = new List<Account> { };
         public List<Account> ClosedAccounts = new List<Account> { };
 
@@ -33,10 +34,34 @@ namespace REZ
         public AccountInfo()
         {
             this.InitializeComponent();
+            ProductsList = UpdateUser(User);
 
+            double subtotal = SubtotalValueCalculator(ProductsList);
+            string subtotalValue = subtotal.ToString("0.00");
+            double taxa = subtotal * 0.1;
+            string taxaServico = taxa.ToString("0.00");
+            double total = subtotal + taxa;
+            string totalPrice = total.ToString("0.00");
+
+            Subtotal.Text = $"R$ {subtotalValue}";
+            Taxa.Text = $"R$ {taxaServico}";
+            TotalPrice.Text = $"R$ {totalPrice}";
 
             myListView.ItemsSource = ProductsList;
-            //DataContext = this;
+
+
+        }
+
+        public double SubtotalValueCalculator(List<Product> productsList)
+        {
+            double finalValue = 0.0;
+
+            foreach (Product product in productsList)
+            {
+                finalValue += product.Price;
+            }
+
+            return finalValue;
         }
 
         public void ShowUserInformation(Account currentUser)
@@ -44,18 +69,6 @@ namespace REZ
 
         }
 
-        private async void AddAccount(object sender, RoutedEventArgs e)
-        {
-            ContentDialog dialog = new ContentDialog();
-            dialog.XamlRoot = this.XamlRoot;
-            dialog.Style = Microsoft.UI.Xaml.Application.Current.Resources["DefaultContentDialogStyle"] as Style;
-            dialog.Title = "Ol�! Vamos come�ar?";
-            dialog.PrimaryButtonText = "Adicionar usu�rio";
-            dialog.CloseButtonText = "Cancelar";
-            dialog.DefaultButton = ContentDialogButton.Primary;
-            dialog.Content = new AddAccountModal();
-            var result = await dialog.ShowAsync();
-        }
         private async void CloseAccount(object sender, RoutedEventArgs e)
         {
             ContentDialog CloseAccountDialog = new ContentDialog();
@@ -82,6 +95,61 @@ namespace REZ
         private async void BackToMainMenu(object sender, RoutedEventArgs e)
         {
            Frame.Navigate(typeof(MainPage), null, new SlideNavigationTransitionInfo() { Effect = SlideNavigationTransitionEffect.FromLeft });
+        }
+
+        public async void SwitchAccount(object sender, RoutedEventArgs e)
+        {
+            ContentDialog dialog = new ContentDialog();
+            dialog.XamlRoot = this.XamlRoot;
+            dialog.Style = Microsoft.UI.Xaml.Application.Current.Resources["DefaultContentDialogStyle"] as Style;
+            dialog.Title = "Olá! Vamos começar?";
+            dialog.PrimaryButtonText = "Trocar usuário";
+            dialog.CloseButtonText = "Cancelar";
+            dialog.DefaultButton = ContentDialogButton.Primary;
+            dialog.Content = new SwitchAccountModal();
+            //dialog.PrimaryButtonClick += delegate { AddAccount(dialog.Content); };
+            var result = await dialog.ShowAsync();
+
+        }
+
+
+        private async void CreateAccount(object sender, RoutedEventArgs e)
+        {
+            ContentDialog dialog = new ContentDialog();
+            dialog.XamlRoot = this.XamlRoot;
+            dialog.Style = Microsoft.UI.Xaml.Application.Current.Resources["DefaultContentDialogStyle"] as Style;
+            dialog.Title = "Olá! Vamos começar?";
+            dialog.PrimaryButtonText = "Adicionar usuário";
+            dialog.CloseButtonText = "Cancelar";
+            dialog.DefaultButton = ContentDialogButton.Primary;
+            dialog.Content = new AddAccountModal();
+            dialog.PrimaryButtonClick += delegate { AddAccount(dialog.Content); };
+            var result = await dialog.ShowAsync();
+        }
+
+        public void AddAccount(object sender)
+        {
+            AddAccountModal aam = sender as AddAccountModal;
+            Account NewUser = aam.CreateNewAccount();
+            List<Account> accountsList = AccountsList.AddNewAccount(NewUser);
+            UpdateUser(AccountsList.SelectedAccount);
+            Debug.WriteLine($"Users list length: {AccountsList.Accounts.Count}");
+            Debug.WriteLine($"Current User: {AccountsList.SelectedAccount.Name}");
+        }
+
+        public List<Product> UpdateUser(Account user)
+        {
+
+            User = AccountsList.SwitchAccounts(user.Name);
+            Debug.WriteLine($"Account changed to {User.Name}");
+            CurrentUsername.Content = User.Name;
+            myListView.ItemsSource = User.ItemsList;
+            Greetings.Text = $"Ola, {AccountsList.SelectedAccount.Name}!";
+            TitleGreetings.Text = $"Ola, {AccountsList.SelectedAccount.Name}!";
+            ShoppingCart.DefineUser(User);
+            return User.ItemsList;
+
+
         }
     }
 }

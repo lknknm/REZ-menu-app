@@ -33,9 +33,11 @@ namespace REZ
         public Account NewAccount;
         public ShoppingCart shoppingCart = AccountsList.Cart;
         private string jsonString;
+        public Account User = AccountsList.SelectedAccount;
+        public static List<Account> Accounts = AccountsList.Accounts;
         private static List<Product> products;
 
-        private List<string> suggestions;
+        private List<string> ProductsSuggestions;
 
         public static List<Product> Products
         {
@@ -46,27 +48,20 @@ namespace REZ
         public MainPage()
         {
             this.InitializeComponent();
-            if (AccountsList.Accounts.Count > 0)
+
+            if (User != null)
             {
-                UpdateUser(AccountsList.SelectedAccount);
-            };
-
-            //User = new Account((string)CurrentUser.Content, "123");
-            //ShoppingCart.DefineUser(User);
-
-            
-
+                Accounts = UpdateUser(User);
+                Debug.WriteLine($"Current account: {User.Name}");
+                Debug.WriteLine($"Accounts created: {Accounts.Count}");
+            }
+            Debug.WriteLine("Current account is null");
+            Debug.WriteLine($"Accounts created: {Accounts.Count}");
             var jsonFilePath = Path.Combine(AppContext.BaseDirectory, "Properties", "Products.json");
             StreamReader reader = new(jsonFilePath);
             jsonString = reader.ReadToEnd();
             Products = JsonConvert.DeserializeObject<List<Product>>(jsonString);
-            suggestions = Products.Select(p => p.Name).ToList();
-        }
-
-        public void UpdateUser(Account user)
-        {
-            CurrentUsername.Content = user.Name;
-            ShoppingCart.DefineUser(user);
+            ProductsSuggestions = Products.Select(p => p.Name).ToList();
         }
 
         private void OpenFoodMenu(object sender, RoutedEventArgs e)
@@ -101,7 +96,7 @@ namespace REZ
         private object GetSuggestions(string text)
         {
             List<string> result = null;
-            result = suggestions.Where(x => x.ToLower().Contains(text.ToLower())).ToList();
+            result = ProductsSuggestions.Where(x => x.ToLower().Contains(text.ToLower())).ToList();
             return result;
         }
 
@@ -132,44 +127,67 @@ namespace REZ
 
         private void AddNewAccount(object sender, RoutedEventArgs e)
         {
-            if (AccountsList.Accounts.Count < 1)
+            if (Accounts.Count < 1)
             {
-                AddAccount(sender, e);
-                
+                CreateAccount(sender, e);
+
                 //Debug.WriteLine($"User: {User.Name}");
             }
 
+
         }
 
-        private async void AddAccount(object sender, RoutedEventArgs e)
+        public async void SwitchAccount(object sender, RoutedEventArgs e)
+        {
+            ContentDialog dialog = new ContentDialog();
+            dialog.XamlRoot = this.XamlRoot;
+            dialog.Style = Microsoft.UI.Xaml.Application.Current.Resources["DefaultContentDialogStyle"] as Style;
+            dialog.Title = "Olá! Vamos começar?";
+            dialog.PrimaryButtonText = "Trocar usuário";
+            dialog.CloseButtonText = "Cancelar";
+            dialog.DefaultButton = ContentDialogButton.Primary;
+            dialog.Content = new SwitchAccountModal();
+            //dialog.PrimaryButtonClick += delegate { AddAccount(dialog.Content); };
+            var result = await dialog.ShowAsync();
+        }
+
+
+        private async void CreateAccount(object sender, RoutedEventArgs e)
         {
             ContentDialog dialog = new ContentDialog();
             dialog.XamlRoot = this.XamlRoot;
             dialog.Style = Microsoft.UI.Xaml.Application.Current.Resources["DefaultContentDialogStyle"] as Style;
             dialog.Title = "Olá! Vamos começar?";
             dialog.PrimaryButtonText = "Adicionar usuário";
-            
-            //dialog.PrimaryButtonClick += delegate { UpdateUser(); };
-            //dialog.PrimaryButtonClick += delegate { Frame.Navigate(typeof(MainPage)); };
             dialog.CloseButtonText = "Cancelar";
             dialog.DefaultButton = ContentDialogButton.Primary;
             dialog.Content = new AddAccountModal();
-            dialog.PrimaryButtonClick += delegate { CreateAccount(dialog.Content); };
+            dialog.PrimaryButtonClick += delegate { AddAccount(dialog.Content); };
             var result = await dialog.ShowAsync();
         }
 
-        public void CreateAccount(object sender)
+        public void AddAccount(object sender)
         {
             AddAccountModal aam = sender as AddAccountModal;
-            (string name, string cpf) newUserInfo;
-
-            newUserInfo = aam.CreateNewAccount();
-
-            Account NewUser = new Account(newUserInfo.name, newUserInfo.cpf);
-            CurrentUsername.Content = AccountsList.SelectedAccount.Name;
+            Account NewUser = aam.CreateNewAccount();
+            List<Account> accountsList = AccountsList.AddNewAccount(NewUser);
+            //CurrentUsername.Content = AccountsList.SelectedAccount.Name;
             UpdateUser(AccountsList.SelectedAccount);
             Debug.WriteLine($"Users list length: {AccountsList.Accounts.Count}");
             Debug.WriteLine($"Current User: {AccountsList.SelectedAccount.Name}");
+        }
+
+        public List<Account> UpdateUser(Account user)
+        {
+            
+            User = AccountsList.SwitchAccounts(user.Name);
+            Debug.WriteLine($"Account changed to {User.Name}");
+            CurrentUsername.Content = User.Name;
+            ShoppingCart.DefineUser(User);
+            Greetings.Text = $"Ola, {User.Name}!";
+            return Accounts;
+
+
         }
 
     }

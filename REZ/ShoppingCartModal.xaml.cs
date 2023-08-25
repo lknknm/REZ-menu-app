@@ -14,6 +14,7 @@ using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Newtonsoft.Json;
 using static System.Net.WebRequestMethods;
+using System.Diagnostics;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -23,6 +24,7 @@ namespace REZ
     public sealed partial class ShoppingCartModal : Page
     {
         public Account User = AccountsList.SelectedAccount;
+        public List<Account> CreatedAccounts = AccountsList.Accounts;
         public List<Product> OrderProducts = ShoppingCart.OrderProducts;
         public List<Account> AccountsToDivide = ShoppingCart.AccountsToDivide;
 
@@ -38,11 +40,13 @@ namespace REZ
             string taxaServico = taxa.ToString("0.00");
             double total = subtotal + taxa;
             string totalPrice = total.ToString("0.00");
-
             Subtotal.Text = $"R$ {subtotalValue}";
             Taxa.Text = $"R$ {taxaServico}";
             TotalPrice.Text = $"R$ {totalPrice}";
+
+            Debug.WriteLine($"Quantidade de usuarios: {CreatedAccounts.Count}");
             myListView.Source = groupedProducts;
+            accountComboBox.ItemsSource = CreatedAccounts;
             DataContext = this;
         }
 

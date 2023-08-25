@@ -22,20 +22,16 @@ namespace REZ
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class AddAccountModal : Page
+    public sealed partial class SwitchAccountModal : Page
     {
-        
-
-        public AddAccountModal()
+        public List<Account> OpenAccounts = AccountsList.Accounts;
+        public SwitchAccountModal()
         {
             this.InitializeComponent();
+            Debug.WriteLine($"Primeira conta: {OpenAccounts[0].Name}");
+            AccountOptions.ItemsSource = OpenAccounts;
             DataContext = this;
-        }
 
-        public Account CreateNewAccount()
-        {
-            Account newAccount = new Account(Name.Text, CPF.Text);
-            return newAccount;
         }
     }
 }

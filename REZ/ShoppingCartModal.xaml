@@ -62,13 +62,14 @@
               StrokeThickness="1"
               Margin="10"/>
 
-		<ComboBox PlaceholderText="Com quem você gostaria de dividir essa conta?" Width="470" Margin="12">
-			<CheckBox Content="Lucas" />
-			<CheckBox Content="Manoel" />
-			<CheckBox Content="Felipe" />
-            <CheckBox Content="Pedro" />
+        <ComboBox x:Name="accountComboBox">
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <CheckBox Content="{Binding Name}" />
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
         </ComboBox>
-
+        
         <RelativePanel Width="468" VerticalAlignment="Center" HorizontalAlignment="Center">
             <TextBlock Text="Subtotal:" TextAlignment="Left" Foreground="Gray" />
             <TextBlock x:Name="Subtotal" TextWrapping="Wrap" TextAlignment="Right" RelativePanel.AlignRightWithPanel="True" Foreground="Gray"/>
