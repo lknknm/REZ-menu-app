@@ -59,7 +59,7 @@ namespace REZ
                 Debug.WriteLine("[MainPage] Current account is null");
                 Debug.WriteLine($"[MainPage] Accounts created: {Accounts.Count}");
             }
-            
+
             var jsonFilePath = Path.Combine(AppContext.BaseDirectory, "Properties", "Products.json");
             StreamReader reader = new(jsonFilePath);
             jsonString = reader.ReadToEnd();
@@ -68,17 +68,16 @@ namespace REZ
         }
 
 
-        protected override void OnNavigatedTo(NavigationEventArgs e)
-        {
+        //protected override void OnNavigatedTo(NavigationEventArgs e)
+        //{
 
-            if (e.Parameter is List<Account>)
-            {
-                Accounts = e.Parameter as List<Account>;
+        //    if (e.Parameter is List<Account>)
+        //    {
+        //        Accounts = e.Parameter as List<Account>;
 
-            }
+        //    }
 
-
-        }
+        //}
     
 
         private void OpenFoodMenu(object sender, RoutedEventArgs e)
@@ -149,8 +148,6 @@ namespace REZ
             if (Accounts.Count < 1)
             {
                 CreateAccount(sender, e);
-
-                //Debug.WriteLine($"User: {User.Name}");
             }
 
 

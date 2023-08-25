@@ -27,31 +27,33 @@ namespace REZ
     {
         public Account User = AccountsList.SelectedAccount;
         public static List<Product> ProductsList = AccountsList.SelectedAccount.ItemsList;
-        public List<Account> OpenedAccounts = AccountsList.Accounts;
+        public static List<Account> OpenedAccounts = AccountsList.Accounts;
         public List<Account> ClosedAccounts = new List<Account> { };
 
 
         public AccountInfo()
         {
             this.InitializeComponent();
-            ProductsList = UpdateUser(User);
-            Debug.WriteLine($"[AccountInfo] Current account: {User.Name}");
-            Debug.WriteLine($"[AccountInfo] Active Accounts: {OpenedAccounts}");
+            UpdateUser(User);
+            Debug.WriteLine($"[AccountInfo] Current User: {User.Name}");
+            UpdatePrice(ProductsList);
 
-            double subtotal = SubtotalValueCalculator(ProductsList);
+            myListView.ItemsSource = ProductsList;
+
+
+        }
+
+        public void UpdatePrice(List<Product> productsList)
+        {
+            double subtotal = SubtotalValueCalculator(productsList);
             string subtotalValue = subtotal.ToString("0.00");
             double taxa = subtotal * 0.1;
             string taxaServico = taxa.ToString("0.00");
             double total = subtotal + taxa;
             string totalPrice = total.ToString("0.00");
-
             Subtotal.Text = $"R$ {subtotalValue}";
             Taxa.Text = $"R$ {taxaServico}";
             TotalPrice.Text = $"R$ {totalPrice}";
-
-            myListView.ItemsSource = ProductsList;
-
-
         }
 
         public double SubtotalValueCalculator(List<Product> productsList)
@@ -78,7 +80,7 @@ namespace REZ
             CloseAccountDialog.Style = Microsoft.UI.Xaml.Application.Current.Resources["DefaultContentDialogStyle"] as Style;
             CloseAccountDialog.Title = "Deseja mesmo fechar sua conta?";
             CloseAccountDialog.PrimaryButtonText = "Sim, fechar conta";
-            CloseAccountDialog.PrimaryButtonClick += delegate { OpenedAccounts = AccountsList.RemoveAccount(User, OpenedAccounts); };
+            CloseAccountDialog.PrimaryButtonClick += delegate { AccountsList.RemoveAccount(User); };
             CloseAccountDialog.CloseButtonText = "Cancelar";
             CloseAccountDialog.DefaultButton = ContentDialogButton.Primary;
             CloseAccountDialog.Content = new CloseAccountConfirmation();
@@ -86,13 +88,8 @@ namespace REZ
 
             if (result == ContentDialogResult.Primary)
             {
-                Frame.Navigate(typeof(AccountClosed), OpenedAccounts, new SlideNavigationTransitionInfo() { Effect = SlideNavigationTransitionEffect.FromRight });
+                Frame.Navigate(typeof(AccountClosed), null, new SlideNavigationTransitionInfo() { Effect = SlideNavigationTransitionEffect.FromRight });
             }
-        }
-
-        private void AccountInfoRedirect(object sender, RoutedEventArgs e)
-        {
-            Frame.Navigate(typeof(AccountInfo), null, new SlideNavigationTransitionInfo() { Effect = SlideNavigationTransitionEffect.FromRight });
         }
 
         private void BackToMainMenu(object sender, RoutedEventArgs e)
@@ -138,7 +135,7 @@ namespace REZ
             UpdateUser(AccountsList.SelectedAccount);
         }
 
-        public List<Product> UpdateUser(Account user)
+        public void UpdateUser(Account user)
         {
 
             User = AccountsList.SwitchAccounts(user.Name);
@@ -148,8 +145,6 @@ namespace REZ
             Greetings.Text = $"Ola, {AccountsList.SelectedAccount.Name}!";
             TitleGreetings.Text = $"Ola, {AccountsList.SelectedAccount.Name}!";
             ShoppingCart.DefineUser(User);
-            return User.ItemsList;
-
 
         }
     }

@@ -19,34 +19,48 @@ using Windows.System;
 
 namespace REZ
 {
-    /// <summary>
-    /// This page is to be displayed when the user chooses to close his account.
-    /// </summary>
+    
     public sealed partial class AccountClosed : Page
     {
-        Account NextUser;
-        List<Account> AccountList;
+        //Account NextUser;
+        public static List<Account> Accounts = AccountsList.Accounts;
+        public static Account User = AccountsList.SelectedAccount;
         public AccountClosed()
         {
             this.InitializeComponent();
+            UpdateUser(User);
             DataContext = this;
         }
         private void BackToMainMenu(object sender, RoutedEventArgs e)
         {
-            Frame.Navigate(typeof(MainPage), AccountList, new SlideNavigationTransitionInfo() { Effect = SlideNavigationTransitionEffect.FromLeft });
+            Frame.Navigate(typeof(MainPage), null, new SlideNavigationTransitionInfo() { Effect = SlideNavigationTransitionEffect.FromLeft });
         }
 
-
-        protected override void OnNavigatedTo(NavigationEventArgs e)
+        private void BackToMainMenu(object sender, KeyRoutedEventArgs e)
         {
-
-            if (e.Parameter is List<Account>)
+            if (e.Key == Windows.System.VirtualKey.Enter)
             {
-                AccountList = e.Parameter as List<Account>;
+
+                Frame.Navigate(typeof(MainPage), null, new SlideNavigationTransitionInfo() { Effect = SlideNavigationTransitionEffect.FromLeft });
 
             }
-
-
         }
+
+        public void UpdateUser(Account user)
+        {
+            try
+            {
+                User = AccountsList.SwitchAccounts(user.Name);
+                ShoppingCart.DefineUser(User);
+            }
+            catch (Exception ex) 
+            {
+                Debug.WriteLine(ex);
+;            }
+            
+            
+            Debug.WriteLine($"[AccountClosed] contas ativas: {AccountsList.Accounts.Count}");
+        }
+
     }
 }

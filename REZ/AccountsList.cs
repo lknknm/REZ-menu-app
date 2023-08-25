@@ -9,7 +9,7 @@ namespace REZ
 {
     public class AccountsList
     {
-        private static List<Account> accountsList;
+        private static List<Account> accountsList = new List<Account>() { };
         private static Account selectedAccount;
         private static ShoppingCart shoppingCart;
 
@@ -33,50 +33,56 @@ namespace REZ
 
         public AccountsList()
         {
-            Accounts = new List<Account> { };
+            //Accounts = new List<Account> { };
             shoppingCart = InicializeNewShoppingCart();
             //Criar a conta no DB
         }
 
         public static List<Account> AddNewAccount(Account account)
         {
+
             Accounts.Add(account);
             Debug.WriteLine($"Contas ativas: {Accounts.Count}");
             return Accounts;
         }
 
-        public static List<Account> RemoveAccount(Account account, List<Account> openedAccounts)
+        public static void RemoveAccount(Account account)
         {
             //Remover conta do DB
-            openedAccounts.Remove(account);
-            Debug.WriteLine($"[AcccountsList] Contas ativas: {openedAccounts.Count}");
-            if (openedAccounts.Count > 0)
+            Accounts.Remove(account);
+            if (Accounts.Count > 0)
             {
-                SelectedAccount = openedAccounts[0];
+                SelectedAccount = Accounts[0];
+
             }
             else
             {
                 SelectedAccount = null;
+
             }
 
-            return openedAccounts;
-            
         }
 
         public static Account SwitchAccounts(string username)
         {
-            
-            foreach (Account user in Accounts)
+            if (Accounts.Count > 0)
             {
-                if (user.Name == username)
+                foreach (Account user in Accounts)
                 {
-                    SelectedAccount = user;
-                    ShoppingCart.SwitchAccount(user);
+                    if (user.Name == username)
+                    {
+                        SelectedAccount = user;
+                        ShoppingCart.SwitchAccount(user);
+
+                    }
+
                 }
+
             }
 
             return SelectedAccount;
         }
+
 
         public void CloseAccounts()
         {

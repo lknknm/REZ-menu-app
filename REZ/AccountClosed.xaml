@@ -19,7 +19,7 @@
 
             <Image x:Name="qrImage" Source="./Assets/DummyQRCode.png" Width="198" Height="198" Margin="16"/>
 
-            <Button Click="BackToMainMenu" Margin="4,0,0,0" Width="230" HorizontalAlignment="Center">
+            <Button Click="BackToMainMenu" KeyUp="BackToMainMenu" Margin="4,0,0,0" Width="230" HorizontalAlignment="Center">
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
                     <TextBlock Text="Voltar ao Menu Principal" VerticalAlignment="Center"/>
                 </StackPanel>

@@ -36,7 +36,6 @@ namespace REZ
             Debug.WriteLine($"User: {User.Name}");
             Dialog = dialog;
             var groupedProducts = OrderProducts.GroupBy(p => p.SubCategory);
-
             UpdatePrice(OrderProducts);
             myListView.Source = groupedProducts;
             accountComboBox.ItemsSource = CreatedAccounts;
