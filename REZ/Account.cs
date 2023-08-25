@@ -32,9 +32,7 @@ namespace REZ
             itemsList = new List<Product> { };
             Name = name;
             CPF = cpf;
-            AccountsList.Accounts.Add(this);
             AccountsList.SelectedAccount = this;
-
         }
 
         public void AddItem(Product item)

@@ -9,18 +9,16 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
     <Grid>
-        <Button x:Name="CurrentUser"
-                Content="Lucas"
+        <Button x:Name="CurrentUsername"
+                Content="{x:Bind User.Name}"
                 CornerRadius="18" Style="{StaticResource AccentButtonStyle}" 
                 HorizontalAlignment="Right" 
                 VerticalAlignment="Top" Margin="16,16,32,0">
             <Button.Flyout>
                 <Flyout Placement="BottomEdgeAlignedRight">
                     <StackPanel>
-                        <TextBlock Style="{ThemeResource BaseTextBlockStyle}" Margin="0">
-                            <Run Text="Olá," />
-                            <Run Text="Lucas!" />
-                        </TextBlock>
+                        <TextBlock x:Name="TitleGreetings" Text="" Style="{ThemeResource BaseTextBlockStyle}" Margin="0"/>
+                        
                         <TextBlock Margin="0,0,0,12">
                             <Run Text="Você está na Mesa" />
                             <Run Text="#1." />
@@ -33,13 +31,13 @@
                                 </StackPanel>
                             </Button>
                             <StackPanel Orientation="Horizontal" Margin="0,4,0,0">
-                                <Button Click="AddAccount" Width="160" CornerRadius="16" Style="{StaticResource AccentButtonStyle}" HorizontalContentAlignment="Center" Margin="0,0,4,0">
+                                <Button Click="CreateAccount" Width="160" CornerRadius="16" Style="{StaticResource AccentButtonStyle}" HorizontalContentAlignment="Center" Margin="0,0,4,0">
                                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
                                         <TextBlock FontFamily="Segoe Fluent Icons" Text="&#xECC8;" VerticalAlignment="Center"/>
                                         <TextBlock Text="  Adicionar conta" VerticalAlignment="Center"/>
                                     </StackPanel>
                                 </Button>
-                                <Button Width="160" CornerRadius="16" Margin="4,0,0,0">
+                                <Button Click="SwitchAccount" Width="160" CornerRadius="16" Margin="4,0,0,0">
                                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
                                         <TextBlock FontFamily="Segoe Fluent Icons" Text="&#xE748;" VerticalAlignment="Center"/>
                                         <TextBlock Text="  Trocar conta" VerticalAlignment="Center"/>
@@ -58,10 +56,12 @@
             <StackPanel Grid.Column="1" VerticalAlignment="Top" HorizontalAlignment="Center" Width="704" Margin="112,144,0,0">
 
                 <AppBarButton Icon="Back" Click="BackToMainMenu" IsCompact="True" Margin="0,8,0,0" Width="32"/>
-                <TextBlock Text="Olá, Andrés!" 
+                <TextBlock x:Name="Greetings"
+                           Text=""
                            TextWrapping="Wrap"
                            FontSize="20"
-                           Margin="12, 12, 12, 0"/>
+                           Margin="12, 12, 12, 0" /> 
+
                 <TextBlock Text="Revise seu histórico de pedidos" 
                            TextWrapping="Wrap"
                            FontSize="20"

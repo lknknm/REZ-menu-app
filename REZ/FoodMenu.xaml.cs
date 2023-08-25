@@ -19,6 +19,7 @@ using Microsoft.UI.Xaml.Navigation;
 using System.Security;
 using static System.Net.Mime.MediaTypeNames;
 using Application = Microsoft.UI.Xaml.Application;
+using System.Diagnostics;
 
 namespace REZ
 {
@@ -34,7 +35,6 @@ namespace REZ
         {
             this.InitializeComponent();
 
-            User = AccountsList.SelectedAccount;
             var groupedProducts = MainPage.Products.GroupBy(p => p.SubCategory);
             myListView.Source = groupedProducts;
             DataContext = this;
@@ -187,7 +187,21 @@ namespace REZ
             Frame.Navigate(typeof(AccountInfo), null, new SlideNavigationTransitionInfo() { Effect = SlideNavigationTransitionEffect.FromRight });
         }
 
-        private async void AddAccount(object sender, RoutedEventArgs e)
+        public async void SwitchAccount(object sender, RoutedEventArgs e)
+        {
+            ContentDialog dialog = new ContentDialog();
+            dialog.XamlRoot = this.XamlRoot;
+            dialog.Style = Microsoft.UI.Xaml.Application.Current.Resources["DefaultContentDialogStyle"] as Style;
+            dialog.Title = "Olá! Vamos começar?";
+            dialog.PrimaryButtonText = "Trocar usuário";
+            dialog.CloseButtonText = "Cancelar";
+            dialog.DefaultButton = ContentDialogButton.Primary;
+            dialog.Content = new SwitchAccountModal();
+            //dialog.PrimaryButtonClick += delegate { AddAccount(dialog.Content); };
+            var result = await dialog.ShowAsync();
+        }
+
+        private async void CreateAccount(object sender, RoutedEventArgs e)
         {
             ContentDialog dialog = new ContentDialog();
             dialog.XamlRoot = this.XamlRoot;
@@ -197,7 +211,33 @@ namespace REZ
             dialog.CloseButtonText = "Cancelar";
             dialog.DefaultButton = ContentDialogButton.Primary;
             dialog.Content = new AddAccountModal();
+            dialog.PrimaryButtonClick += delegate { AddAccount(dialog.Content); };
             var result = await dialog.ShowAsync();
         }
+
+        public void AddAccount(object sender)
+        {
+            AddAccountModal aam = sender as AddAccountModal;
+            Account NewUser = aam.CreateNewAccount();
+            List<Account> accountsList = AccountsList.AddNewAccount(NewUser);
+            //CurrentUsername.Content = AccountsList.SelectedAccount.Name;
+            UpdateUser(AccountsList.SelectedAccount);
+            Debug.WriteLine($"Users list length: {AccountsList.Accounts.Count}");
+            Debug.WriteLine($"Current User: {AccountsList.SelectedAccount.Name}");
+        }
+
+        public void UpdateUser(Account user)
+        {
+
+            User = AccountsList.SwitchAccounts(user.Name);
+            Debug.WriteLine($"Account changed to {User.Name}");
+            CurrentUsername.Content = User.Name;
+            Greetings.Text = $"Ola, {User.Name}!";
+            ShoppingCart.DefineUser(User);
+            //return Accounts;
+
+        }
+
+        
     }
 }

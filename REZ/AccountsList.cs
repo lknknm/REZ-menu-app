@@ -32,14 +32,15 @@ namespace REZ
 
         public AccountsList()
         {
-            accountsList = new List<Account> { };
+            Accounts = new List<Account> { };
             shoppingCart = InicializeNewShoppingCart();
             //Criar a conta no DB
         }
 
-        public void CreateAccount(Account account)
+        public static List<Account> AddNewAccount(Account account)
         {
-
+            Accounts.Add(account);
+            return Accounts;
         }
 
         public void RemoveAccount(Account account)
@@ -51,9 +52,9 @@ namespace REZ
         public static Account SwitchAccounts(string username)
         {
             
-            foreach (Account user in AccountsList.accountsList)
+            foreach (Account user in AccountsList.Accounts)
             {
-                if (user.Name ==username)
+                if (user.Name == username)
                 {
                     SelectedAccount = user;
                 }
