@@ -108,12 +108,12 @@ namespace REZ
                 ErrorMessage_CPF.Text = CPF.Text + "Por favor digite um número de CPF.";
                 IsCPFInputValid = false;
             }
-            else if (!ValidateCPF(CPF.Text))
-            {
-                ErrorMessage_CPF.Visibility = Visibility.Visible;
-                ErrorMessage_CPF.Text = CPF.Text + " não é um CPF válido. Por favor insira um número de CPF.";
-                IsCPFInputValid = false;
-            }
+            //else if (!ValidateCPF(CPF.Text))
+            //{
+            //    ErrorMessage_CPF.Visibility = Visibility.Visible;
+             //   ErrorMessage_CPF.Text = CPF.Text + " não é um CPF válido. Por favor insira um número de CPF.";
+             //   IsCPFInputValid = false;
+            //}
             else 
             { 
                 ErrorMessage_CPF.Visibility = Visibility.Collapsed;

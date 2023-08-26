@@ -11,7 +11,8 @@
 
     <StackPanel VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Background="White">
 
-        <TextBlock Text="Olá, Andrés!" 
+        <TextBlock x:Name="Greetings"
+                   Text=""
                    TextWrapping="Wrap"
                    Margin="12, 12, 12, 0"/>
         <TextBlock Text="Revise seu pedido" 
@@ -62,17 +63,18 @@
               StrokeThickness="1"
               Margin="10"/>
 
-        <ListView x:Name="accountComboBox">
-            <ComboBox>
-                <ComboBox.ItemTemplate>
-                    <DataTemplate>
-                        <CheckBox Content="{Binding Name}" />
-                    </DataTemplate>
-                </ComboBox.ItemTemplate>
+        <StackPanel Width="468" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <TextBlock Text="Selecione as contas que vão compartilhar esse pedido com você:" TextAlignment="Left" Foreground="Gray" />
+            <ComboBox x:Name="AccountComboBox" Width="400">
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                        <CheckBox Content="{Binding Name}" IsChecked="{Binding IsSelected}" IsEnabled="{Binding IsEnabled}" />
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
             </ComboBox>
-        </ListView>
-        
-        
+        </StackPanel>
+
+
         <RelativePanel Width="468" VerticalAlignment="Center" HorizontalAlignment="Center">
             <TextBlock Text="Subtotal:" TextAlignment="Left" Foreground="Gray" />
             <TextBlock x:Name="Subtotal" TextWrapping="Wrap" TextAlignment="Right" RelativePanel.AlignRightWithPanel="True" Foreground="Gray"/>

@@ -34,12 +34,12 @@ namespace REZ
         {
 
             this.InitializeComponent();
-            Debug.WriteLine($"User: {User.Name}");
+            Greetings.Text = $"Olá, {User.Name}!";
             Dialog = dialog;
             var groupedProducts = OrderProducts.GroupBy(p => p.SubCategory);
             UpdatePrice(OrderProducts);
             myListView.Source = groupedProducts;
-            accountComboBox.ItemsSource = CreatedAccounts;
+            AccountComboBox.ItemsSource = CreatedAccounts;
             DataContext = this;
         }
 
@@ -71,6 +71,22 @@ namespace REZ
         }
 
         //----------------------------------------------------------------------------
+        public List<Account> GetAvailableUsers(List<Account> createdAccounts)
+        {
+            List<Account> availableUsers = new List<Account>();
+            foreach (var account in createdAccounts)
+            {
+                if (User.CPF != account.CPF)
+                {
+                    availableUsers.Add(account);
+                }
+                
+            }
+
+            return availableUsers;
+        }
+
+        //----------------------------------------------------------------------------
         private void ListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             ComboBox comboBox = sender as ComboBox;
@@ -98,29 +114,12 @@ namespace REZ
                     {
                         Dialog.Hide();
                     }
-                    {
 
-                    }
                 }
-            }
-        }
 
-        //----------------------------------------------------------------------------
-        private T FindVisualParent<T>(UIElement element) where T : UIElement
-        {
-            UIElement parent = VisualTreeHelper.GetParent(element) as UIElement;
-
-            while (parent != null)
-            {
-                T foundParent = parent as T;
-                if (foundParent != null)
-                {
-                    return foundParent;
-                }
-                parent = VisualTreeHelper.GetParent(parent) as UIElement;
             }
 
-            return null;
         }
+
     }
 }

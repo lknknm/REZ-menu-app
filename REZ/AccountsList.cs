@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Xml.Linq;
+using Windows.System;
 
 namespace REZ
 {
@@ -22,7 +23,8 @@ namespace REZ
         public static Account SelectedAccount
         {
             get { return selectedAccount; }
-            set { selectedAccount = value; }
+            set { selectedAccount = value; } 
+            
         }
 
         public static ShoppingCart Cart
@@ -69,9 +71,14 @@ namespace REZ
             {
                 foreach (Account user in Accounts)
                 {
+                    user.IsSelected = false;
+                    user.IsEnabled = true;
+
                     if (user.Name == username)
                     {
                         SelectedAccount = user;
+                        user.IsSelected = true;
+                        user.IsEnabled = false;
                         ShoppingCart.SwitchAccount(user);
 
                     }
@@ -100,7 +107,22 @@ namespace REZ
 
         }
 
-        
+        public static List<Account> GetAvailableUsers()
+        {
+            List<Account> availableUsers = new List<Account>();
+            foreach (var account in Accounts)
+            {
+                if (SelectedAccount.CPF != account.CPF)
+                {
+                    availableUsers.Add(account);
+                }
+
+            }
+
+            return availableUsers;
+        }
+
+
     }
 }
 

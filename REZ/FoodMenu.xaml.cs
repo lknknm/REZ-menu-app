@@ -153,13 +153,6 @@ namespace REZ
         }
 
         //----------------------------------------------------------------------------
-        private void SwitchUser_ButtonClick(object sender, RoutedEventArgs e)
-        {
-            Button button = sender as Button;
-            AccountsList.SwitchAccounts(button.Content.ToString());
-        }
-
-        //----------------------------------------------------------------------------
         private void AutoSuggestBox_TextChanged(AutoSuggestBox sender, AutoSuggestBoxTextChangedEventArgs args)
         {
             if (args.Reason == AutoSuggestionBoxTextChangeReason.UserInput) 
@@ -192,7 +185,7 @@ namespace REZ
         }
 
         //----------------------------------------------------------------------------
-        public async void SwitchAccount(object sender, RoutedEventArgs e)
+        public async void SwitchUser_ButtonClick(object sender, RoutedEventArgs e)
         {
             ContentDialog dialog = new ContentDialog();
             dialog.XamlRoot = this.XamlRoot;
@@ -202,8 +195,15 @@ namespace REZ
             dialog.CloseButtonText = "Cancelar";
             dialog.DefaultButton = ContentDialogButton.Primary;
             dialog.Content = new SwitchAccountModal();
-            //dialog.PrimaryButtonClick += delegate { AddAccount(dialog.Content); };
+            dialog.PrimaryButtonClick += delegate { SwitchUser(sender, e); };
             var result = await dialog.ShowAsync();
+        }
+
+        //----------------------------------------------------------------------------
+        private void SwitchUser(object sender, RoutedEventArgs e)
+        {
+            Button button = sender as Button;
+            //AccountsList.SwitchAccounts(newUser);
         }
 
         //----------------------------------------------------------------------------
