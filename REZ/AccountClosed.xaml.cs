@@ -49,6 +49,7 @@ namespace REZ
                 Frame.Navigate(typeof(MainPage), null, new SlideNavigationTransitionInfo() { Effect = SlideNavigationTransitionEffect.FromLeft });
 
             }
+
         }
 
         //----------------------------------------------------------------------------
@@ -56,7 +57,7 @@ namespace REZ
         {
             try
             {
-                User = AccountsList.SwitchAccounts(user.Name);
+                User = AccountsList.SwitchAccounts(user);
                 ShoppingCart.DefineUser(User);
             }
             catch (Exception ex) 

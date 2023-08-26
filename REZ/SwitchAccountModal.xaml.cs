@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
@@ -25,13 +26,22 @@ namespace REZ
     public sealed partial class SwitchAccountModal : Page
     {
         public List<Account> OpenAccounts = AccountsList.Accounts;
+        public static Account UserToChange;
+
 
         //----------------------------------------------------------------------------
         public SwitchAccountModal()
         {
             this.InitializeComponent();
-            AccountOptions.ItemsSource = OpenAccounts;
+            AccountsOptions.ItemsSource = AccountsList.GetAvailableUsers(); ;
             DataContext = this;
+
+        }
+
+        private void SelectedUserChanged(object sender, SelectionChangedEventArgs e)
+        {
+            UserToChange = AccountsOptions.SelectedItem as Account;
+
         }
     }
 }

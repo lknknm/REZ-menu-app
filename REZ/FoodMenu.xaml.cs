@@ -185,29 +185,16 @@ namespace REZ
         }
 
         //----------------------------------------------------------------------------
-        public async void SwitchUser_ButtonClick(object sender, RoutedEventArgs e)
+        
+        public void SwitchUser_ButtonClick(object sender, RoutedEventArgs e)
         {
-            ContentDialog dialog = new ContentDialog();
-            dialog.XamlRoot = this.XamlRoot;
-            dialog.Style = Microsoft.UI.Xaml.Application.Current.Resources["DefaultContentDialogStyle"] as Style;
-            dialog.Title = "Olá! Vamos começar?";
-            dialog.PrimaryButtonText = "Trocar usuário";
-            dialog.CloseButtonText = "Cancelar";
-            dialog.DefaultButton = ContentDialogButton.Primary;
-            dialog.Content = new SwitchAccountModal();
-            dialog.PrimaryButtonClick += delegate { SwitchUser(sender, e); };
-            var result = await dialog.ShowAsync();
+            AccountsList.OpenSwitchAccountModal(this, UpdateUser);
+
         }
 
-        //----------------------------------------------------------------------------
-        private void SwitchUser(object sender, RoutedEventArgs e)
-        {
-            Button button = sender as Button;
-            //AccountsList.SwitchAccounts(newUser);
-        }
 
-        //----------------------------------------------------------------------------
-        private async void CreateAccount(object sender, RoutedEventArgs e)
+            //----------------------------------------------------------------------------
+            private async void CreateAccount(object sender, RoutedEventArgs e)
         {
             ContentDialog dialog = new ContentDialog();
             dialog.XamlRoot = this.XamlRoot;
@@ -234,11 +221,10 @@ namespace REZ
         //----------------------------------------------------------------------------
         public void UpdateUser(Account user)
         {
-            User = AccountsList.SwitchAccounts(user.Name);
+            User = AccountsList.SwitchAccounts(user);
             CurrentUsername.Content = User.Name;
             Greetings.Text = $"Olá, {User.Name}!";
             ShoppingCart.DefineUser(User);
-            //return Accounts;
         }
     }
 }

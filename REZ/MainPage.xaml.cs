@@ -34,7 +34,7 @@ namespace REZ
         public ShoppingCart shoppingCart = AccountsList.Cart;
         private string jsonString;
         public Account User = AccountsList.SelectedAccount;
-        public static List<Account> Accounts = AccountsList.Accounts;
+        public List<Account> Accounts = AccountsList.Accounts;
         private static List<Product> products;
 
         private List<string> ProductsSuggestions;
@@ -53,9 +53,7 @@ namespace REZ
 
             if (User != null)
             {
-                Accounts = UpdateUser(User);
-                Debug.WriteLine($"[MainPage] Current account: {User.Name}");
-                Debug.WriteLine($"[MainPage] Accounts created: {Accounts.Count}");
+                UpdateUser(User);
             } else
             {
                 Debug.WriteLine("[MainPage] Current account is null");
@@ -83,10 +81,10 @@ namespace REZ
         }
 
         //----------------------------------------------------------------------------
-        private void SwitchUser_ButtonClick(object sender, RoutedEventArgs e)
+        public void SwitchUser_ButtonClick(object sender, RoutedEventArgs e)
         {
-            Button button = sender as Button;
-            AccountsList.SwitchAccounts(button.Content.ToString());
+            AccountsList.OpenSwitchAccountModal(this, UpdateUser);
+
         }
 
         //----------------------------------------------------------------------------
@@ -191,9 +189,9 @@ namespace REZ
         }
 
         //----------------------------------------------------------------------------
-        public List<Account> UpdateUser(Account user)
+        public void UpdateUser(Account user)
         {
-            User = AccountsList.SwitchAccounts(user.Name);
+            User = AccountsList.SwitchAccounts(user);
             Debug.WriteLine($"[MainPage] Account changed to {User.Name}");
             CurrentUsername.Content = User.Name;
             ShoppingCart.DefineUser(User);
@@ -202,7 +200,7 @@ namespace REZ
             {
                 CurrentUsername.Visibility = Visibility.Visible;
             }
-            return Accounts;
+            //return Accounts;
         }
     }
 }

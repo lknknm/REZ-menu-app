@@ -144,13 +144,20 @@ namespace REZ
         public void UpdateUser(Account user)
         {
 
-            User = AccountsList.SwitchAccounts(user.Name);
+            User = AccountsList.SwitchAccounts(user);
+            UpdatePrice(user.ItemsList);
             Debug.WriteLine($"[AccountInfo] Account changed to {User.Name}");
             CurrentUsername.Content = User.Name;
             myListView.ItemsSource = User.ItemsList;
             Greetings.Text = $"Ola, {AccountsList.SelectedAccount.Name}!";
             TitleGreetings.Text = $"Ola, {AccountsList.SelectedAccount.Name}!";
             ShoppingCart.DefineUser(User);
+        }
+
+        public void SwitchUser_ButtonClick(object sender, RoutedEventArgs e)
+        {
+            AccountsList.OpenSwitchAccountModal(this, UpdateUser);
+
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using Microsoft.UI.Xaml.Controls;
+﻿using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Controls;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -65,7 +66,7 @@ namespace REZ
 
         }
 
-        public static Account SwitchAccounts(string username)
+        public static Account SwitchAccounts(Account newAccount)
         {
             if (Accounts.Count > 0)
             {
@@ -74,7 +75,7 @@ namespace REZ
                     user.IsSelected = false;
                     user.IsEnabled = true;
 
-                    if (user.Name == username)
+                    if (user == newAccount)
                     {
                         SelectedAccount = user;
                         user.IsSelected = true;
@@ -120,6 +121,22 @@ namespace REZ
             }
 
             return availableUsers;
+        }
+
+        //----------------------------------------------------------------------------
+        public static async void OpenSwitchAccountModal(Page page, Action<Account> UpdateUser)
+        {
+            ContentDialog dialog = new ContentDialog();
+            dialog.XamlRoot = page.XamlRoot;
+            dialog.Style = Microsoft.UI.Xaml.Application.Current.Resources["DefaultContentDialogStyle"] as Style;
+            dialog.Title = "Olá! Vamos começar?";
+            dialog.PrimaryButtonText = "Trocar usuário";
+            dialog.CloseButtonText = "Cancelar";
+            dialog.DefaultButton = ContentDialogButton.Primary;
+            dialog.Content = new SwitchAccountModal();
+            dialog.PrimaryButtonClick += delegate { UpdateUser(SwitchAccountModal.UserToChange); };
+            var result = await dialog.ShowAsync();
+
         }
 
 
