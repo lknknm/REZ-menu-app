@@ -23,8 +23,7 @@ namespace REZ
             set { orderProducts = value; }
         }
 
-       
-
+        //----------------------------------------------------------------------------
         public ShoppingCart(string orderId)
         {
             OrderId = orderId;
@@ -37,16 +36,16 @@ namespace REZ
             {
                 Debug.WriteLine($"[ShoppingCart] User is null");
             }
-            
-            
         }
 
+        //----------------------------------------------------------------------------
         public static void SwitchAccount(Account user)
         {
             AccountsToDivide.Clear();
             AccountsToDivide.Add(user);
         }
 
+        //----------------------------------------------------------------------------
         public void AddItem(Product item)
         {
             bool itemFound = false;
@@ -72,10 +71,11 @@ namespace REZ
                 {
                     OrderProducts.Add(item);
                 }
-            
             }
             //Add to DB
         }
+
+        //----------------------------------------------------------------------------
         public static List<Product> RemoveItem(Product item)
         {
             OrderProducts.Remove(item);
@@ -84,23 +84,27 @@ namespace REZ
             //Remove from DB
         }
 
+        //----------------------------------------------------------------------------
         public static void DefineUser(Account user)
         {
             User = user;
         }
 
+        //----------------------------------------------------------------------------
         public List<Account> SelectAccount(Account account)
         {
             AccountsToDivide.Add(account);
             return AccountsToDivide;
         }
 
+        //----------------------------------------------------------------------------
         public List<Account> UnselectAccount(Account account)
         {
             AccountsToDivide.Remove(account);
             return AccountsToDivide;
         }
 
+        //----------------------------------------------------------------------------
         public void CompleteOrder(List<Account> accountsToDivide, List<Product> orderItemsList)
         {
             int accountsQuantity = accountsToDivide.Count;
@@ -137,7 +141,7 @@ namespace REZ
             orderItemsList.Clear();
         }
 
-
+        //----------------------------------------------------------------------------
         public async void OpenShoppingModal(Page page, ShoppingCart cart, TeachingTip tt)
         {
             ContentDialog dialog = new ContentDialog();
@@ -160,6 +164,5 @@ namespace REZ
                 tt.IsOpen = true;
             }
         }
-
     }
 }

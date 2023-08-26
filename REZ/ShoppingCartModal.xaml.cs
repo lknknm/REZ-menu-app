@@ -29,6 +29,7 @@ namespace REZ
         public List<Product> OrderProducts = ShoppingCart.OrderProducts;
         public List<Account> AccountsToDivide = ShoppingCart.AccountsToDivide;
 
+        //----------------------------------------------------------------------------
         public ShoppingCartModal(ShoppingCart shoppingCart, ContentDialog dialog)
         {
 
@@ -42,6 +43,7 @@ namespace REZ
             DataContext = this;
         }
 
+        //----------------------------------------------------------------------------
         public void UpdatePrice(List<Product> productsList)
         {
             double subtotal = SubtotalValueCalculator(productsList);
@@ -55,7 +57,7 @@ namespace REZ
             TotalPrice.Text = $"R$ {totalPrice}";
         }
 
-
+        //----------------------------------------------------------------------------
         public double SubtotalValueCalculator(List<Product> productsList)
         {
             double finalValue = 0.0;
@@ -68,7 +70,7 @@ namespace REZ
             return finalValue;
         }
 
-
+        //----------------------------------------------------------------------------
         private void ListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             ComboBox comboBox = sender as ComboBox;
@@ -78,8 +80,7 @@ namespace REZ
             
         }
 
-       
-
+        //----------------------------------------------------------------------------
         public void DeleteItem(object sender, RoutedEventArgs e)
         {
             Button deleteButton = sender as Button;
@@ -104,6 +105,7 @@ namespace REZ
             }
         }
 
+        //----------------------------------------------------------------------------
         private T FindVisualParent<T>(UIElement element) where T : UIElement
         {
             UIElement parent = VisualTreeHelper.GetParent(element) as UIElement;
@@ -120,7 +122,5 @@ namespace REZ
 
             return null;
         }
-
-
     }
 }

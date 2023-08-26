@@ -13,8 +13,6 @@ namespace REZ
         private List<Product> itemsList;
         private double totalPrice = 0.0;
         
-        
-
         public List<Product> ItemsList 
         {
             get { return itemsList; }
@@ -27,6 +25,7 @@ namespace REZ
             set { totalPrice = value; }
         }
 
+        //----------------------------------------------------------------------------
         public Account(string name, string cpf)
         {
             itemsList = new List<Product> { };
@@ -35,6 +34,7 @@ namespace REZ
             AccountsList.SelectedAccount = this;
         }
 
+        //----------------------------------------------------------------------------
         public void AddItem(Product item)
         {
             ItemsList.Add(item);

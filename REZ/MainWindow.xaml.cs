@@ -23,12 +23,13 @@ using WinRT.Interop;
 namespace REZ
 {
     /// <summary>
-    /// An empty window that can be used on its own or navigated to within a Frame.
+    /// MainWindow that will route to Pages Navigation
     /// </summary>
     public sealed partial class MainWindow : Window
     {
         private AppWindow m_AppWindow;
 
+        //----------------------------------------------------------------------------
         public MainWindow()
         {
             this.InitializeComponent();
@@ -36,6 +37,8 @@ namespace REZ
             m_AppWindow.SetIcon("Assets/REZ.ico");
             m_AppWindow.SetPresenter(AppWindowPresenterKind.FullScreen);
         }
+
+        //----------------------------------------------------------------------------
         private AppWindow GetAppWindowForCurrentWindow()
         {
             IntPtr hWnd = WindowNative.GetWindowHandle(this);

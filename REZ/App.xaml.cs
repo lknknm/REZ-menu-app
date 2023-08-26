@@ -56,6 +56,7 @@ namespace REZ
             m_window.Activate();
         }
 
+        //----------------------------------------------------------------------------
         void OnNavigationFailed(object sender, NavigationFailedEventArgs e)
         {
             throw new Exception("Failed to load Page " + e.SourcePageType.FullName);

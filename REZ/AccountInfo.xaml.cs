@@ -30,7 +30,7 @@ namespace REZ
         public static List<Account> OpenedAccounts = AccountsList.Accounts;
         public List<Account> ClosedAccounts = new List<Account> { };
 
-
+        //----------------------------------------------------------------------------
         public AccountInfo()
         {
             this.InitializeComponent();
@@ -39,10 +39,9 @@ namespace REZ
             UpdatePrice(ProductsList);
 
             myListView.ItemsSource = ProductsList;
-
-
         }
 
+        //----------------------------------------------------------------------------
         public void UpdatePrice(List<Product> productsList)
         {
             double subtotal = SubtotalValueCalculator(productsList);
@@ -56,6 +55,7 @@ namespace REZ
             TotalPrice.Text = $"R$ {totalPrice}";
         }
 
+        //----------------------------------------------------------------------------
         public double SubtotalValueCalculator(List<Product> productsList)
         {
             double finalValue = 0.0;
@@ -68,11 +68,13 @@ namespace REZ
             return finalValue;
         }
 
+        //----------------------------------------------------------------------------
         public void ShowUserInformation(Account currentUser)
         {
 
         }
 
+        //----------------------------------------------------------------------------
         private async void CloseAccount(object sender, RoutedEventArgs e)
         {
             ContentDialog CloseAccountDialog = new ContentDialog();
@@ -92,11 +94,13 @@ namespace REZ
             }
         }
 
+        //----------------------------------------------------------------------------
         private void BackToMainMenu(object sender, RoutedEventArgs e)
         {
            Frame.Navigate(typeof(MainPage), null, new SlideNavigationTransitionInfo() { Effect = SlideNavigationTransitionEffect.FromLeft });
         }
 
+        //----------------------------------------------------------------------------
         public async void SwitchAccount(object sender, RoutedEventArgs e)
         {
             ContentDialog dialog = new ContentDialog();
@@ -112,7 +116,7 @@ namespace REZ
 
         }
 
-
+        //----------------------------------------------------------------------------
         private async void CreateAccount(object sender, RoutedEventArgs e)
         {
             ContentDialog dialog = new ContentDialog();
@@ -127,6 +131,7 @@ namespace REZ
             var result = await dialog.ShowAsync();
         }
 
+        //----------------------------------------------------------------------------
         public void AddAccount(object sender)
         {
             AddAccountModal aam = sender as AddAccountModal;
@@ -135,6 +140,7 @@ namespace REZ
             UpdateUser(AccountsList.SelectedAccount);
         }
 
+        //----------------------------------------------------------------------------
         public void UpdateUser(Account user)
         {
 
@@ -145,7 +151,6 @@ namespace REZ
             Greetings.Text = $"Ola, {AccountsList.SelectedAccount.Name}!";
             TitleGreetings.Text = $"Ola, {AccountsList.SelectedAccount.Name}!";
             ShoppingCart.DefineUser(User);
-
         }
     }
 }

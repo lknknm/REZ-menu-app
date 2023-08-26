@@ -109,6 +109,5 @@ namespace REZ
             }
             InputsValidation();
         }
-
     }
 }

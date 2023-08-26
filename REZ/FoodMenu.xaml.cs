@@ -31,17 +31,18 @@ namespace REZ
 
         public object ItemFeatureImage { get; private set; }
 
+        //----------------------------------------------------------------------------
         public FoodMenu()
         {
             this.InitializeComponent();
             Debug.WriteLine($"[FoodMenu] User: {User.Name}");
-
             var groupedProducts = MainPage.Products.GroupBy(p => p.SubCategory);
-            //Greetings.Text = $"Olá, {User.Name}!";
+            Greetings.Text = $"Olá, {User.Name}!";
             myListView.Source = groupedProducts;
             DataContext = this;
         }
 
+        //----------------------------------------------------------------------------
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             Button selectedButton = new Button() { Content = "Tudo" };
@@ -61,16 +62,9 @@ namespace REZ
                 FilterBySearch(searchText);
 
             }
-            //else
-            //{
-                  
-            //    dynamic parameters = e.Parameter as dynamic;
-            //    AutoSuggestBox autoSuggestBox = parameters.Sender as AutoSuggestBox;
-            //    AutoSuggestBoxTextChangedEventArgs args = parameters.Args as AutoSuggestBoxTextChangedEventArgs;
-            //    AutoSuggestBox_TextChanged(autoSuggestBox, args);
-            //}
         }
 
+        //----------------------------------------------------------------------------
         private async void AppBarButton_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -88,12 +82,14 @@ namespace REZ
             }
         }
 
+        //----------------------------------------------------------------------------
         private void ShoppingCart_ButtonClick(object sender, RoutedEventArgs e)
         {
 
             Cart.OpenShoppingModal(this, Cart, ToggleShoppingCartTip);
         }
 
+        //----------------------------------------------------------------------------
         private async void ToggleListTip(object sender, ItemClickEventArgs e)
         {
             ContentDialog dialog = new ContentDialog();
@@ -113,11 +109,13 @@ namespace REZ
             var result = await dialog.ShowAsync();
         }
 
+        //----------------------------------------------------------------------------
         private void MyListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             // Handle selection change event here if needed
         }
 
+        //----------------------------------------------------------------------------
         private void FilterByCategory_ButtonClick(object sender, RoutedEventArgs e)
         {
             Button clickedButton = (Button)sender;
@@ -126,6 +124,7 @@ namespace REZ
 
         }
 
+        //----------------------------------------------------------------------------
         private void FilterByCategory(Button clickedButton, string filter)
         {
             foreach (Button foodMenuButton in CategoriesButtonRow.Children)
@@ -135,7 +134,6 @@ namespace REZ
                     clickedButton = foodMenuButton;
                     break;
                 }
-
             };
 
             foreach (Button button in CategoriesButtonRow.Children)
@@ -154,12 +152,14 @@ namespace REZ
             myListView.Source = groupedProducts;
         }
 
+        //----------------------------------------------------------------------------
         private void SwitchUser_ButtonClick(object sender, RoutedEventArgs e)
         {
             Button button = sender as Button;
             AccountsList.SwitchAccounts(button.Content.ToString());
         }
 
+        //----------------------------------------------------------------------------
         private void AutoSuggestBox_TextChanged(AutoSuggestBox sender, AutoSuggestBoxTextChangedEventArgs args)
         {
             if (args.Reason == AutoSuggestionBoxTextChangeReason.UserInput) 
@@ -168,6 +168,7 @@ namespace REZ
             }
         }
 
+        //----------------------------------------------------------------------------
         private void FilterBySearch(string searchText)
         {
             Button button = new Button();
@@ -184,11 +185,13 @@ namespace REZ
             
         }
 
+        //----------------------------------------------------------------------------
         private void AccountInfoRedirect(object sender, RoutedEventArgs e)
         {
             Frame.Navigate(typeof(AccountInfo), null, new SlideNavigationTransitionInfo() { Effect = SlideNavigationTransitionEffect.FromRight });
         }
 
+        //----------------------------------------------------------------------------
         public async void SwitchAccount(object sender, RoutedEventArgs e)
         {
             ContentDialog dialog = new ContentDialog();
@@ -203,6 +206,7 @@ namespace REZ
             var result = await dialog.ShowAsync();
         }
 
+        //----------------------------------------------------------------------------
         private async void CreateAccount(object sender, RoutedEventArgs e)
         {
             ContentDialog dialog = new ContentDialog();
@@ -217,6 +221,7 @@ namespace REZ
             var result = await dialog.ShowAsync();
         }
 
+        //----------------------------------------------------------------------------
         public void AddAccount(object sender)
         {
             AddAccountModal aam = sender as AddAccountModal;
@@ -226,6 +231,7 @@ namespace REZ
             UpdateUser(AccountsList.SelectedAccount);
         }
 
+        //----------------------------------------------------------------------------
         public void UpdateUser(Account user)
         {
             User = AccountsList.SwitchAccounts(user.Name);

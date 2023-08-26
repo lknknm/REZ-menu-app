@@ -57,6 +57,8 @@ namespace REZ
             set { quantity = value; }
         }
 
+        
+        //----------------------------------------------------------------------------
         public Product(string name, string description, double price, string imageSource, string category)
         {
             Quantity = 0;
@@ -71,6 +73,7 @@ namespace REZ
 
         }
 
+        //----------------------------------------------------------------------------
         public object Clone()
         {
             return new Product(this.Name, this.Description, this.Price, this.imageSource, this.Category)
@@ -80,11 +83,13 @@ namespace REZ
             };
         }
 
+        //----------------------------------------------------------------------------
         public void RemoveItemFromCart()
         {
             Quantity = 0;
         }
 
+        //----------------------------------------------------------------------------
         public double DivideItemPrice(List<Account> accountsToDivide, int accountsQuantity)
         {
             double valueForEachAccount = this.Price/accountsQuantity;

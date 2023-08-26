@@ -39,12 +39,14 @@ namespace REZ
 
         private List<string> ProductsSuggestions;
 
+        //----------------------------------------------------------------------------
         public static List<Product> Products
         {
             get { return products; }
             set { products = value; }
         }
 
+        //----------------------------------------------------------------------------
         public MainPage()
         {
             this.InitializeComponent();
@@ -67,23 +69,27 @@ namespace REZ
             ProductsSuggestions = Products.Select(p => p.Name).ToList();
         }
 
+        //----------------------------------------------------------------------------
         private void OpenFoodMenu(object sender, RoutedEventArgs e)
         {
             Button button = sender as Button;
             Frame.Navigate(typeof(FoodMenu), button, new SlideNavigationTransitionInfo() { Effect = SlideNavigationTransitionEffect.FromRight });
         }
 
+        //----------------------------------------------------------------------------
         private void ShoppingCart_ButtonClick(object sender, RoutedEventArgs e)
         {
             shoppingCart.OpenShoppingModal(this, shoppingCart, ToggleThemeTeachingTip1);
         }
 
+        //----------------------------------------------------------------------------
         private void SwitchUser_ButtonClick(object sender, RoutedEventArgs e)
         {
             Button button = sender as Button;
             AccountsList.SwitchAccounts(button.Content.ToString());
         }
 
+        //----------------------------------------------------------------------------
         private void AutoSuggestBox_TextChanged(AutoSuggestBox sender, AutoSuggestBoxTextChangedEventArgs args)
         {
 
@@ -96,6 +102,7 @@ namespace REZ
             }
         }
 
+        //----------------------------------------------------------------------------
         private object GetSuggestions(string text)
         {
             List<string> result = null;
@@ -103,12 +110,14 @@ namespace REZ
             return result;
         }
 
+        //----------------------------------------------------------------------------
         private void AutoSuggestBox_SuggestionChosen(AutoSuggestBox sender, AutoSuggestBoxSuggestionChosenEventArgs args)
         {
             SearchBar.Text = args.SelectedItem.ToString();
             //Frame.Navigate(typeof(FoodMenu), args.SelectedItem.ToString(), new SlideNavigationTransitionInfo() { Effect = SlideNavigationTransitionEffect.FromRight });
         }
 
+        //----------------------------------------------------------------------------
         private void SearchInFoodMenu(object sender, KeyRoutedEventArgs e)
         {
             AutoSuggestBox autoSuggestBox = sender as AutoSuggestBox;
@@ -118,16 +127,19 @@ namespace REZ
             }
         }
 
+        //----------------------------------------------------------------------------
         private void SearchInFoodMenu(object sender, TappedRoutedEventArgs e)
         {
             Frame.Navigate(typeof(FoodMenu), SearchBar.Text, new SlideNavigationTransitionInfo() { Effect = SlideNavigationTransitionEffect.FromRight });
         }
 
+        //----------------------------------------------------------------------------
         private void AccountInfoRedirect(object sender, RoutedEventArgs e)
         {
             Frame.Navigate(typeof(AccountInfo), null, new SlideNavigationTransitionInfo() { Effect = SlideNavigationTransitionEffect.FromRight });
         }
 
+        //----------------------------------------------------------------------------
         private void AddNewAccount(object sender, RoutedEventArgs e)
         {
             if (Accounts.Count < 1)
@@ -136,6 +148,7 @@ namespace REZ
             }
         }
 
+        //----------------------------------------------------------------------------
         public async void SwitchAccount(object sender, RoutedEventArgs e)
         {
             ContentDialog dialog = new ContentDialog();
@@ -150,7 +163,7 @@ namespace REZ
             var result = await dialog.ShowAsync();
         }
 
-
+        //----------------------------------------------------------------------------
         private async void CreateAccount(object sender, RoutedEventArgs e)
         {
             ContentDialog dialog = new ContentDialog();
@@ -166,6 +179,7 @@ namespace REZ
             var result = await dialog.ShowAsync();
         }
 
+        //----------------------------------------------------------------------------
         public void AddAccount(object sender)
         {
             Account NewUser = null;
@@ -176,9 +190,9 @@ namespace REZ
             UpdateUser(AccountsList.SelectedAccount);
         }
 
+        //----------------------------------------------------------------------------
         public List<Account> UpdateUser(Account user)
         {
-            
             User = AccountsList.SwitchAccounts(user.Name);
             Debug.WriteLine($"[MainPage] Account changed to {User.Name}");
             CurrentUsername.Content = User.Name;

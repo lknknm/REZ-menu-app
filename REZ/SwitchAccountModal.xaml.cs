@@ -25,12 +25,13 @@ namespace REZ
     public sealed partial class SwitchAccountModal : Page
     {
         public List<Account> OpenAccounts = AccountsList.Accounts;
+
+        //----------------------------------------------------------------------------
         public SwitchAccountModal()
         {
             this.InitializeComponent();
             AccountOptions.ItemsSource = OpenAccounts;
             DataContext = this;
-
         }
     }
 }

@@ -24,6 +24,7 @@ namespace REZ
         public string ImageSource { get; }
         public static int ItemQuantity;
 
+        //----------------------------------------------------------------------------
         public ItemDialogModal(Product item)
         {
             this.InitializeComponent();
@@ -34,11 +35,13 @@ namespace REZ
             
         }
 
+        //----------------------------------------------------------------------------
         public static void SetItemQuantity(Product item, int newValue)
         {
             item.Quantity += newValue;
         }
 
+        //----------------------------------------------------------------------------
         private async void SetQuantityValue(object sender, NumberBoxValueChangedEventArgs e)
         {
             NumberBox Qty = (NumberBox)sender;
@@ -65,13 +68,7 @@ namespace REZ
             {
                 Debug.WriteLine("Quantity is null or not greater than 0."); // Log de condição não satisfeita
             }
-
             Debug.WriteLine("SetQuantityValue event handler completed."); // Log de conclusão
         }
-
-        
-
     }
-
-    
 }
