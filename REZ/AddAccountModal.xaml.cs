@@ -62,7 +62,7 @@ namespace REZ
         // Maybe later we can add the INotifyPropertyChanged interface.
         private void InputName_TextChange(object sender, TextChangedEventArgs e)
         {
-            Regex regex = new Regex("^[a-zA-Zа]{1,20}$");
+            Regex regex = new Regex("^[a-zA-ZÀ-ÿ]{1,20}$");
             if (String.IsNullOrEmpty(Name.Text))
             {
                 ErrorMessage_Name.Visibility = Visibility.Visible;
@@ -89,14 +89,26 @@ namespace REZ
         // Maybe later we can add the INotifyPropertyChanged interface.
         private void CPFNumber_TextChange(object sender, TextChangedEventArgs e)
         {
-            Regex regex = new Regex("^\\d{3}\\.\\d{3}\\.\\d{3}-\\d{2}$");
+
+            TextBox textBox = sender as TextBox;
+
+            string formattedCPF = FormatCPF(textBox.Text);
+
+            if (formattedCPF != textBox.Text)
+            {
+                textBox.Text = formattedCPF;
+                textBox.SelectionStart = formattedCPF.Length;
+            }
+
+            
+            Regex regex = new Regex("^\\d{3}\\.?\\d{3}\\.?\\d{3}-?\\d{2}$");
             if (String.IsNullOrEmpty(CPF.Text))
             {
                 ErrorMessage_CPF.Visibility = Visibility.Visible;
                 ErrorMessage_CPF.Text = CPF.Text + "Por favor digite um número de CPF.";
                 IsCPFInputValid = false;
             }
-            else if (!regex.IsMatch(CPF.Text))
+            else if (!ValidateCPF(CPF.Text))
             {
                 ErrorMessage_CPF.Visibility = Visibility.Visible;
                 ErrorMessage_CPF.Text = CPF.Text + " não é um CPF válido. Por favor insira um número de CPF.";
@@ -108,6 +120,76 @@ namespace REZ
                 IsCPFInputValid = true;
             }
             InputsValidation();
+
         }
+
+        private bool ValidateCPF(string cpf)
+        {
+            string digitsOnly = new string(cpf.Where(char.IsDigit).ToArray());
+
+            if (digitsOnly.Length != 11)
+            {
+                return false;
+            }
+
+            if (new string(digitsOnly[0], 11) == digitsOnly)
+            {
+                return false;
+            }
+
+            int sum = 0;
+            for (int i = 0; i < 9; i++)
+            {
+                sum += int.Parse(digitsOnly[i].ToString()) * (10 - i);
+            }
+            int firstDigit = (sum * 10) % 11;
+            if (firstDigit == 10)
+            {
+                firstDigit = 0;
+            }
+
+            sum = 0;
+            for (int i = 0; i < 10; i++)
+            {
+                sum += int.Parse(digitsOnly[i].ToString()) * (11 - i);
+            }
+            int secondDigit = (sum * 10) % 11;
+            if (secondDigit == 10)
+            {
+                secondDigit = 0;
+            }
+
+            return int.Parse(digitsOnly[9].ToString()) == firstDigit &&
+                   int.Parse(digitsOnly[10].ToString()) == secondDigit;
+        }
+
+        private string FormatCPF(string cpf)
+        {
+            
+            string digitsOnly = new string(cpf.Where(char.IsDigit).ToArray());
+
+            if (digitsOnly.Length > 11)
+            {
+                digitsOnly = digitsOnly.Substring(0, 11);
+            }
+            string formattedCPF = digitsOnly;
+
+            if (digitsOnly.Length >= 4)
+            {
+                formattedCPF = formattedCPF.Insert(3, ".");
+            }
+            if (digitsOnly.Length >= 7)
+            {
+                formattedCPF = formattedCPF.Insert(7, ".");
+            }
+            if (digitsOnly.Length >= 10)
+            {
+                formattedCPF = formattedCPF.Insert(11, "-");
+            }
+
+            return formattedCPF;
+        }
+
+
     }
 }
