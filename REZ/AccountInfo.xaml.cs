@@ -38,7 +38,7 @@ namespace REZ
             Debug.WriteLine($"[AccountInfo] Current User: {User.Name}");
             UpdatePrice(ProductsList);
 
-            myListView.ItemsSource = ProductsList;
+            myListView.ItemsSource = User.ItemsList;
         }
 
         //----------------------------------------------------------------------------
@@ -145,10 +145,12 @@ namespace REZ
         {
 
             User = AccountsList.SwitchAccounts(user);
-            UpdatePrice(user.ItemsList);
+            UpdatePrice(User.ItemsList);
+            myListView.ItemsSource = User.ItemsList;
+
             Debug.WriteLine($"[AccountInfo] Account changed to {User.Name}");
             CurrentUsername.Content = User.Name;
-            myListView.ItemsSource = User.ItemsList;
+            
             Greetings.Text = $"Ola, {AccountsList.SelectedAccount.Name}!";
             TitleGreetings.Text = $"Ola, {AccountsList.SelectedAccount.Name}!";
             ShoppingCart.DefineUser(User);
