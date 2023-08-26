@@ -1,4 +1,4 @@
-using Microsoft.UI.Xaml;
+﻿using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Controls.Primitives;
 using Microsoft.UI.Xaml.Data;
@@ -7,6 +7,7 @@ using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Navigation;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
@@ -15,51 +16,98 @@ using System.Text.RegularExpressions;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 
-// To learn more about WinUI, the WinUI project structure,
-// and more about our project templates, see: http://aka.ms/winui-project-info.
-
 namespace REZ
 {
     /// <summary>
-    /// An empty page that can be used on its own or navigated to within a Frame.
+    /// Modal Page for account creation with Input Validation
     /// </summary>
     public sealed partial class AddAccountModal : Page
     {
-        
+        private ContentDialog dialog;
+        public AddAccountModal() { }
 
-        public AddAccountModal()
+        private bool IsNameInputValid = false;
+        private bool IsCPFInputValid = false;
+
+        //----------------------------------------------------------------------------
+        public AddAccountModal(ContentDialog dialog)
         {
             this.InitializeComponent();
+            this.dialog = dialog;
+            InputsValidation();
+
             DataContext = this;
         }
 
+        //----------------------------------------------------------------------------
         public Account CreateNewAccount()
         {
-            
             Account newAccount = new Account(Name.Text, CPF.Text);
             return newAccount;
-
         }
 
-        private bool IsValidString(string str)
+        //----------------------------------------------------------------------------
+        private void InputsValidation()
         {
-            if (str.Length < 3 || !System.Text.RegularExpressions.Regex.IsMatch(str, @"^[a-zA-Z]+$"))
+            dialog.IsPrimaryButtonEnabled = false;
+            if (IsNameInputValid == true && IsCPFInputValid == true)
+                dialog.IsPrimaryButtonEnabled = true;
+            else
+                dialog.IsPrimaryButtonEnabled = false;
+        }
+
+        //----------------------------------------------------------------------------
+        // This is a workaround but it's good for now.
+        // At least we can have a small input validation and can improve upon this.
+        // Maybe later we can add the INotifyPropertyChanged interface.
+        private void InputName_TextChange(object sender, TextChangedEventArgs e)
+        {
+            Regex regex = new Regex("^[a-zA-Zа]{1,20}$");
+            if (String.IsNullOrEmpty(Name.Text))
             {
-                return false;
+                ErrorMessage_Name.Visibility = Visibility.Visible;
+                ErrorMessage_Name.Text = Name.Text + "Por favor digite um nome.";
+                IsNameInputValid = false;
             }
-            return true;
+            else if (!regex.IsMatch(Name.Text))
+            {
+                ErrorMessage_Name.Visibility = Visibility.Visible;
+                ErrorMessage_Name.Text = Name.Text + " não é um nome válido. Por favor insira outro nome.";
+                IsNameInputValid = false;
+            }
+            else 
+            { 
+                ErrorMessage_Name.Visibility = Visibility.Collapsed;
+                IsNameInputValid = true;
+            }
+            InputsValidation();
         }
 
-        private async void ShowAlert(string message)
+        //----------------------------------------------------------------------------
+        // This is a workaround but it's good for now.
+        // At least we can have a small input validation and can improve upon this.
+        // Maybe later we can add the INotifyPropertyChanged interface.
+        private void CPFNumber_TextChange(object sender, TextChangedEventArgs e)
         {
-            ContentDialog alert = new ContentDialog
+            Regex regex = new Regex("^\\d{3}\\.\\d{3}\\.\\d{3}-\\d{2}$");
+            if (String.IsNullOrEmpty(CPF.Text))
             {
-                Title = "Alerta",
-                Content = message,
-                CloseButtonText = "OK"
-            };
-
-            await alert.ShowAsync();
+                ErrorMessage_CPF.Visibility = Visibility.Visible;
+                ErrorMessage_CPF.Text = CPF.Text + "Por favor digite um número de CPF.";
+                IsCPFInputValid = false;
+            }
+            else if (!regex.IsMatch(CPF.Text))
+            {
+                ErrorMessage_CPF.Visibility = Visibility.Visible;
+                ErrorMessage_CPF.Text = CPF.Text + " não é um CPF válido. Por favor insira um número de CPF.";
+                IsCPFInputValid = false;
+            }
+            else 
+            { 
+                ErrorMessage_CPF.Visibility = Visibility.Collapsed;
+                IsCPFInputValid = true;
+            }
+            InputsValidation();
         }
 
     }

@@ -67,26 +67,11 @@ namespace REZ
             ProductsSuggestions = Products.Select(p => p.Name).ToList();
         }
 
-
-        //protected override void OnNavigatedTo(NavigationEventArgs e)
-        //{
-
-        //    if (e.Parameter is List<Account>)
-        //    {
-        //        Accounts = e.Parameter as List<Account>;
-
-        //    }
-
-        //}
-    
-
         private void OpenFoodMenu(object sender, RoutedEventArgs e)
         {
             Button button = sender as Button;
             Frame.Navigate(typeof(FoodMenu), button, new SlideNavigationTransitionInfo() { Effect = SlideNavigationTransitionEffect.FromRight });
         }
-
-
 
         private void ShoppingCart_ButtonClick(object sender, RoutedEventArgs e)
         {
@@ -149,8 +134,6 @@ namespace REZ
             {
                 CreateAccount(sender, e);
             }
-
-
         }
 
         public async void SwitchAccount(object sender, RoutedEventArgs e)
@@ -175,9 +158,10 @@ namespace REZ
             dialog.Style = Microsoft.UI.Xaml.Application.Current.Resources["DefaultContentDialogStyle"] as Style;
             dialog.Title = "Olá! Vamos começar?";
             dialog.PrimaryButtonText = "Adicionar usuário";
-            dialog.CloseButtonText = "Cancelar";
+            if (User != null)
+                dialog.CloseButtonText = "Cancelar";
             dialog.DefaultButton = ContentDialogButton.Primary;
-            dialog.Content = new AddAccountModal();
+            dialog.Content = new AddAccountModal(dialog);
             dialog.PrimaryButtonClick += delegate { AddAccount(dialog.Content); };
             var result = await dialog.ShowAsync();
         }
@@ -199,11 +183,12 @@ namespace REZ
             Debug.WriteLine($"[MainPage] Account changed to {User.Name}");
             CurrentUsername.Content = User.Name;
             ShoppingCart.DefineUser(User);
-            Greetings.Text = $"Ola, {User.Name}!";
+            Greetings.Text = $"Olá, {User.Name}!";
+            if (User != null)
+            {
+                CurrentUsername.Visibility = Visibility.Visible;
+            }
             return Accounts;
-
-
         }
-
     }
 }

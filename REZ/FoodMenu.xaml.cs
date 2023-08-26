@@ -37,6 +37,7 @@ namespace REZ
             Debug.WriteLine($"[FoodMenu] User: {User.Name}");
 
             var groupedProducts = MainPage.Products.GroupBy(p => p.SubCategory);
+            //Greetings.Text = $"Olá, {User.Name}!";
             myListView.Source = groupedProducts;
             DataContext = this;
         }
@@ -211,7 +212,7 @@ namespace REZ
             dialog.PrimaryButtonText = "Adicionar usuário";
             dialog.CloseButtonText = "Cancelar";
             dialog.DefaultButton = ContentDialogButton.Primary;
-            dialog.Content = new AddAccountModal();
+            dialog.Content = new AddAccountModal(dialog);
             dialog.PrimaryButtonClick += delegate { AddAccount(dialog.Content); };
             var result = await dialog.ShowAsync();
         }
@@ -227,15 +228,11 @@ namespace REZ
 
         public void UpdateUser(Account user)
         {
-
             User = AccountsList.SwitchAccounts(user.Name);
             CurrentUsername.Content = User.Name;
-            Greetings.Text = $"Ola, {User.Name}!";
+            Greetings.Text = $"Olá, {User.Name}!";
             ShoppingCart.DefineUser(User);
             //return Accounts;
-
         }
-
-        
     }
 }

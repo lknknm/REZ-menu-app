@@ -122,7 +122,7 @@ namespace REZ
             dialog.PrimaryButtonText = "Adicionar usuário";
             dialog.CloseButtonText = "Cancelar";
             dialog.DefaultButton = ContentDialogButton.Primary;
-            dialog.Content = new AddAccountModal();
+            dialog.Content = new AddAccountModal(dialog);
             dialog.PrimaryButtonClick += delegate { AddAccount(dialog.Content); };
             var result = await dialog.ShowAsync();
         }
