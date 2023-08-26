@@ -30,6 +30,7 @@ Additionally, since this project uses [WinUI 3.0](https://github.com/microsoft/m
 
 ### Documentation
 - To see how to build the project, please take a look at the developer documentation and follow the [Build Manual](./doc/dev/BUILD.md). 
+- To see how we style our code, please refer to the [Code Style Guide](./doc/dev/styleguide.md)
 - To follow the criteria and ideation development process, please check [Criteria Document](./doc/dev/CRITERIA_pt.md) and [UX_Criteria Document](./doc/dev/UX_CRITERIA_pt.md) in the [developer documentation](./doc/dev/) (Portuguese).
 
 # License
