@@ -27,6 +27,12 @@
                             <Run Text="Você está na Mesa" />
                             <Run Text="#1." />
                         </TextBlock>
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="0,0,0,12">
+                            <ProgressRing IsActive="True" Width="16" Height="16" Margin="0,0,0,0" VerticalAlignment="Center" VerticalContentAlignment="Center"/>
+                            <TextBlock VerticalAlignment="Center" Margin="12,0,0,0">
+                                <Run Text="Seu pedido está sendo preparado (30:00)" />
+                            </TextBlock>
+                        </StackPanel>
                         <StackPanel Orientation="Vertical">
                             <Button Click="AccountInfoRedirect" Width="328" CornerRadius="16" Margin="0,4,0,4">
                                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
@@ -65,6 +71,8 @@
                 <Button x:Name="ShoppingCartButton" Style="{StaticResource AccentButtonStyle}" Background="#84CC16" Click="ShoppingCart_ButtonClick">
                     <FontIcon Glyph="&#xE7BF;" Foreground="#F2F2F2"/>
                 </Button>
+                <InfoBadge  Background="#005FB8" Style="{StaticResource AttentionValueInfoBadgeStyle}" 
+                            Value="10" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="-12,0,0,0"/>
                 <TeachingTip x:Name="ToggleThemeTeachingTip1"
                     Target="{x:Bind ShoppingCartButton}"
                     Title="Your shopping cart is empty."
