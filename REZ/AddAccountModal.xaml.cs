@@ -68,8 +68,8 @@ namespace REZ
                 ErrorMessage_Name.Visibility = Visibility.Visible;
                 IsNameInputValid = false;
                 ErrorMessage_Name.Text = String.IsNullOrEmpty(Name.Text)
-                    ? $"Por favor digite um nome."
-                    : $"{Name.Text} - não e um nome valido. Por favor insira outro nome.";
+                    ? $"Please type in a name."
+                    : $"{Name.Text} - is not a valid name. Please insert another name.";
             }
             else
             {
@@ -97,7 +97,7 @@ namespace REZ
             if (String.IsNullOrEmpty(CPF.Text))
             {
                 ErrorMessage_CPF.Visibility = Visibility.Visible;
-                ErrorMessage_CPF.Text = CPF.Text + "Por favor digite um número de CPF.";
+                ErrorMessage_CPF.Text = CPF.Text + "Please type in another CPF number.";
                 IsCPFInputValid = false;
             }
             //else if (!ValidateCPF(CPF.Text))

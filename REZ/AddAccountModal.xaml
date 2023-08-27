@@ -10,11 +10,11 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <StackPanel     VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Background="White" MaxWidth="464">
-        <TextBlock      Text="Seja bem-vindo ao REZ! Com este aplicativo é possível gerenciar diferentes contas para realizar pedidos em sua mesa!"
+        <TextBlock      Text="Welcome to REZ! With this app it is possible to manage different accounts to order food directly from your table!"
                         TextWrapping="Wrap"
                         Margin="0,0,0,8"/>
 
-        <TextBox        x:Name="Name" Header="Qual o seu nome?*"  Margin="0,0,0,12"
+        <TextBox        x:Name="Name" Header="What is your name?*"  Margin="0,0,0,12"
                         IsSpellCheckEnabled="True"
                         TextChanged="InputName_TextChange" InputScope="PersonalFullName"
                         SelectionHighlightColor="Green" MinWidth="400" 
@@ -22,7 +22,7 @@
                         />
         <TextBlock      x:Name="ErrorMessage_Name" Text="Test" Foreground="#C42B1C" TextWrapping="Wrap" FontSize="12" Margin="0,-12,0,12" Visibility="Collapsed"/>
 
-        <TextBox        x:Name="CPF" Header="E o seu CPF?*"  Margin="0" 
+        <TextBox        x:Name="CPF" Header="What is your CPF? (Brazil)*"  Margin="0" 
                         TextChanged="CPFNumber_TextChange" InputScope="Number"
                         SelectionHighlightColor="Green" MinWidth="400" 
                         PlaceholderText="Ex.: 123.456.789-99"

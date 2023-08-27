@@ -24,14 +24,14 @@
                     <StackPanel>
                         <TextBlock x:Name="Greetings" Text="" Style="{ThemeResource BaseTextBlockStyle}" Margin="0" />
                         <TextBlock Margin="0,0,0,12">
-                            <Run Text="You are in table" />
+                            <Run Text="You are at the table" />
                             <Run Text="#1." />
                         </TextBlock>
                         <StackPanel Orientation="Vertical">
                             <Button Click="AccountInfoRedirect" Width="328" CornerRadius="16" Margin="0,4,0,4">
                                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
                                     <TextBlock FontFamily="Segoe Fluent Icons" Text="&#xEA37;" VerticalAlignment="Center"/>
-                                    <TextBlock Text="  See previous orders" VerticalAlignment="Center"/>
+                                    <TextBlock Text="  See order history" VerticalAlignment="Center"/>
                                 </StackPanel>
                             </Button>
                             <StackPanel Orientation="Horizontal" Margin="0,4,0,0">
@@ -98,7 +98,7 @@
                 <Button x:Name="Coffe" Margin="24" Click="OpenFoodMenu" Width="164" Height="164">
                     <StackPanel Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center">
                         <PersonPicture MaxWidth="128" ProfilePicture="https://images.pexels.com/photos/3491211/pexels-photo-3491211.jpeg"/>
-                        <TextBlock Margin="10" Text="Coffee and Desserts" FontWeight="Bold" TextAlignment="Center"/>
+                        <TextBlock Margin="10" Text="Cafeteria" FontWeight="Bold" TextAlignment="Center"/>
                     </StackPanel>
                 </Button>
             </StackPanel>

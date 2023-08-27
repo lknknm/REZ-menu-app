@@ -214,7 +214,8 @@ namespace REZ
             dialog.Style = Microsoft.UI.Xaml.Application.Current.Resources["DefaultContentDialogStyle"] as Style;
             dialog.Title = "Olá! Vamos começar?";
             dialog.PrimaryButtonText = "Adicionar usuário";
-            dialog.CloseButtonText = "Cancelar";
+            if (User != null)
+                dialog.CloseButtonText = "Cancelar";
             dialog.DefaultButton = ContentDialogButton.Primary;
             dialog.Content = new AddAccountModal(dialog);
             dialog.PrimaryButtonClick += delegate { AddAccount(dialog.Content); };

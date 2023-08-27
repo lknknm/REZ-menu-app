@@ -201,7 +201,7 @@
   },
   {
     "Name": "Croissant",
-    "Category": "Coffee and Desserts",
+    "Category": "Cafeteria",
     "SubCategory": "Sweets",
     "Description": "Our Croissant recipe with powdered sugar.",
     "Price": 8,
@@ -209,7 +209,7 @@
   },
   {
     "Name": "Cappuccino",
-    "Category": "Coffee and Desserts",
+    "Category": "Cafeteria",
     "SubCategory": "Coffees",
     "Description": "A creamy cappuccino topped with cocoa powder.",
     "Price": 9,
@@ -217,7 +217,7 @@
   },
   {
     "Name": "Espresso Coffee",
-    "Category": "Coffee and Desserts",
+    "Category": "Cafeteria",
     "SubCategory": "Coffees",
     "Description": "Traditional Espresso made with Orfeu coffee.",
     "Price": 5,
@@ -225,7 +225,7 @@
   },
   {
     "Name": "Chocolate Brownie",
-    "Category": "Coffee and Desserts",
+    "Category": "Cafeteria",
     "SubCategory": "Sweets",
     "Description": "Belgian chocolate brownie.",
     "Price": 8,
@@ -233,7 +233,7 @@
   },
   {
     "Name": "Strawberry Gelato",
-    "Category": "Coffee and Desserts",
+    "Category": "Cafeteria",
     "SubCategory": "Sweets",
     "Description": "Creamy strawberry-flavored gelato.",
     "Price": 10,
@@ -241,7 +241,7 @@
   },
   {
     "Name": "Chocolate Sorbet",
-    "Category": "Coffee and Desserts",
+    "Category": "Cafeteria",
     "SubCategory": "Sweets",
     "Description": "Classic dark chocolate sorbet.",
     "Price": 10,
@@ -249,7 +249,7 @@
   },
   {
     "Name": "Tiramisù",
-    "Category": "Coffee and Desserts",
+    "Category": "Cafeteria",
     "SubCategory": "Sweets",
     "Description": "A classic Italian dessert with layers of biscuits, coffee, and mascarpone.",
     "Price": 15,

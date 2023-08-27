@@ -15,7 +15,7 @@
                    Text=""
                    TextWrapping="Wrap"
                    Margin="12, 12, 12, 0"/>
-        <TextBlock Text="Take a look at your order" 
+        <TextBlock Text="Please review your order" 
                    TextWrapping="Wrap"
                    FontSize="20"
                    FontWeight="Bold"
@@ -63,9 +63,9 @@
               StrokeThickness="1"
               Margin="10"/>
 
-        <StackPanel Width="468" VerticalAlignment="Center" HorizontalAlignment="Center">
-            <TextBlock Text="Select the accounts to split this order with: " TextAlignment="Left" Foreground="Gray" />
-            <ComboBox x:Name="AccountsComboBox" Width="400" >    
+        <StackPanel Width="468" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,12,0,12">
+            <TextBlock Text="Select the accounts to split this order with: " TextAlignment="Left" Foreground="Gray" Margin="0,0,0,8" />
+            <ComboBox x:Name="AccountsComboBox" Width="468" >    
             <ComboBox.ItemTemplate>
                 <DataTemplate>
                         <CheckBox Content="{Binding Name}" Tag="{Binding CPF}" IsChecked="{Binding IsSelected}" IsEnabled="{Binding IsEnabled}" Checked="AddAccountToSplit" Unchecked="RemoveAccountToSplit" />

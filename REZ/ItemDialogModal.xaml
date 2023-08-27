@@ -34,7 +34,7 @@
             <TextBox    Header="Any comments?"  Margin="0,12,0,12"  AutomationProperties.Name="simple TextBox"
                         TextWrapping="Wrap" AcceptsReturn="True" IsSpellCheckEnabled="True"
                         SelectionHighlightColor="Green" MinWidth="400" 
-                        PlaceholderText="Ex.: No onios, mayonese on the side, etc..."/>
+                        PlaceholderText="Ex.: No onions, mayonnaise on the side, etc..."/>
             
             <NumberBox  x:Name="Qty"
                         Margin="0,12,0,12"

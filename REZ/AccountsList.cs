@@ -132,9 +132,10 @@ namespace REZ
             ContentDialog dialog = new ContentDialog();
             dialog.XamlRoot = page.XamlRoot;
             dialog.Style = Microsoft.UI.Xaml.Application.Current.Resources["DefaultContentDialogStyle"] as Style;
-            dialog.Title = "Hello, let's start!?";
+            dialog.Title = "Hello, let's get started!";
             dialog.PrimaryButtonText = "Add account";
-            dialog.CloseButtonText = "Cancel";
+            if (Accounts.Count > 0)
+                dialog.CloseButtonText = "Cancel";
             dialog.DefaultButton = ContentDialogButton.Primary;
             dialog.Content = new AddAccountModal(dialog);
             dialog.PrimaryButtonClick += delegate { AddAccount(dialog.Content, UpdateUser); };

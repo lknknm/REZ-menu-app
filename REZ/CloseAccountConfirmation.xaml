@@ -10,7 +10,7 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <StackPanel VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Background="White">
-        <TextBlock Text="Não se preocupe, você poderá voltar depois :)" TextWrapping="Wrap" />
+        <TextBlock Text="Don't worry, you can always come back later and create a new account :)" TextWrapping="Wrap" />
     </StackPanel>
 
 </Page>

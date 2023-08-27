@@ -13,15 +13,15 @@
     <Grid>
         <StackPanel VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,174,0,0" >
             <Image Source="./Assets/AccountClosed.png" Width="686"/>
-            <TextBlock Text="Tudo pronto! É uma pena ver você ir." FontWeight="SemiBold" FontSize="20" Margin="0,48,0,0" Width="486"/>
-            <TextBlock Text="Agora o garçom trará a maquininha para realizar o pagamento e fechar o seu pedido!" TextWrapping="Wrap" FontSize="16" Margin="0,8,0,0" Width="486" />
-            <TextBlock Text="Caso desejar, você também poderá realizar o pagamento via Pix através do QR code abaixo:" TextWrapping="Wrap" FontSize="16" Margin="0" Width="486" />
+            <TextBlock Text="All set! Sad to see you go." FontWeight="SemiBold" FontSize="20" Margin="0,48,0,0" Width="486"/>
+            <TextBlock Text="The waiter will bring your bill so you can choose which payment method works best for you." TextWrapping="Wrap" FontSize="16" Margin="0,8,0,0" Width="486" />
+            <TextBlock Text="If you want, you can also pay using the QR Code below:" TextWrapping="Wrap" FontSize="16" Margin="0" Width="486" />
 
             <Image x:Name="qrImage" Source="./Assets/DummyQRCode.png" Width="198" Height="198" Margin="16"/>
 
             <Button Click="BackToMainMenu" KeyUp="BackToMainMenu" Margin="4,0,0,0" Width="230" HorizontalAlignment="Center">
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-                    <TextBlock Text="Voltar ao Menu Principal" VerticalAlignment="Center"/>
+                    <TextBlock Text="Back to the Main Menu" VerticalAlignment="Center"/>
                 </StackPanel>
             </Button>
         </StackPanel>
