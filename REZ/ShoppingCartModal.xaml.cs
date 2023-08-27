@@ -35,7 +35,7 @@ namespace REZ
         {
 
             this.InitializeComponent();
-            Greetings.Text = $"Olá, {User.Name}!";
+            Greetings.Text = $"Hello, {User.Name}!";
             Dialog = dialog;
             var groupedProducts = OrderProducts.GroupBy(p => p.SubCategory);
             UpdatePrice(OrderProducts);

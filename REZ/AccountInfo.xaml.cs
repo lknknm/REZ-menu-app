@@ -46,12 +46,12 @@ namespace REZ
             
             double subtotal = SubtotalValueCalculator(productsList);
             string subtotalValue = subtotal.ToString("0.00");
-            double taxa = subtotal * 0.1;
-            string taxaServico = taxa.ToString("0.00");
-            double total = subtotal + taxa;
+            double tax = subtotal * 0.1;
+            string serviceTax = tax.ToString("0.00");
+            double total = subtotal + tax;
             string totalPrice = total.ToString("0.00");
             Subtotal.Text = $"R$ {subtotalValue}";
-            Taxa.Text = $"R$ {taxaServico}";
+            Tax.Text = $"R$ {serviceTax}";
             TotalPrice.Text = $"R$ {totalPrice}";
         }
 
@@ -70,8 +70,22 @@ namespace REZ
         }
 
         //----------------------------------------------------------------------------
-        public void ShowUserInformation(Account currentUser)
+        public void CreateAccount_ButtonClick(object sender, RoutedEventArgs e)
         {
+            AccountsList.OpenAddAccountModal(this, UpdateUser);
+
+        }
+
+        //----------------------------------------------------------------------------
+        public void SwitchUser_ButtonClick(object sender, RoutedEventArgs e)
+        {
+            AccountsList.OpenSwitchAccountModal(this, UpdateUser);
+
+        }
+
+        public void CloseAccount_ButtonClick(object sender, RoutedEventArgs e)
+        {
+            AccountsList.OpenCloseAccountModal(this, Frame);
 
         }
 
@@ -93,52 +107,13 @@ namespace REZ
             {
                 Frame.Navigate(typeof(AccountClosed), null, new SlideNavigationTransitionInfo() { Effect = SlideNavigationTransitionEffect.FromRight });
             }
+
         }
 
         //----------------------------------------------------------------------------
         private void BackToMainMenu(object sender, RoutedEventArgs e)
         {
-           Frame.Navigate(typeof(MainPage), null, new SlideNavigationTransitionInfo() { Effect = SlideNavigationTransitionEffect.FromLeft });
-        }
-
-        //----------------------------------------------------------------------------
-        public async void SwitchAccount(object sender, RoutedEventArgs e)
-        {
-            ContentDialog dialog = new ContentDialog();
-            dialog.XamlRoot = this.XamlRoot;
-            dialog.Style = Microsoft.UI.Xaml.Application.Current.Resources["DefaultContentDialogStyle"] as Style;
-            dialog.Title = "Olá! Vamos começar?";
-            dialog.PrimaryButtonText = "Trocar usuário";
-            dialog.CloseButtonText = "Cancelar";
-            dialog.DefaultButton = ContentDialogButton.Primary;
-            dialog.Content = new SwitchAccountModal();
-            //dialog.PrimaryButtonClick += delegate { AddAccount(dialog.Content); };
-            var result = await dialog.ShowAsync();
-
-        }
-
-        //----------------------------------------------------------------------------
-        private async void CreateAccount(object sender, RoutedEventArgs e)
-        {
-            ContentDialog dialog = new ContentDialog();
-            dialog.XamlRoot = this.XamlRoot;
-            dialog.Style = Microsoft.UI.Xaml.Application.Current.Resources["DefaultContentDialogStyle"] as Style;
-            dialog.Title = "Olá! Vamos começar?";
-            dialog.PrimaryButtonText = "Adicionar usuário";
-            dialog.CloseButtonText = "Cancelar";
-            dialog.DefaultButton = ContentDialogButton.Primary;
-            dialog.Content = new AddAccountModal(dialog);
-            dialog.PrimaryButtonClick += delegate { AddAccount(dialog.Content); };
-            var result = await dialog.ShowAsync();
-        }
-
-        //----------------------------------------------------------------------------
-        public void AddAccount(object sender)
-        {
-            AddAccountModal aam = sender as AddAccountModal;
-            Account NewUser = aam.CreateNewAccount();
-            List<Account> accountsList = AccountsList.AddNewAccount(NewUser);
-            UpdateUser(AccountsList.SelectedAccount);
+            Frame.Navigate(typeof(MainPage), null, new SlideNavigationTransitionInfo() { Effect = SlideNavigationTransitionEffect.FromLeft });
         }
 
         //----------------------------------------------------------------------------
@@ -152,15 +127,10 @@ namespace REZ
             Debug.WriteLine($"[AccountInfo] Account changed to {User.Name}");
             CurrentUsername.Content = User.Name;
             
-            Greetings.Text = $"Ola, {AccountsList.SelectedAccount.Name}!";
-            TitleGreetings.Text = $"Ola, {AccountsList.SelectedAccount.Name}!";
+            Greetings.Text = $"Hello, {AccountsList.SelectedAccount.Name}!";
+            TitleGreetings.Text = $"Hello, {AccountsList.SelectedAccount.Name}!";
             ShoppingCart.DefineUser(User);
         }
 
-        public void SwitchUser_ButtonClick(object sender, RoutedEventArgs e)
-        {
-            AccountsList.OpenSwitchAccountModal(this, UpdateUser);
-
-        }
     }
 }

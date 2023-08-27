@@ -81,6 +81,13 @@ namespace REZ
         }
 
         //----------------------------------------------------------------------------
+        public void CreateAccount_ButtonClick(object sender, RoutedEventArgs e)
+        {
+            AccountsList.OpenAddAccountModal(this, UpdateUser);
+
+        }
+
+        //----------------------------------------------------------------------------
         public void SwitchUser_ButtonClick(object sender, RoutedEventArgs e)
         {
             AccountsList.OpenSwitchAccountModal(this, UpdateUser);
@@ -142,50 +149,8 @@ namespace REZ
         {
             if (Accounts.Count < 1)
             {
-                CreateAccount(sender, e);
+                AccountsList.OpenAddAccountModal(this, UpdateUser);
             }
-        }
-
-        //----------------------------------------------------------------------------
-        public async void SwitchAccount(object sender, RoutedEventArgs e)
-        {
-            ContentDialog dialog = new ContentDialog();
-            dialog.XamlRoot = this.XamlRoot;
-            dialog.Style = Microsoft.UI.Xaml.Application.Current.Resources["DefaultContentDialogStyle"] as Style;
-            dialog.Title = "Olá! Vamos começar?";
-            dialog.PrimaryButtonText = "Trocar usuário";
-            dialog.CloseButtonText = "Cancelar";
-            dialog.DefaultButton = ContentDialogButton.Primary;
-            dialog.Content = new SwitchAccountModal();
-            //dialog.PrimaryButtonClick += delegate { AddAccount(dialog.Content); };
-            var result = await dialog.ShowAsync();
-        }
-
-        //----------------------------------------------------------------------------
-        private async void CreateAccount(object sender, RoutedEventArgs e)
-        {
-            ContentDialog dialog = new ContentDialog();
-            dialog.XamlRoot = this.XamlRoot;
-            dialog.Style = Microsoft.UI.Xaml.Application.Current.Resources["DefaultContentDialogStyle"] as Style;
-            dialog.Title = "Olá! Vamos começar?";
-            dialog.PrimaryButtonText = "Adicionar usuário";
-            if (User != null)
-                dialog.CloseButtonText = "Cancelar";
-            dialog.DefaultButton = ContentDialogButton.Primary;
-            dialog.Content = new AddAccountModal(dialog);
-            dialog.PrimaryButtonClick += delegate { AddAccount(dialog.Content); };
-            var result = await dialog.ShowAsync();
-        }
-
-        //----------------------------------------------------------------------------
-        public void AddAccount(object sender)
-        {
-            Account NewUser = null;
-            AddAccountModal aam = sender as AddAccountModal;
-            NewUser = aam.CreateNewAccount();
-            
-            List<Account> accountsList = AccountsList.AddNewAccount(NewUser);
-            UpdateUser(AccountsList.SelectedAccount);
         }
 
         //----------------------------------------------------------------------------
@@ -195,12 +160,12 @@ namespace REZ
             Debug.WriteLine($"[MainPage] Account changed to {User.Name}");
             CurrentUsername.Content = User.Name;
             ShoppingCart.DefineUser(User);
-            Greetings.Text = $"Olá, {User.Name}!";
+            Greetings.Text = $"Hello, {User.Name}!";
             if (User != null)
             {
                 CurrentUsername.Visibility = Visibility.Visible;
             }
-            //return Accounts;
+
         }
     }
 }

@@ -25,7 +25,7 @@ namespace REZ
 {
     public sealed partial class FoodMenu : Page
     {
-        private string filter = "Tudo";
+        private string filter = "All";
         private Account User = AccountsList.SelectedAccount;
         public ShoppingCart Cart = AccountsList.Cart;
 
@@ -45,13 +45,21 @@ namespace REZ
         //----------------------------------------------------------------------------
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            Button selectedButton = new Button() { Content = "Tudo" };
-            if (e.Parameter is Button)
+            Button selectedButton = new Button() { Content = "All" };  
+            if (e.Parameter is Button newButton)
             {
-                Button button = e.Parameter as Button;
-                filter = button.Name;
-
+                selectedButton = e.Parameter as Button;if (newButton.Content is StackPanel stackPanel)
+                {
+                    if (stackPanel.Children.OfType<TextBlock>().FirstOrDefault() is TextBlock textBlock)
+                    {
+                        filter = textBlock.Text;
+                        // Agora você pode usar a variável 'text' que contém o texto do TextBlock
+                    }
+                }
                 
+                //filter = button.Name;
+
+
 
                 FilterByCategory(selectedButton, filter);
             }
@@ -98,11 +106,11 @@ namespace REZ
             dialog.XamlRoot = this.XamlRoot;
             dialog.Style = Application.Current.Resources["DefaultContentDialogStyle"] as Style;
             dialog.Title = item.Name;
-            dialog.PrimaryButtonText = "Adicionar";
+            dialog.PrimaryButtonText = "Add";
             dialog.PrimaryButtonClick += delegate { ItemDialogModal.SetItemQuantity(item, ItemDialogModal.ItemQuantity); };
             dialog.PrimaryButtonClick += delegate { Cart.AddItem(item); };
             
-            dialog.CloseButtonText = "Cancelar";
+            dialog.CloseButtonText = "Cancel";
             dialog.DefaultButton = ContentDialogButton.Primary;
             dialog.Content = new ItemDialogModal(item);
 
@@ -144,7 +152,7 @@ namespace REZ
             clickedButton.Style = (Style)Resources["AccentButtonStyle"];
 
             List<Product> products = MainPage.Products;
-            if (filter != "Tudo")
+            if (filter != "All")
             {
                 products = products.FindAll(p => p.Category == filter);
             }
@@ -165,7 +173,7 @@ namespace REZ
         private void FilterBySearch(string searchText)
         {
             Button button = new Button();
-            FilterByCategory(button, "Tudo");
+            FilterByCategory(button, "All");
 
             List<Product> products = MainPage.Products;
             if (searchText.Length > 0)
@@ -185,13 +193,18 @@ namespace REZ
         }
 
         //----------------------------------------------------------------------------
-        
+        public void CreateAccount_ButtonClick(object sender, RoutedEventArgs e)
+        {
+            AccountsList.OpenAddAccountModal(this, UpdateUser);
+
+        }
+
+        //----------------------------------------------------------------------------
         public void SwitchUser_ButtonClick(object sender, RoutedEventArgs e)
         {
             AccountsList.OpenSwitchAccountModal(this, UpdateUser);
 
         }
-
 
         //----------------------------------------------------------------------------
         private async void CreateAccount(object sender, RoutedEventArgs e)
@@ -223,7 +236,7 @@ namespace REZ
         {
             User = AccountsList.SwitchAccounts(user);
             CurrentUsername.Content = User.Name;
-            Greetings.Text = $"Olá, {User.Name}!";
+            Greetings.Text = $"Hello, {User.Name}!";
             ShoppingCart.DefineUser(User);
         }
 

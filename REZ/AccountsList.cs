@@ -1,5 +1,6 @@
 ﻿using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Media.Animation;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -45,7 +46,7 @@ namespace REZ
         {
 
             Accounts.Add(account);
-            Debug.WriteLine($"Contas ativas: {Accounts.Count}");
+            Debug.WriteLine($"Active accounts: {Accounts.Count}");
             return Accounts;
         }
 
@@ -115,9 +116,9 @@ namespace REZ
             ContentDialog dialog = new ContentDialog();
             dialog.XamlRoot = page.XamlRoot;
             dialog.Style = Microsoft.UI.Xaml.Application.Current.Resources["DefaultContentDialogStyle"] as Style;
-            dialog.Title = "Olá! Vamos começar?";
-            dialog.PrimaryButtonText = "Trocar usuário";
-            dialog.CloseButtonText = "Cancelar";
+            dialog.Title = "Select an account.";
+            dialog.PrimaryButtonText = "Switch account";
+            dialog.CloseButtonText = "Cancel";
             dialog.DefaultButton = ContentDialogButton.Primary;
             dialog.Content = new SwitchAccountModal();
             dialog.PrimaryButtonClick += delegate { UpdateUser(SwitchAccountModal.UserToChange); };
@@ -125,6 +126,49 @@ namespace REZ
 
         }
 
+        //----------------------------------------------------------------------------
+        public static async void OpenAddAccountModal(Page page, Action<Account> UpdateUser)
+        {
+            ContentDialog dialog = new ContentDialog();
+            dialog.XamlRoot = page.XamlRoot;
+            dialog.Style = Microsoft.UI.Xaml.Application.Current.Resources["DefaultContentDialogStyle"] as Style;
+            dialog.Title = "Hello, let's start!?";
+            dialog.PrimaryButtonText = "Add account";
+            dialog.CloseButtonText = "Cancel";
+            dialog.DefaultButton = ContentDialogButton.Primary;
+            dialog.Content = new AddAccountModal(dialog);
+            dialog.PrimaryButtonClick += delegate { AddAccount(dialog.Content, UpdateUser); };
+            var result = await dialog.ShowAsync();
+        }
+
+        public static void AddAccount(object sender, Action<Account> UpdateUser)
+        {
+            AddAccountModal aam = sender as AddAccountModal;
+            Account NewUser = aam.CreateNewAccount();
+            List<Account> accountsList = AddNewAccount(NewUser);
+            UpdateUser(AccountsList.SelectedAccount);
+        }
+
+        //----------------------------------------------------------------------------
+        public static async void OpenCloseAccountModal(Page page, Frame frame)
+        {
+            ContentDialog CloseAccountDialog = new ContentDialog();
+            CloseAccountDialog.XamlRoot = page.XamlRoot;
+            CloseAccountDialog.Style = Microsoft.UI.Xaml.Application.Current.Resources["DefaultContentDialogStyle"] as Style;
+            CloseAccountDialog.Title = "Are you sure you want to close this account?";
+            CloseAccountDialog.PrimaryButtonText = "Yes, close account";
+            CloseAccountDialog.PrimaryButtonClick += delegate { RemoveAccount(SelectedAccount); };
+            CloseAccountDialog.CloseButtonText = "Cancel";
+            CloseAccountDialog.DefaultButton = ContentDialogButton.Primary;
+            CloseAccountDialog.Content = new CloseAccountConfirmation();
+            var result = await CloseAccountDialog.ShowAsync();
+
+            if (result == ContentDialogResult.Primary)
+            {
+                frame.Navigate(typeof(AccountClosed), null, new SlideNavigationTransitionInfo() { Effect = SlideNavigationTransitionEffect.FromRight });
+            }
+
+        }
 
     }
 }

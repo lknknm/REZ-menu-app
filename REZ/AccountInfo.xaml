@@ -31,7 +31,7 @@
                                 </StackPanel>
                             </Button>
                             <StackPanel Orientation="Horizontal" Margin="0,4,0,0">
-                                <Button Click="CreateAccount" Width="160" CornerRadius="16" Style="{StaticResource AccentButtonStyle}" HorizontalContentAlignment="Center" Margin="0,0,4,0">
+                                <Button Click="CreateAccount_ButtonClick" Width="160" CornerRadius="16" Style="{StaticResource AccentButtonStyle}" HorizontalContentAlignment="Center" Margin="0,0,4,0">
                                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
                                         <TextBlock FontFamily="Segoe Fluent Icons" Text="&#xECC8;" VerticalAlignment="Center"/>
                                         <TextBlock Text="  Adicionar conta" VerticalAlignment="Center"/>
@@ -60,9 +60,9 @@
                            Text=""
                            TextWrapping="Wrap"
                            FontSize="20"
-                           Margin="12, 12, 12, 0" /> 
+                           Margin="12, 12, 12, 0" />
 
-                <TextBlock Text="Revise seu histórico de pedidos" 
+                <TextBlock Text="This is your order history" 
                            TextWrapping="Wrap"
                            FontSize="20"
                            FontWeight="Bold"
@@ -85,7 +85,7 @@
                                         <Run Text="{Binding Name, Mode=TwoWay}"></Run>
                                     </TextBlock>
                                     <TextBlock FontSize="12">
-                                        <Run Text="Número do pedido: "/>
+                                        <Run Text="Order number: "/>
                                         <Run Text="{Binding OrderId}"/>
                                     </TextBlock>
                                     <TextBlock Text="{Binding FinalPrice}" FontSize="12"/>
@@ -107,8 +107,8 @@
                 </RelativePanel>
 
                 <RelativePanel Width="468" VerticalAlignment="Center" HorizontalAlignment="Center">
-                    <TextBlock Text="Taxa de serviço (10%):" TextAlignment="Left" Foreground="Gray"/>
-                    <TextBlock x:Name="Taxa" TextWrapping="Wrap" TextAlignment="Right" RelativePanel.AlignRightWithPanel="True" Foreground="Gray"/>
+                    <TextBlock Text="Service taxes (10%):" TextAlignment="Left" Foreground="Gray"/>
+                    <TextBlock x:Name="Tax" TextWrapping="Wrap" TextAlignment="Right" RelativePanel.AlignRightWithPanel="True" Foreground="Gray"/>
                 </RelativePanel>
 
                 <RelativePanel Width="468" VerticalAlignment="Center" HorizontalAlignment="Center">
@@ -118,15 +118,15 @@
 
 
                 <StackPanel Orientation="Horizontal" Margin="0,24,0,0" Width="468">
-                    <Button Click="CloseAccount" Style="{StaticResource AccentButtonStyle}" Width="230" HorizontalContentAlignment="Center" VerticalAlignment="Center" Margin="0,0,4,0">
+                    <Button Click="CloseAccount_ButtonClick" Style="{StaticResource AccentButtonStyle}" Width="230" HorizontalContentAlignment="Center" VerticalAlignment="Center" Margin="0,0,4,0">
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
                             <TextBlock FontFamily="Segoe Fluent Icons" Text="&#xF3B1;" VerticalAlignment="Center"/>
-                            <TextBlock Text="  Fechar conta" VerticalAlignment="Center"/>
+                            <TextBlock Text="  Close Account" VerticalAlignment="Center"/>
                         </StackPanel>
                     </Button>
                     <Button Click="BackToMainMenu" Margin="4,0,0,0" Width="230">
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-                            <TextBlock Text="Voltar ao Menu Principal" VerticalAlignment="Center"/>
+                            <TextBlock Text="Back to Main Menu" VerticalAlignment="Center"/>
                         </StackPanel>
                     </Button>
                 </StackPanel>

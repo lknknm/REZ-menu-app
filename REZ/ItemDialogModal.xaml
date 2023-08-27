@@ -31,10 +31,10 @@
                         TextWrapping="Wrap"
                         FontWeight="SemiBold"/>
             
-            <TextBox    Header="Algum comentário?"  Margin="0,12,0,12"  AutomationProperties.Name="simple TextBox"
+            <TextBox    Header="Any comments?"  Margin="0,12,0,12"  AutomationProperties.Name="simple TextBox"
                         TextWrapping="Wrap" AcceptsReturn="True" IsSpellCheckEnabled="True"
                         SelectionHighlightColor="Green" MinWidth="400" 
-                        PlaceholderText="Ex.: Tirar a cebola, maionese à parte, etc..."/>
+                        PlaceholderText="Ex.: No onios, mayonese on the side, etc..."/>
             
             <NumberBox  x:Name="Qty"
                         Margin="0,12,0,12"

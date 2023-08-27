@@ -24,27 +24,27 @@
                     <StackPanel>
                         <TextBlock x:Name="Greetings" Text="" Style="{ThemeResource BaseTextBlockStyle}" Margin="0" />
                         <TextBlock Margin="0,0,0,12">
-                            <Run Text="Você está na Mesa" />
+                            <Run Text="You are in table" />
                             <Run Text="#1." />
                         </TextBlock>
                         <StackPanel Orientation="Vertical">
                             <Button Click="AccountInfoRedirect" Width="328" CornerRadius="16" Margin="0,4,0,4">
                                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
                                     <TextBlock FontFamily="Segoe Fluent Icons" Text="&#xEA37;" VerticalAlignment="Center"/>
-                                    <TextBlock Text="  Ver pedidos" VerticalAlignment="Center"/>
+                                    <TextBlock Text="  See previous orders" VerticalAlignment="Center"/>
                                 </StackPanel>
                             </Button>
                             <StackPanel Orientation="Horizontal" Margin="0,4,0,0">
-                                <Button Click="CreateAccount" Width="160" CornerRadius="16" Style="{StaticResource AccentButtonStyle}" HorizontalContentAlignment="Center" Margin="0,0,4,0">
+                                <Button Click="CreateAccount_ButtonClick" Width="160" CornerRadius="16" Style="{StaticResource AccentButtonStyle}" HorizontalContentAlignment="Center" Margin="0,0,4,0">
                                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
                                         <TextBlock FontFamily="Segoe Fluent Icons" Text="&#xECC8;" VerticalAlignment="Center"/>
-                                        <TextBlock Text="  Adicionar conta" VerticalAlignment="Center"/>
+                                        <TextBlock Text="  Add account" VerticalAlignment="Center"/>
                                     </StackPanel>
                                 </Button>
                                 <Button Click="SwitchUser_ButtonClick" Width="160" CornerRadius="16" Margin="4,0,0,0">
                                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
                                         <TextBlock FontFamily="Segoe Fluent Icons" Text="&#xE748;" VerticalAlignment="Center"/>
-                                        <TextBlock Text="  Trocar conta" VerticalAlignment="Center"/>
+                                        <TextBlock Text="  Switch account" VerticalAlignment="Center"/>
                                     </StackPanel>
                                 </Button>
                             </StackPanel>
@@ -56,7 +56,7 @@
 
         <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,16,0,0">
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0">
-                <AutoSuggestBox x:Name="SearchBar" PlaceholderText="Busque um item em nosso cardápio" Width="600" Margin="0,0,4,0" 
+                <AutoSuggestBox x:Name="SearchBar" PlaceholderText="Search for an item in our menu" Width="600" Margin="0,0,4,0" 
                                 TextChanged="AutoSuggestBox_TextChanged" SuggestionChosen="AutoSuggestBox_SuggestionChosen" KeyUp="SearchInFoodMenu">
                     <AutoSuggestBox.QueryIcon>
                         <SymbolIcon Symbol="Find" Tapped="SearchInFoodMenu" />
@@ -83,22 +83,22 @@
             </StackPanel>
 
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="0,144,0,0">
-                <Button x:Name="Bebidas" Margin="24" Click="OpenFoodMenu" Width="164" Height="164">
+                <Button x:Name="Drinks" Margin="24" Click="OpenFoodMenu" Width="164" Height="164">
                     <StackPanel Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center">
                         <PersonPicture MaxWidth="128" ProfilePicture="Assets/Drinks_300px_w.jpg"/>
-                        <TextBlock Margin="10" Text="Bebidas" FontWeight="Bold" TextAlignment="Center"/>
+                        <TextBlock Margin="10" Text="Drinks" FontWeight="Bold" TextAlignment="Center"/>
                     </StackPanel>
                 </Button>
-                <Button x:Name="Comida" Margin="24" Click="OpenFoodMenu" Width="164" Height="164">
+                <Button x:Name="Food" Margin="24" Click="OpenFoodMenu" Width="164" Height="164">
                     <StackPanel Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center">
                         <PersonPicture MaxWidth="128" ProfilePicture="https://images.pexels.com/photos/2297961/pexels-photo-2297961.jpeg"/>
-                        <TextBlock Margin="10" Text="Comida" FontWeight="Bold" TextAlignment="Center"/>
+                        <TextBlock Margin="10" Text="Food" FontWeight="Bold" TextAlignment="Center"/>
                     </StackPanel>
                 </Button>
-                <Button x:Name="Cafeteria" Margin="24" Click="OpenFoodMenu" Width="164" Height="164">
+                <Button x:Name="Coffe" Margin="24" Click="OpenFoodMenu" Width="164" Height="164">
                     <StackPanel Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center">
                         <PersonPicture MaxWidth="128" ProfilePicture="https://images.pexels.com/photos/3491211/pexels-photo-3491211.jpeg"/>
-                        <TextBlock Margin="10" Text="Cafeteria" FontWeight="Bold" TextAlignment="Center"/>
+                        <TextBlock Margin="10" Text="Coffee and Desserts" FontWeight="Bold" TextAlignment="Center"/>
                     </StackPanel>
                 </Button>
             </StackPanel>
