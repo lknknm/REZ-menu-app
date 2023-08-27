@@ -39,8 +39,34 @@ namespace REZ
             var groupedProducts = OrderProducts.GroupBy(p => p.SubCategory);
             UpdatePrice(OrderProducts);
             myListView.Source = groupedProducts;
-            AccountComboBox.ItemsSource = CreatedAccounts;
+            AccountsComboBox.ItemsSource = CreatedAccounts;
             DataContext = this;
+        }
+
+        private void CountryComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            List<Account> selectedAccounts = new List<Account>();
+
+            
+        }
+
+        private void SplitAccount_Updater(object sender, SelectionChangedEventArgs e)
+        {
+            Debug.WriteLine($"Created accounts: {CreatedAccounts.Count}");
+            foreach (var account in CreatedAccounts)
+            {
+                if (account.IsSelected) 
+                {
+                    ShoppingCart.AddSplitAccount(account);
+                }
+                else
+                {
+                    ShoppingCart.RemoveSplitAccount(account);
+                }
+
+            }
+            
+            
         }
 
         //----------------------------------------------------------------------------

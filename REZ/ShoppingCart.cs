@@ -91,14 +91,14 @@ namespace REZ
         }
 
         //----------------------------------------------------------------------------
-        public List<Account> SelectAccount(Account account)
+        public static List<Account> AddSplitAccount(Account account)
         {
             AccountsToDivide.Add(account);
             return AccountsToDivide;
         }
 
         //----------------------------------------------------------------------------
-        public List<Account> UnselectAccount(Account account)
+        public static List<Account> RemoveSplitAccount(Account account)
         {
             AccountsToDivide.Remove(account);
             return AccountsToDivide;
