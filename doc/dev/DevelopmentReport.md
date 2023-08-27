@@ -61,5 +61,26 @@ After tracking each issue and organizing them by `Priority`, we add them to the 
 
 ### Hosting
 ### User Experience
+
+#### Project ideation
+To be able to better understand User Experience decisions yet to be made for the application, we took a step back and evaluated the project criteria we needed for it to be functional and visually clean/engaging, as well as possible problems we could come accross during the development process.
+
+We started thinking about how the user flow would look like, how orders would be took and handled and what visual queues would be displayed.
+
+During this initial step, there was no programming involved, only the general ideas and concepts we would like to implement.
+For this, we then developed the [Ideation Criteria (Portuguese)](/doc/dev/CRITERIA_pt.md) and [User Experience Criteria (Portuguese)](./UX_CRITERIA_pt.md).
+
+
+#### Figma
+
+After getting the ideation phase down, we then moved on to templating the project using [Figma](https://www.figma.com/) for UX/UI decisions and Front-End integration.
+You can see the Figma Project here: [REZ-Figma](https://www.figma.com/file/q4bRKQlg10WCewYgHmsdBE/REZ-menu-app?type=design&node-id=5-2&mode=design&t=4dnfC1gUSZ6n4NAY-0).
+Additionally, since this project uses [WinUI 3.0](https://github.com/microsoft/microsoft-ui-xaml) as user interface layer, you can also access their Figma component library [here](https://www.figma.com/file/yCWdGgBeP6mkBBlS2IDaHG/Windows-UI-3-(Community)?type=design&node-id=238-0&mode=design&t=wUs0QsJ21QrmX9sj-0).
 ### User Interface Programming
+We decided to implement [WinUI 3.0](https://github.com/microsoft/microsoft-ui-xaml) as User Interface Layer due to its easiness of use and quick results for a clean, engaging and gorgeous UI. Since the due dates of the project are short, we decided to use its components library to speed up the process of developing a good looking UI that could engage the user, as well as handle animation, navigation flow, pages and other features. 
+
+To understand WinUI components, behaviors and code, we used the [WinUI 3.0 Gallery](https://github.com/microsoft/WinUI-Gallery) app to navigate throught the whole library. By this, we could get snippets of code with live examples and translate them to the results we wanted to achieve in our Figma Template.
+
+The overall process was straightforward with few difficulties to understand a bit more about the WinUI behavior and XAML/Code-behind intricacies. Their Figma components library is very close to what they offer inside the WinUI Gallery application, so the "translation" between the two was seamless, besides some few limitations regarding XAML development using their current libraries.
+
 ### Safe Programming
