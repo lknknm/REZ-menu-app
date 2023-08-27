@@ -84,3 +84,14 @@ To understand WinUI components, behaviors and code, we used the [WinUI 3.0 Galle
 The overall process was straightforward with few difficulties to understand a bit more about the WinUI behavior and XAML/Code-behind intricacies. Their Figma components library is very close to what they offer inside the WinUI Gallery application, so the "translation" between the two was seamless, besides some few limitations regarding XAML development using their current libraries.
 
 ### Safe Programming
+To avoid Injection Attacks through inputs of this application, we implemented a basic input validation layer to forms. This layer of protection can prevent SQL injection attacks to a Database connected to the ViewModel.
+
+Unexpected inputs will block the `Send` buttons as well as not be accepted by the Back-End. It is important to mention, though, that if a more robust Back-End/Model is to be implemented, potentially malitious requests should also be rejected by the Back-End in `Model` code.
+
+
+![Alt text](./assets/sql-injection-1.png)
+![Alt text](./assets/sql-injection-2.png)
+
+An input validation example like the above can be seen in the following snippet of code in [AddAccountModal.xaml.cs](https://github.com/lknknm/REZ-menu-app/blob/901ef79076684f79024a613984b2fadb457f3ea4/REZ/AddAccountModal.xaml.cs#L42-L190).
+
+From the application standpoint, it is also worth mentioning that applications built with C#/WinUI will specifically protect the users and clients against Heap/Buffer overflow attacks (both intentional and unintentional) due to a certain degree of memory safety present in the language. Since many higher-level languages like C#, Python and Java are designed to be memory safe and tested to that extent, this project makes use of C#'s handling of memory safety.
