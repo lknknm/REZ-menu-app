@@ -15,6 +15,7 @@ using Windows.Foundation.Collections;
 using Newtonsoft.Json;
 using static System.Net.WebRequestMethods;
 using System.Diagnostics;
+using System.Security.Principal;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -43,30 +44,35 @@ namespace REZ
             DataContext = this;
         }
 
-        private void CountryComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        //----------------------------------------------------------------------------
+        private void AddAccountToSplit(object sender, RoutedEventArgs e)
         {
-            List<Account> selectedAccounts = new List<Account>();
-
+            CheckBox checkBox = sender as CheckBox;
+            
+            foreach (Account account in CreatedAccounts)
+            {
+                if (account.Name == (string)checkBox.Content && account.CPF == (string)checkBox.Tag && account.IsEnabled == true)
+                {
+                    AccountsToDivide = ShoppingCart.AddSplitAccount(account);
+                    break;
+                }
+            }
             
         }
 
-        private void SplitAccount_Updater(object sender, SelectionChangedEventArgs e)
+        //----------------------------------------------------------------------------
+        private void RemoveAccountToSplit(object sender, RoutedEventArgs e)
         {
-            Debug.WriteLine($"Created accounts: {CreatedAccounts.Count}");
-            foreach (var account in CreatedAccounts)
-            {
-                if (account.IsSelected) 
-                {
-                    ShoppingCart.AddSplitAccount(account);
-                }
-                else
-                {
-                    ShoppingCart.RemoveSplitAccount(account);
-                }
+            CheckBox comboBox = sender as CheckBox;
 
+            foreach (Account account in ShoppingCart.AccountsToDivide)
+            {
+                if (account.Name == (string)comboBox.Content && account.CPF == (string)comboBox.Tag)
+                {
+                    AccountsToDivide = ShoppingCart.AddSplitAccount(account);
+                    break;
+                }
             }
-            
-            
         }
 
         //----------------------------------------------------------------------------

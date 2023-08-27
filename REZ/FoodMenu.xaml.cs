@@ -193,8 +193,8 @@ namespace REZ
         }
 
 
-            //----------------------------------------------------------------------------
-            private async void CreateAccount(object sender, RoutedEventArgs e)
+        //----------------------------------------------------------------------------
+        private async void CreateAccount(object sender, RoutedEventArgs e)
         {
             ContentDialog dialog = new ContentDialog();
             dialog.XamlRoot = this.XamlRoot;
@@ -226,5 +226,6 @@ namespace REZ
             Greetings.Text = $"Olá, {User.Name}!";
             ShoppingCart.DefineUser(User);
         }
+
     }
 }

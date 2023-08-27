@@ -36,14 +36,14 @@ namespace REZ
             this.InitializeComponent();
             UpdateUser(User);
             Debug.WriteLine($"[AccountInfo] Current User: {User.Name}");
-            UpdatePrice(ProductsList);
-
             myListView.ItemsSource = User.ItemsList;
+
         }
 
         //----------------------------------------------------------------------------
         public void UpdatePrice(List<Product> productsList)
         {
+            
             double subtotal = SubtotalValueCalculator(productsList);
             string subtotalValue = subtotal.ToString("0.00");
             double taxa = subtotal * 0.1;
@@ -62,9 +62,10 @@ namespace REZ
 
             foreach (Product product in productsList)
             {
-                finalValue += product.Price;
+                Debug.WriteLine($"{product.Name}: {product.Quantity}");
+                finalValue += product.FinalPrice;
             }
-
+            Debug.WriteLine($"[AccountInfo] Valor subtotal final: R$ {finalValue}");
             return finalValue;
         }
 

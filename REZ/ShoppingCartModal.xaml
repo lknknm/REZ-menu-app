@@ -65,10 +65,10 @@
 
         <StackPanel Width="468" VerticalAlignment="Center" HorizontalAlignment="Center">
             <TextBlock Text="Selecione as contas que vão compartilhar esse pedido com você:" TextAlignment="Left" Foreground="Gray" />
-            <ComboBox x:Name="AccountsComboBox" Width="400" SelectionChanged="SplitAccount_Updater">
+            <ComboBox x:Name="AccountsComboBox" Width="400" >    
             <ComboBox.ItemTemplate>
                 <DataTemplate>
-                        <CheckBox Content="{Binding Name}" IsChecked="{Binding IsSelected}" IsEnabled="{Binding IsEnabled}" />
+                        <CheckBox Content="{Binding Name}" Tag="{Binding CPF}" IsChecked="{Binding IsSelected}" IsEnabled="{Binding IsEnabled}" Checked="AddAccountToSplit" Unchecked="RemoveAccountToSplit" />
                 </DataTemplate>
             </ComboBox.ItemTemplate>
             </ComboBox>

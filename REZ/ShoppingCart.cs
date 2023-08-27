@@ -15,7 +15,7 @@ namespace REZ
         // public AccountsList OpenAccounts;
         public static Account User = AccountsList.SelectedAccount;
         public double TotalPrice;
-        public string OrderId;
+        public static string OrderId = "0";
 
         public static List<Product> OrderProducts
         {
@@ -24,9 +24,10 @@ namespace REZ
         }
 
         //----------------------------------------------------------------------------
-        public ShoppingCart(string orderId)
+        public ShoppingCart()
         {
-            OrderId = orderId;
+            OrderId = (int.Parse(OrderId) + 1).ToString();
+
             if (User != null) 
             {
                 
@@ -112,15 +113,21 @@ namespace REZ
             foreach (Product item in orderItemsList) 
             {
                 double valueForEach = item.DivideItemPrice(accountsToDivide, accountsQuantity);
+
+                Debug.WriteLine($"contas para dividir: {accountsToDivide.Count}");
                 foreach (Account account in accountsToDivide)
                 {
+                    Product newItem = item.Clone() as Product;
+                    //newItem.Price = valueForEach;
 
                     bool addNewItem = true;
+                    
                     foreach (Product itemInAccount in account.ItemsList)
                     {
-                        if (item.Name == itemInAccount.Name)
+                        if (newItem.Name == itemInAccount.Name)
                         {
-                            itemInAccount.Quantity += item.Quantity;
+                            itemInAccount.Quantity += newItem.Quantity;
+                            itemInAccount.FinalPrice += valueForEach;
                             addNewItem = false;
                         }
 
@@ -128,12 +135,14 @@ namespace REZ
 
                     if (addNewItem)
                     {
-                        Product newItem = item.Clone() as Product;
-                        newItem.Price = valueForEach;
+                        newItem.FinalPrice += valueForEach;
                         account.AddItem(newItem);
                     }
 
+                    Debug.WriteLine($"adddNewItem: {addNewItem}");
+                    Debug.WriteLine($"items na conta: {account.ItemsList.Count}");
                 }
+
                 item.RemoveItemFromCart();
 
             }

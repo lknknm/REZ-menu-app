@@ -27,20 +27,20 @@ namespace REZ
             set { selectedAccount = value; } 
             
         }
-
         public static ShoppingCart Cart
         {
             get { return shoppingCart; }
             set { shoppingCart = value; }
         }
 
+        //----------------------------------------------------------------------------
         public AccountsList()
         {
-            //Accounts = new List<Account> { };
-            shoppingCart = InicializeNewShoppingCart();
+            shoppingCart = new ShoppingCart();
             //Criar a conta no DB
         }
 
+        //----------------------------------------------------------------------------
         public static List<Account> AddNewAccount(Account account)
         {
 
@@ -49,6 +49,7 @@ namespace REZ
             return Accounts;
         }
 
+        //----------------------------------------------------------------------------
         public static void RemoveAccount(Account account)
         {
             //Remover conta do DB
@@ -66,6 +67,7 @@ namespace REZ
 
         }
 
+        //----------------------------------------------------------------------------
         public static Account SwitchAccounts(Account newAccount)
         {
             if (Accounts.Count > 0)
@@ -91,23 +93,7 @@ namespace REZ
             return SelectedAccount;
         }
 
-
-        public void CloseAccounts()
-        {
-            //deletar todas as contas do DB
-            Accounts.Clear();
-            InicializeNewShoppingCart();
-            
-        }
-
-        private ShoppingCart InicializeNewShoppingCart()
-        {
-            Random random = new Random(); // mudar para um gerador de Id de respeito
-            string newOrderId = random.Next(0, 100).ToString();
-            return new ShoppingCart(newOrderId);
-
-        }
-
+        //----------------------------------------------------------------------------
         public static List<Account> GetAvailableUsers()
         {
             List<Account> availableUsers = new List<Account>();

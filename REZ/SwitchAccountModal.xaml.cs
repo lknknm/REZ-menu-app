@@ -38,6 +38,7 @@ namespace REZ
 
         }
 
+        //----------------------------------------------------------------------------
         private void SelectedUserChanged(object sender, SelectionChangedEventArgs e)
         {
             UserToChange = AccountsOptions.SelectedItem as Account;

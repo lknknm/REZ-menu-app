@@ -88,7 +88,7 @@
                                         <Run Text="Número do pedido: "/>
                                         <Run Text="{Binding OrderId}"/>
                                     </TextBlock>
-                                    <TextBlock Text="{Binding Price}" FontSize="12"/>
+                                    <TextBlock Text="{Binding FinalPrice}" FontSize="12"/>
                                 </StackPanel>
                             </DataTemplate>
                         </ListView.ItemTemplate>

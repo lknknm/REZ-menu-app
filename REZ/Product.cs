@@ -14,6 +14,7 @@ namespace REZ
         private string category;
         private string subCategory;
         private int quantity;
+        private double finalPrice = 0;
 
         public string OrderId
         {
@@ -44,6 +45,12 @@ namespace REZ
         {
             get { return quantity > 0? price * quantity : price; }
             set { price = value; }
+        }   
+
+        public double FinalPrice
+        {
+            get { return finalPrice; }
+            set { finalPrice = value; }
         }
         public string Description
         {
@@ -79,7 +86,9 @@ namespace REZ
             return new Product(this.Name, this.Description, this.Price, this.imageSource, this.Category)
             {
                 SubCategory = this.SubCategory,
-                Quantity = this.Quantity
+                Quantity = this.Quantity,
+                OrderId = this.OrderId,
+
             };
         }
 
