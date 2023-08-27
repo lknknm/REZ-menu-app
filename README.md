@@ -14,9 +14,7 @@ This is the final group project for discipline INF0999 (Final Project) of the tr
 
 <a href="https://github.com/lknknm/REZ-menu-app/graphs/contributors">
   <img src="https://avatars.githubusercontent.com/u/108239558?size=64" style="border-radius: 100%" />
-  <img src="https://avatars.githubusercontent.com/u/91164652?size=64" style="border-radius: 100%" />
   <img src="https://avatars.githubusercontent.com/u/110830067?size=64" style="border-radius: 100%" />
-  <img src="https://avatars.githubusercontent.com/u/41762278?size=64" style="border-radius: 100%" />
 </a>
 
 ## Getting Started
@@ -32,7 +30,8 @@ Additionally, since this project uses [WinUI 3.0](https://github.com/microsoft/m
 - To see how to build the project, please take a look at the developer documentation and follow the [Build Manual](./doc/dev/BUILD.md). 
 - To see how we style our code, please refer to the [Code Style Guide](./doc/dev/styleguide.md)
 - To follow the criteria and ideation development process, please check [Criteria Document](./doc/dev/CRITERIA_pt.md) and [UX_Criteria Document](./doc/dev/UX_CRITERIA_pt.md) in the [developer documentation](./doc/dev/) (Portuguese).
+- Since this is a project developed during the State University of Campinas (UNICAMP) - Microsoft Technologies training course, we wrote a development report regarding the development process. You can see it [here](./doc/dev/DevelopmentReport.md).
 
 # License
 
-REZ - Easy Restaurant App is licensed and distributed under the 3-Clause BSD License. See [License](./LICENSE.md). Keep in mind this is a non-profit, student project. 
+REZ - Easy Restaurant App is licensed and distributed under the 3-Clause BSD License. See [License](./LICENSE.md). Keep in mind this is a non-profit, student project. Images are used under the Pexels License.
