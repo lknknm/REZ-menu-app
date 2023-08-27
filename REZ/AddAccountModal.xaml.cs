@@ -62,21 +62,17 @@ namespace REZ
         // Maybe later we can add the INotifyPropertyChanged interface.
         private void InputName_TextChange(object sender, TextChangedEventArgs e)
         {
-            Regex regex = new Regex("^[a-zA-ZÀ-ÿ]{1,20}$");
-            if (String.IsNullOrEmpty(Name.Text))
+            Regex regex = new Regex("^([a-zA-ZÀ-ÿ]{3,10})+([ a-zA-ZÀ-ÿ]{0,20})$");
+            if (!regex.IsMatch(Name.Text))
             {
                 ErrorMessage_Name.Visibility = Visibility.Visible;
-                ErrorMessage_Name.Text = Name.Text + "Por favor digite um nome.";
                 IsNameInputValid = false;
+                ErrorMessage_Name.Text = String.IsNullOrEmpty(Name.Text)
+                    ? $"Por favor digite um nome."
+                    : $"{Name.Text} - não e um nome valido. Por favor insira outro nome.";
             }
-            else if (!regex.IsMatch(Name.Text))
+            else
             {
-                ErrorMessage_Name.Visibility = Visibility.Visible;
-                ErrorMessage_Name.Text = Name.Text + " não é um nome válido. Por favor insira outro nome.";
-                IsNameInputValid = false;
-            }
-            else 
-            { 
                 ErrorMessage_Name.Visibility = Visibility.Collapsed;
                 IsNameInputValid = true;
             }
@@ -89,9 +85,7 @@ namespace REZ
         // Maybe later we can add the INotifyPropertyChanged interface.
         private void CPFNumber_TextChange(object sender, TextChangedEventArgs e)
         {
-
             TextBox textBox = sender as TextBox;
-
             string formattedCPF = FormatCPF(textBox.Text);
 
             if (formattedCPF != textBox.Text)
@@ -100,29 +94,28 @@ namespace REZ
                 textBox.SelectionStart = formattedCPF.Length;
             }
 
-            
-            Regex regex = new Regex("^\\d{3}\\.?\\d{3}\\.?\\d{3}-?\\d{2}$");
             if (String.IsNullOrEmpty(CPF.Text))
             {
                 ErrorMessage_CPF.Visibility = Visibility.Visible;
                 ErrorMessage_CPF.Text = CPF.Text + "Por favor digite um número de CPF.";
                 IsCPFInputValid = false;
             }
-            //else if (!ValidateCPF(CPF.Text))
-            //{
-            //    ErrorMessage_CPF.Visibility = Visibility.Visible;
-             //   ErrorMessage_CPF.Text = CPF.Text + " não é um CPF válido. Por favor insira um número de CPF.";
-             //   IsCPFInputValid = false;
-            //}
+            else if (!ValidateCPF(CPF.Text))
+            {
+                ErrorMessage_CPF.Visibility = Visibility.Visible;
+                ErrorMessage_CPF.Text = CPF.Text + " não é um CPF válido. Por favor insira um número de CPF.";
+                IsCPFInputValid = false;
+            }
             else 
             { 
                 ErrorMessage_CPF.Visibility = Visibility.Collapsed;
                 IsCPFInputValid = true;
             }
             InputsValidation();
-
         }
 
+        //----------------------------------------------------------------------------
+        // This will validate the CPF number with its specific format and logic
         private bool ValidateCPF(string cpf)
         {
             string digitsOnly = new string(cpf.Where(char.IsDigit).ToArray());
@@ -163,9 +156,14 @@ namespace REZ
                    int.Parse(digitsOnly[10].ToString()) == secondDigit;
         }
 
+
+        //----------------------------------------------------------------------------
+        // This method will autoformat user input adding dots and dash to the CPF number
+        // for correct formatting.
+        // By this, the user will only need to input 1234568900 and the TextBox field 
+        // will live update to 123.456.789-00.
         private string FormatCPF(string cpf)
         {
-            
             string digitsOnly = new string(cpf.Where(char.IsDigit).ToArray());
 
             if (digitsOnly.Length > 11)
@@ -186,10 +184,7 @@ namespace REZ
             {
                 formattedCPF = formattedCPF.Insert(11, "-");
             }
-
             return formattedCPF;
         }
-
-
     }
 }
