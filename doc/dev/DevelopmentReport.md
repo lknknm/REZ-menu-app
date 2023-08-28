@@ -1,4 +1,4 @@
-## REZ Development Report (INF-0999)
+# REZ Development Report (INF-0999)
 Provided this is the Final Project of the training course in Microsoft technologies at the Institute of Computing at the State University of Campinas (UNICAMP), it is important that the students follow some base criteria about each subject taught during the course. For that reason, the following topics were considered during development:
 
 - C# Programming Language and known software architecture patterns;
@@ -9,8 +9,25 @@ Provided this is the Final Project of the training course in Microsoft technolog
 - User Interface Programming;
 - Safe Programming;
 
-### Programming and Architecture Pattern
-### Code Versioning
+## Programming and Architecture Pattern
+
+#### Architecture pattern:
+This is a .NET Core 7.0 program that uses WinUI 3.0 as User Interface Layer. Due to WinUI's nature, this app uses the MVVM pattern. The structure of this project for the MVVM pattern goes as follows:
+
+- `*.xaml` files as View, which contains the bindings to the corresponding code-behind, Front-End and in-line component  styling;
+- `*.xaml.cs` (code-behind) files as ViewModel, which will handle the logic behind bindings through `DataContext`, as well as Validation and coordination between View and Model;
+- `*xaml.cs` and `*.cs` files as Model, which will coordinate the Event State Change using interfaces such as `INotifyPropertyChanged` or `INotifyCollectionChanged`. The Model will also handle and provide the Data fed to the application passing it to the ViewModel, which in turn will pass it to the View.
+
+#### Code Style:
+We made a code style guide for the development process. This helped us to maintain the code readable and understandable for any collaborator. Since this is a student project, we are also open to improvements and suggestions.
+
+- For more information: [REZ-CodeStyle Guide](./styleguide.md).
+
+#### Build
+To build the software, there is a list of dependencies to install and configure inside Visual Studio. We made a quick-start guide for this:
+- For more information: [REZ Build Quick-Start Guide](BUILD.md). 
+
+## Code Versioning
 For code versioning we used the Git + GitHub remote repository workflow. Branch names are specific for a feature (or set of features) that the developers are currently working, so Pull Requests can be concise and easy to read. They can also be attached to an specific issue so both are closed after a merge.
 
 For this project we have been using the [Shared Repository Model](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/getting-started/about-collaborative-development-models#shared-repository-model), in which all collaborators are granted access to the single shared repository. Each branch is created to meet an specific issue requirements so we can merge the code via a PR with code review.
@@ -44,7 +61,7 @@ On the GitHub repository, we have been opening and tracking issues for each feat
 - You can see Open and Closed Issues [here](https://github.com/lknknm/REZ-menu-app/issues);
 - You can see the Open and Merged Pull Requests with discussion [here](https://github.com/lknknm/REZ-menu-app/pulls).
 
-### Project Management
+## Project Management
 We managed the project with GitHub Projects by applying the `Agile/Scrum` methodology. This way we can track issues, assign them to each member of the project group and also track the development status. 
 
 The `Agile/Scrum` methodology was used so the group could discuss the current open issues, understand each problem together and organize new sprints to solve them. Features or bugfixes could be suggested by any member of the group (in an ideal case, we could also include users feedback), as long as they provide clear information about the problems they are encountering during the development process.
@@ -59,12 +76,12 @@ After tracking each issue and organizing them by `Priority`, we add them to the 
 - You can see Open and Closed Issues [here](https://github.com/lknknm/REZ-menu-app/issues);
 - You can see the Open and Merged Pull Requests with discussion [here](https://github.com/lknknm/REZ-menu-app/pulls).
 
-### Hosting
+## Hosting
 Since this application is a desktop/tablet application that will be deployed for Surface and other Windows tablet devices, hosting it isn't necessary. It is also worth mentioning that this software is designed for a specific form-factor and screen resolution of `1920x1080`, so the experience could be as fast, fluid and simple as possible.
 
 In this stage, unfortunately, database Hosting was not possible due to Azure subscription limitations. For this reason we used a mock database Json file as part of Model design.
 
-### Continuous Integration and Testing
+## Continuous Integration and Testing
 We deployed a very simple pipeline for testing — that can also be scalable and improved further — using [GitHub Actions](https://github.com/features/actions).
 It will simply build the Unpackaged WinUI 3.0 application with given dependencies and specified nuget packages for each commit and PR. This way we can start testing if the software is correctly building for any Windows platform while commiting changes and submitting PRs. 
 
@@ -75,7 +92,7 @@ It will simply build the Unpackaged WinUI 3.0 application with given dependencie
 - You can see the `main.yaml` file for CI Testing [here](https://github.com/lknknm/REZ-menu-app/blob/main/.github/workflows/main.yml).
 
 
-### User Experience
+## User Experience
 #### Project ideation
 To be able to better understand User Experience decisions yet to be made for the application, we took a step back and evaluated the project criteria we needed for it to be functional and visually clean/engaging, as well as possible problems we could come accross during the development process.
 
@@ -96,7 +113,7 @@ To understand WinUI components, behaviors and code, we used the [WinUI 3.0 Galle
 
 The overall process was straightforward with few difficulties to understand a bit more about the WinUI behavior and XAML/Code-behind intricacies. Their Figma components library is very close to what they offer inside the WinUI Gallery application, so the "translation" between the two was seamless, besides some few limitations regarding XAML development using their current libraries.
 
-### Safe Programming
+## Safe Programming
 To avoid Injection Attacks through inputs of this application, we implemented a basic input validation layer to forms. This layer of protection can prevent SQL injection attacks to a Database connected to the ViewModel.
 
 Unexpected inputs will block the `Send` buttons as well as not be accepted by the Back-End. It is important to mention, though, that if a more robust Back-End/Model is to be implemented, potentially malitious requests should also be rejected by the Back-End in `Model` code.
