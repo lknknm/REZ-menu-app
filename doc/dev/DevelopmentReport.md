@@ -79,7 +79,7 @@ After tracking each issue and organizing them by `Priority`, we add them to the 
 ## Hosting
 Since this application is a desktop/tablet application that will be deployed for Surface and other Windows tablet devices, hosting it isn't necessary. It is also worth mentioning that this software is designed for a specific form-factor and screen resolution of `1920x1080`, so the experience could be as fast, fluid and simple as possible.
 
-In this stage, unfortunately, database Hosting was not possible due to Azure subscription limitations. For this reason we used a mock database Json file as part of Model design.
+In this stage, unfortunately, database Hosting was not possible due to Azure subscription limitations. For this reason we used a mock database Json file as part of Model design and that would feed the products catalog to our application.
 
 ## Continuous Integration and Testing
 We deployed a very simple pipeline for testing — that can also be scalable and improved further — using [GitHub Actions](https://github.com/features/actions).
@@ -99,7 +99,7 @@ To be able to better understand User Experience decisions yet to be made for the
 We started thinking about how the user flow would look like, how orders would be took and handled and what visual queues would be displayed.
 
 During this initial step, there was no programming involved, only the general ideas and concepts we would like to implement.
-For this, we then developed the [Ideation Criteria (Portuguese)](/doc/dev/CRITERIA_pt.md) and [User Experience Criteria (Portuguese)](./UX_CRITERIA_pt.md).
+We then developed the [Ideation Criteria (Portuguese)](/doc/dev/CRITERIA_pt.md) and [User Experience Criteria (Portuguese)](./UX_CRITERIA_pt.md).
 
 #### Figma
 
@@ -109,9 +109,9 @@ Additionally, since this project uses [WinUI 3.0](https://github.com/microsoft/m
 ### User Interface Programming
 We decided to implement [WinUI 3.0](https://github.com/microsoft/microsoft-ui-xaml) as User Interface Layer due to its easiness of use and quick results for a clean, engaging and gorgeous UI. Since the due dates of the project are short, we decided to use its components library to speed up the process of developing a good looking UI that could engage the user, as well as handle animation, navigation flow, pages and other features. 
 
-To understand WinUI components, behaviors and code, we used the [WinUI 3.0 Gallery](https://github.com/microsoft/WinUI-Gallery) app to navigate throught the whole library. By this, we could get snippets of code with live examples and translate them to the results we wanted to achieve in our Figma Template.
+To understand WinUI components, behaviors and code, we used the [WinUI 3.0 Gallery](https://github.com/microsoft/WinUI-Gallery) app to navigate throught the whole library. With this App we could get snippets of code with live examples and translate them to the results we wanted to achieve in our Figma Template.
 
-The overall process was straightforward with few difficulties to understand a bit more about the WinUI behavior and XAML/Code-behind intricacies. Their Figma components library is very close to what they offer inside the WinUI Gallery application, so the "translation" between the two was seamless, besides some few limitations regarding XAML development using their current libraries.
+The overall process was straightforward with few difficulties along the way regarding the understanding of the WinUI components behavior and XAML/Code-behind intricacies. Their Figma components library is very close to what they offer inside the WinUI Gallery application, so the "translation" between the two was seamless, besides some few limitations regarding XAML development using their current libraries.
 
 ## Safe Programming
 To avoid Injection Attacks through inputs of this application, we implemented a basic input validation layer to forms. This layer of protection can prevent SQL injection attacks to a Database connected to the ViewModel.
