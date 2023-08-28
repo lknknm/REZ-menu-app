@@ -60,8 +60,22 @@ After tracking each issue and organizing them by `Priority`, we add them to the 
 - You can see the Open and Merged Pull Requests with discussion [here](https://github.com/lknknm/REZ-menu-app/pulls).
 
 ### Hosting
-### User Experience
+Since this application is a desktop/tablet application that will be deployed for Surface and other Windows tablet devices, hosting it isn't necessary. It is also worth mentioning that this software is designed for a specific form-factor and screen resolution of `1920x1080`, so the experience could be as fast, fluid and simple as possible.
 
+In this stage, unfortunately, database Hosting was not possible due to Azure subscription limitations. For this reason we used a mock database Json file as part of Model design.
+
+### Continuous Integration and Testing
+We deployed a very simple pipeline for testing — that can also be scalable and improved further — using [GitHub Actions](https://github.com/features/actions).
+It will simply build the Unpackaged WinUI 3.0 application with given dependencies and specified nuget packages for each commit and PR. This way we can start testing if the software is correctly building for any Windows platform while commiting changes and submitting PRs. 
+
+![Alt text](./assets/CI-example-1.png)
+![Alt text](./assets/CI-example-2.png)
+
+- The pipeline was configured by setting up the workflow using GitHub Actions following the Microsoft Documentation: [Set up continuous integration for your WinUI 3 app](https://learn.microsoft.com/en-us/windows/apps/package-and-deploy/ci-for-winui3?pivots=winui3-unpackaged-csharp).
+- You can see the `main.yaml` file for CI Testing [here](https://github.com/lknknm/REZ-menu-app/blob/main/.github/workflows/main.yml).
+
+
+### User Experience
 #### Project ideation
 To be able to better understand User Experience decisions yet to be made for the application, we took a step back and evaluated the project criteria we needed for it to be functional and visually clean/engaging, as well as possible problems we could come accross during the development process.
 
@@ -69,7 +83,6 @@ We started thinking about how the user flow would look like, how orders would be
 
 During this initial step, there was no programming involved, only the general ideas and concepts we would like to implement.
 For this, we then developed the [Ideation Criteria (Portuguese)](/doc/dev/CRITERIA_pt.md) and [User Experience Criteria (Portuguese)](./UX_CRITERIA_pt.md).
-
 
 #### Figma
 
