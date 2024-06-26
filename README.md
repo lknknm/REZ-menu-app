@@ -7,9 +7,6 @@ It makes it easier to costumers and waiters to keep track of bills and order ite
 
 This is the final group project for discipline INF0999 (Final Project) of the training course in Microsoft technologies at the Institute of Computing at the State University of Campinas (UNICAMP).
 
-|This Project is still under construction|
-|----------------------------------------|
-
 ### Contributors
 
 <a href="https://github.com/lknknm/REZ-menu-app/graphs/contributors">
